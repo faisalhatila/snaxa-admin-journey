@@ -16,6 +16,7 @@ import _Navbar from "./navbar";
 import _AddRestaurantForm from "./addrestaurantform";
 import _ImageUpload from "./imageuploader";
 import _AddOrderStatusForm from "./addrestaurantform";
+import _AddCategoryForm from "./addcategoryform";
 
 export const Header = _Header;
 export const Footer = _Footer;
@@ -35,3 +36,4 @@ export const Navbar = _Navbar;
 export const AddRestaurantForm = _AddRestaurantForm;
 export const ImageUpload = _ImageUpload;
 export const AddOrderStatusForm = _AddOrderStatusForm;
+export const AddCategoryForm = _AddCategoryForm;
