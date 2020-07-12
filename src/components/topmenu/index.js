@@ -2,7 +2,7 @@ import React from "react";
 
 const TopMenu = (props) => {
   return (
-    <div className="topMenuMainDiv">
+    <div className="topMenuMainDiv d-none d-md-block">
       <div className="container">
         <div className="row justify-content-between align-items-center">
           <p>
