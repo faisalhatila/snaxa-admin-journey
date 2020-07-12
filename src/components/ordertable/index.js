@@ -108,22 +108,22 @@ export default class OrderTable extends Component {
           <table class="table table-hover">
             <thead style={{ backgroundColor: "gray", color: "#fff" }}>
               <tr>
-                <th>{/* <input type="checkbox" /> */}</th>
-                <th>Order ID</th>
-                <th>Customer Name</th>
-                <th>Mobile No</th>
-                <th>Restaurant</th>
-                <th>Area</th>
-                <th>Branch</th>
-                <th>Order Time</th>
-                <th>Payment</th>
-                <th>Amount</th>
-                <th>Order Source</th>
-                <th>Status</th>
+                {/* <th><input type="checkbox" /></th> */}
+                <th className="orderTableTH">Order ID</th>
+                <th className="orderTableTH">Customer Name</th>
+                <th className="orderTableTH">Mobile No</th>
+                <th className="orderTableTH">Restaurant</th>
+                <th className="orderTableTH">Area</th>
+                <th className="orderTableTH">Branch</th>
+                <th className="orderTableTH">Order Time</th>
+                <th className="orderTableTH">Payment</th>
+                <th className="orderTableTH">Amount</th>
+                <th className="orderTableTH">Order Source</th>
+                <th className="orderTableTH">Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              {/* <tr>
                 <td></td>
                 <td>
                   <input
@@ -202,24 +202,24 @@ export default class OrderTable extends Component {
                     className="searchOrderData"
                   />
                 </td>
-              </tr>
+              </tr> */}
               {data.map((item) => {
                 return (
                   <tr>
-                    <td>
+                    {/* <td>
                       <input type="checkbox" />
-                    </td>
-                    <td>{item.id}</td>
-                    <td>{item.customer}</td>
-                    <td>{item.mobileNo}</td>
-                    <td>{item.restaurant}</td>
-                    <td>{item.area}</td>
-                    <td>{item.branch}</td>
-                    <td>{item.orderTime}</td>
-                    <td>{item.payment}</td>
-                    <td>${item.amount}</td>
-                    <td>{item.orderSource}</td>
-                    <td>
+                    </td> */}
+                    <td className="orderTableTD">{item.id}</td>
+                    <td className="orderTableTD">{item.customer}</td>
+                    <td className="orderTableTD">{item.mobileNo}</td>
+                    <td className="orderTableTD">{item.restaurant}</td>
+                    <td className="orderTableTD">{item.area}</td>
+                    <td className="orderTableTD">{item.branch}</td>
+                    <td className="orderTableTD">{item.orderTime}</td>
+                    <td className="orderTableTD">{item.payment}</td>
+                    <td className="orderTableTD">${item.amount}</td>
+                    <td className="orderTableTD">{item.orderSource}</td>
+                    <td className="orderTableTD">
                       <div className="d-flex justify-content-center">
                         <div>{item.status}</div>
                         <label className="orderView ml-3">View</label>
