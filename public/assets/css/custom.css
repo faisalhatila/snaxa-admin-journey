@@ -341,3 +341,36 @@ thead > tr > th {
   font-weight: 700;
 }
 /**************************************************Update Vendor Form Component End***********************************/
+/**************************************************Customer Add Component Start***********************************/
+
+.customerDetailFormTitle {
+  /* box-shadow: 0px -3px 5px 2px #ccc; */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top: solid 1px #ccc;
+  border-right: solid 1px #ccc;
+  border-left: solid 1px #ccc;
+  border-bottom: solid #fff;
+  z-index: 10;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.customerDetailFormMainDiv {
+  /* box-shadow: 0px 0px 4px 2px #ccc; */
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: solid 1px #ccc;
+  transform: translateY(-2px);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/**************************************************Customer Add Component End***********************************/
+/**************************************************Add Restaurant Form Start**************************************************/
+.deleteCuisine {
+  background-color: red;
+  color: #fff;
+  padding: 0px 5px;
+  border-radius: 5px;
+}
+/**************************************************Add Restaurant Form End**************************************************/
