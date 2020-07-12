@@ -5,6 +5,7 @@ import _OrderManagementTable from "./ordermanagementtable";
 import _PunchedOrders from "./punchedorders";
 import _RestaurantManagementTable from "./restaurantmanagementtable";
 import _AddRestaurant from "./addrestaurant";
+import _AddOrderStatus from "./addorderstatus";
 
 export const HomeContainer = _HomeContainer;
 export const LoginContainer = _LoginContainer;
@@ -13,3 +14,4 @@ export const OrderManagementTable = _OrderManagementTable;
 export const PunchedOrders = _PunchedOrders;
 export const RestaurantManagementTable = _RestaurantManagementTable;
 export const AddRestaurant = _AddRestaurant;
+export const AddOrderStatus = _AddOrderStatus;
