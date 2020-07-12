@@ -107,29 +107,41 @@ export default class AddCategoryForm extends Component {
           Item Details
         </div>
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
-          <form className="col-12 col-lg-6 col-md-6 updateVendorForm">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Item Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="Enter Item Name"
-                onChange={this.handleChangecategoryName}
-                value={categoryName}
-              />
-              {categoryNameError ? (
-                <div
-                  style={{
-                    textAlign: "center",
-                    color: "red",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {categoryNameError}
-                </div>
-              ) : null}
+          <form className="col-12 updateVendorForm">
+            <div className="row">
+              <div class="form-group col-12 col-md-6 col-lg-6">
+                <label for="exampleInputEmail1">Category Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter Item Name"
+                  onChange={this.handleChangecategoryName}
+                  value={categoryName}
+                />
+                {categoryNameError ? (
+                  <div
+                    style={{
+                      textAlign: "center",
+                      color: "red",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {categoryNameError}
+                  </div>
+                ) : null}
+              </div>
+              <div class="form-group col-12 col-md-6 col-lg-6">
+                <label for="exampleFormControlSelect1">Select Restaurant</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Description</label>
