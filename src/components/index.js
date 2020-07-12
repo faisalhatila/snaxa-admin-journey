@@ -12,6 +12,7 @@ import _NewOrder from "./neworder";
 import _PunchedOrderDesc from "./punchedorderdesc";
 import _NewRestaurant from "./newrestaurant";
 import _RestaurantTable from "./restauranttable";
+import _Navbar from "./navbar";
 
 export const Header = _Header;
 export const Footer = _Footer;
@@ -27,3 +28,4 @@ export const NewOrder = _NewOrder;
 export const PunchedOrderDesc = _PunchedOrderDesc;
 export const NewRestaurant = _NewRestaurant;
 export const RestaurantTable = _RestaurantTable;
+export const Navbar = _Navbar;
