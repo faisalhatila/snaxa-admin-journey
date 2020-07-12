@@ -104,13 +104,13 @@ export default class AddItemForm extends Component {
     return (
       <div className="row">
         <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
-          Category Details
+          Item Details
         </div>
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <form className="col-12 updateVendorForm">
             <div className="row">
               <div class="form-group col-12 col-md-6 col-lg-6">
-                <label for="exampleInputEmail1">Category Name</label>
+                <label for="exampleInputEmail1">Item Name</label>
                 <input
                   type="text"
                   class="form-control"
@@ -143,33 +143,65 @@ export default class AddItemForm extends Component {
                 </select>
               </div>
             </div>
-            <div class="form-group">
-              <label for="exampleFormControlTextarea1">Description</label>
-              <textarea
-                class="form-control"
-                id="exampleFormControlTextarea1"
-                rows="3"
-                placeholder="Enter Item Description"
-                value={itemDescription}
-                onChange={this.handleChangeItemDescription}
-              ></textarea>
-              {itemDescriptionError ? (
-                <div
-                  style={{
-                    textAlign: "center",
-                    color: "red",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {itemDescriptionError}
-                </div>
-              ) : null}
+            <div className="row">
+              <div class="form-group col-12 col-md-6 col-lg-6">
+                <label for="exampleFormControlSelect1">Select Category</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="form-group col-12 col-md-6 col-lg-6">
+                <label for="exampleInputEmail1">Description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter Item Name"
+                  onChange={this.handleChangeItemDescription}
+                  value={itemDescription}
+                />
+              </div>
             </div>
-            <div
-              class="form-group"
-              style={{ boxShadow: "0px 0px 5px 2px #ccc" }}
-            >
-              <ImageUpload />{" "}
+            <div className="row">
+              <div class="form-group col-6">
+                <div
+                  style={{ boxShadow: "0px 0px 5px 2px #ccc" }}
+                  className="col"
+                >
+                  <ImageUpload />
+                </div>
+              </div>
+              <div className="col-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Description</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter Item Name"
+                    onChange={this.handleChangeItemDescription}
+                    value={itemDescription}
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Description</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter Item Name"
+                    onChange={this.handleChangeItemDescription}
+                    value={itemDescription}
+                  />
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Priority</label>
