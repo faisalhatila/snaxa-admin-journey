@@ -6,7 +6,7 @@ export default class AddCategory extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-12 col-lg-9 col-md-9 mt-4">
+          <div className="col-12 mt-4">
             <AddCategoryForm />
           </div>
         </div>
