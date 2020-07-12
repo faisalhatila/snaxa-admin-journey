@@ -104,7 +104,7 @@ export default class AddCategoryForm extends Component {
     return (
       <div className="row">
         <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
-          Item Details
+          Category Details
         </div>
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <form className="col-12 updateVendorForm">
