@@ -4,6 +4,15 @@
 .redFont {
   color: red;
 }
+/**************************************************Navbar Start**************************************************/
+.headerDiv {
+  background-color: #ed1b24;
+  min-height: 90px;
+}
+#logo > a > img {
+  max-width: 150px;
+}
+/**************************************************Navbar End**************************************************/
 /**************************************************Login Page Start***********************************/
 .loginPageMainDiv {
   min-width: 100%;
@@ -59,6 +68,7 @@
 /**************************************************Top Menu Component Start***********************************/
 .topMenuMainDiv {
   background-color: #ed1b24;
+  border-bottom: solid 1px #eee;
 }
 .topMenuMainDiv > div > div {
   padding: 4px 0;

@@ -38,28 +38,33 @@ export default class Navbar extends Component {
         <button onClick={handleClick} type="button" id="mobile-nav-toggle">
           <i id="toggleButton" className="fa fa-bars" aria-hidden="true" />
         </button>
-        <div>
-          {" "}
+        <div className="headerDiv">
           <header id="header" className="container">
-            <div class="container-fluid">
+            <div class="">
               <div id="logo" class="pull-left">
-                <h1>
-                  <a href="#intro" class="scrollto">
-                    <img src="assets/img/logo.svg" className="mr-3" />
-                    E-Shop
-                  </a>
-                </h1>
+                {/* <h1> */}
+                <a href="#intro" class="scrollto">
+                  <img src="assets/img/logo.svg" className="mr-3" />
+                  {/* E-Shop */}
+                </a>
+                {/* </h1> */}
               </div>
               <nav id="nav-menu-container">
                 <ul class="nav-menu">
                   <li class="">
-                    <a href="#intro">Products</a>
+                    <a href="#intro">Dashboard</a>
                   </li>
                   <li>
-                    <a href="#about">Inspection</a>
+                    <a href="#about">Customer Management</a>
                   </li>
                   <li>
-                    <a href="#services">Room</a>
+                    <a href="#services">Restaurant Management</a>
+                  </li>
+                  <li>
+                    <a href="#services">Order Management</a>
+                  </li>
+                  <li>
+                    <a href="#services">Kitchen Management</a>
                   </li>
                   {/* <li>
                   <a href="#portfolio">Portfolio</a>

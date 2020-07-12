@@ -1,8 +1,17 @@
 import React from "react";
-import { TopMenu } from "..";
+import { TopMenu, Navbar } from "..";
 
 const Header = (props) => {
-  return <TopMenu name={props.name} />;
+  return (
+    <div>
+      <div>
+        <TopMenu name={props.name} />
+      </div>
+      <div>
+        <Navbar />
+      </div>
+    </div>
+  );
 };
 
 export default Header;
