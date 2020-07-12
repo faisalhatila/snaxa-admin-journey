@@ -9,6 +9,7 @@ import {
   OrderManagementTable,
   PunchedOrders,
   RestaurantManagementTable,
+  AddRestaurant,
 } from "../containers";
 const Router = (props) => {
   return (
@@ -25,6 +26,7 @@ const Router = (props) => {
         component={RestaurantManagementTable}
       />
       <Route exact path="/punched-orders" component={PunchedOrders} />
+      <Route exact path="/add-restaurant" component={AddRestaurant} />
       <PvtRoute exact path="/login" component={LoginContainer} />
       <Route exact path="/404" component={PageNotFound} />
       <Route exact path="/*" component={() => <Redirect to="/404" />} />
