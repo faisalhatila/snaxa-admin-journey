@@ -14,6 +14,7 @@ import _NewRestaurant from "./newrestaurant";
 import _RestaurantTable from "./restauranttable";
 import _Navbar from "./navbar";
 import _AddRestaurantForm from "./addrestaurantform";
+import _ImageUploader from "./imageuploader";
 
 export const Header = _Header;
 export const Footer = _Footer;
@@ -31,3 +32,4 @@ export const NewRestaurant = _NewRestaurant;
 export const RestaurantTable = _RestaurantTable;
 export const Navbar = _Navbar;
 export const AddRestaurantForm = _AddRestaurantForm;
+export const ImageUploader = _ImageUploader;
