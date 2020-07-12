@@ -100,25 +100,28 @@ export default class Navbar extends Component {
               <Link to="/">Home</Link>
             </li> */}
                   <li>
-                    <Link to="/about-us">About Us</Link>
+                    <Link to="/about-us">Dashboard</Link>
                   </li>
                   <li>
-                    <Link to="/services">Services</Link>
+                    <Link to="/services">Customer Management</Link>
                   </li>
                   <li>
-                    <Link to="/blogs">Blogs</Link>
+                    <Link to="/blogs">Restaurant Management</Link>
                   </li>
                   <li>
-                    <Link to="/contact-us">ContactUs</Link>
+                    <Link to="/blogs">Order Management</Link>
                   </li>
-                  <li id="navbarButton">
+                  <li>
+                    <Link to="/blogs">Kitchen Management</Link>
+                  </li>
+                  {/* <li id="navbarButton">
                     <Link
                       to="#featured-services"
                       className="btn-get-started scrollto navbarButton"
                     >
                       Learn More
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </nav>{" "}
             </div>
