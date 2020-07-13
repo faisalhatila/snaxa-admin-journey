@@ -1,0 +1,376 @@
+.noMargin {
+  margin: 0;
+}
+.redFont {
+  color: red;
+}
+/**************************************************Navbar Start**************************************************/
+.headerDiv {
+  background-color: #ed1b24;
+  min-height: 90px;
+}
+#logo > a > img {
+  max-width: 150px;
+}
+/**************************************************Navbar End**************************************************/
+/**************************************************Login Page Start***********************************/
+.loginPageMainDiv {
+  min-width: 100%;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.loginScreenRow1 {
+  transform: translateY(30%);
+}
+.loginScreenRow1 > h2,
+.loginScreenRow1 > p {
+  margin: 0;
+  text-align: center;
+}
+.loginPageFormDiv {
+  background-color: #fff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 2px;
+  /* min-width: 100%; */
+  /* margin: 0; */
+}
+.loginPageFormDiv > p {
+  margin: 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 17px;
+}
+.loginButton {
+  background-color: #b40008;
+  color: #fff;
+  min-width: 100%;
+  outline: none;
+  border: none;
+  transition: all 0.5s ease;
+}
+.loginButton:hover {
+  background-color: #fff;
+  color: #b40008;
+  box-shadow: 0px 0px 5px 2px;
+}
+.createAccountText {
+  margin: 0;
+  font-size: 13px;
+  text-align: center;
+}
+.createAccountLabel {
+  color: #b40008;
+}
+/**************************************************Login Page End***********************************/
+/**************************************************Top Menu Component Start***********************************/
+.topMenuMainDiv {
+  background-color: #ed1b24;
+  border-bottom: solid 1px #eee;
+}
+.topMenuMainDiv > div > div {
+  padding: 4px 0;
+}
+.topMenuMainDiv > div > div > p {
+  margin: 0;
+  color: #fff;
+}
+.topMenuMainDiv > div > div > div > div > p {
+  margin: 0;
+}
+.topMenuMainDiv > div > div > div > div > i,
+.topMenuMainDiv > div > div > div > i {
+  color: #000;
+}
+.topMenuMainDiv > div > div > div > div > i {
+  font-size: 20px;
+  background-color: #ffd9d9;
+  border-radius: 50%;
+  padding: 10px;
+}
+.userInfoDiv {
+  background-color: #fff;
+  padding: 3px 10px;
+}
+.userName {
+  font-size: 13px;
+  color: #000;
+}
+.userJoiningStartDate {
+  font-size: 10px;
+  transform: translateY(-4px);
+  text-align: center;
+  color: gray;
+}
+/**************************************************Top Menu Component End***********************************/
+
+/**************************************************Left Menu Component Start***********************************/
+.leftMenuMainDiv {
+  background-color: #fff;
+  box-shadow: 0px 0px 5px 2px #ccc;
+  border-radius: 5px;
+  min-height: 80vh;
+  margin: 0;
+  text-align: center;
+  color: #ed1b24;
+  padding: 15px;
+}
+.leftMenuContainer {
+  padding-left: 0;
+}
+.leftMenuMenuLinksMainDiv > ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  text-align: left;
+  font-size: 15px;
+}
+/**************************************************Left Menu Component End***********************************/
+/**************************************************Counter Data Component Start***********************************/
+
+.dataCounterRow {
+  background-color: #fff;
+  box-shadow: 0px 0px 5px 2px #ccc;
+  border-radius: 5px;
+}
+.counterRowDataCols {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+}
+.counterRowDataIcons {
+  font-size: 50px;
+  color: #bf282e;
+}
+.counterRowDataValues {
+  margin: 0;
+  font-weight: 800;
+  font-size: 25px;
+  /* color: #bf282e; */
+}
+.totalSales {
+  color: #bf282e;
+}
+.totalCustomers {
+  color: #0579ac;
+}
+.totalOrders {
+  color: #e4001b;
+}
+.totalRestaurants {
+  color: #bfd024;
+}
+.counterRowDataType {
+  font-size: 12px;
+  /* color: #bf282e; */
+  margin: 0;
+}
+/**************************************************Counter Data Component End***********************************/
+/**************************************************Graph Component Start***********************************/
+.leftGraph {
+  background-color: #fff;
+  box-shadow: 0px 0px 5px 2px #ccc;
+  border-radius: 5px;
+}
+/**************************************************Graph Component End***********************************/
+/**************************************************Customer Management Component Start***********************************/
+.ordermanagementtable {
+  box-shadow: 0px 0px 5px 2px #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  overflow: auto;
+  max-height: 500px;
+}
+.ordermanagementtable > div > table {
+  /* min-width: 1300px; */
+}
+.orderView {
+  margin: 0;
+  background-color: red;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 2px #800;
+  cursor: pointer;
+  padding: 0px 15px;
+  max-width: 80px;
+}
+.searchOrderData {
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 5px 2px #ccc;
+  padding: 3px 6px;
+  border-radius: 5px;
+}
+.orderIDSearch {
+  max-width: 80px;
+}
+tbody > tr > td > input,
+tbody > tr > td,
+thead > tr > th {
+  text-align: center;
+}
+.orderTableHeading > h3 {
+  margin: 0;
+  font-size: 25px;
+  background-color: #dedede;
+  /* min-width: 2241px; */
+  color: #000;
+  font-weight: 600;
+  padding: 5px 10px;
+}
+/*New Order Start*/
+.newOrderTableHeading > h3 {
+  margin: 0;
+  font-size: 25px;
+  background-color: #dedede;
+  /* min-width: 2241px; */
+  color: #000;
+  font-weight: 600;
+  padding: 5px 10px;
+}
+.maximumWidth {
+  min-width: 2241px;
+}
+.noNewOrderHeadingDiv > h4 {
+  margin: 0;
+  background-color: #fad1d6;
+  text-align: center;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 15px;
+}
+/*New Order End*/
+/**************************************************Customer Management Component End***********************************/
+/**************************************************Punched Order Start***********************************/
+.punchedOrderMainParent {
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 2px #ccc;
+}
+.punchedOrderHeadingDiv > h3 {
+  background-color: red;
+  color: #fff;
+  font-weight: 600;
+  font-size: 22px;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.receiptLogoDiv > img {
+  max-width: 150px;
+}
+.receiptButton {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.receiptDeclineButton {
+  background-color: red;
+  color: #fff;
+  border: solid 1px #000;
+}
+.receiptPrintButton {
+  background-color: #ccc;
+  color: #000;
+  font-weight: 700;
+  border: solid 1px gray;
+}
+.receiptSecondDiv {
+  background-color: #fad1d6;
+  padding: 2px 10px;
+  border-radius: 5px;
+}
+.receiptTableHead {
+  background-color: red;
+  color: #fff;
+}
+/**************************************************Punched Order End***********************************/
+/**************************************************Restaurant Management Table Start***********************************/
+.maximumWidthRestaurant {
+  min-width: 1000px;
+}
+.restaurantmanagementtable {
+  box-shadow: 0px 0px 5px 2px #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  overflow: auto;
+  max-height: 500px;
+}
+.restaurantmanagementtable > div > table {
+  min-width: 1000px;
+}
+.noNewRestaurantHeadingDiv > h4 {
+  margin: 0;
+  background-color: #fad1d6;
+  text-align: center;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/**************************************************Restaurant Management Table End***********************************/
+.orderTableTD,
+.orderTableTH {
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  font-size: 13px;
+  padding: 10px 0 !important;
+}
+
+/**************************************************Update Vendor Form Component End***********************************/
+.updateVendorFormTitle {
+  /* box-shadow: 0px -3px 5px 2px #ccc; */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top: solid 1px #ccc;
+  border-right: solid 1px #ccc;
+  border-left: solid 1px #ccc;
+  background-color: #d70d47;
+  color: #fff;
+  border-bottom: solid 1px #d70d47;
+  z-index: 10;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+.updateVendorForm > h5 {
+  text-align: center;
+  color: #d70d47;
+  font-weight: 700;
+}
+/**************************************************Update Vendor Form Component End***********************************/
+/**************************************************Customer Add Component Start***********************************/
+
+.customerDetailFormTitle {
+  /* box-shadow: 0px -3px 5px 2px #ccc; */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top: solid 1px #ccc;
+  border-right: solid 1px #ccc;
+  border-left: solid 1px #ccc;
+  border-bottom: solid #fff;
+  z-index: 10;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.customerDetailFormMainDiv {
+  /* box-shadow: 0px 0px 4px 2px #ccc; */
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: solid 1px #ccc;
+  transform: translateY(-2px);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/**************************************************Customer Add Component End***********************************/
+/**************************************************Add Restaurant Form Start**************************************************/
+.deleteCuisine {
+  background-color: red;
+  color: #fff;
+  padding: 0px 5px;
+  border-radius: 5px;
+}
+/**************************************************Add Restaurant Form End**************************************************/
