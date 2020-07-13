@@ -5,18 +5,31 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./store";
 import Router from "./routers";
 import "./App.scss";
+import { AuthContext } from "./shared/context/index";
+import { useAuth } from "./shared/hooks/auth-hooks";
 function App() {
-  return (
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <BrowserRouter>
-          <div className="app">
-            <Router />
-          </div>
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
-  );
+	const { login, logout, userId, token } = useAuth();
+	return (
+		<Provider store={store}>
+			<PersistGate persistor={persistor}>
+				<BrowserRouter>
+					<div className='app'>
+						<AuthContext.Provider
+							value={{
+								isLoggedIn: !!token,
+								token: token,
+								userId: userId,
+								login,
+								logout,
+							}}>
+							<Router />
+						</AuthContext.Provider>
+					</div>
+				</BrowserRouter>
+			</PersistGate>
+		</Provider>
+	);
 }
 
 export default App;
+  
