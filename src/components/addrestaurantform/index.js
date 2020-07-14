@@ -1,10 +1,13 @@
 import { ImageUpload } from "..";
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
+import { useAuth } from "./../../shared/hooks/auth-hooks";
+import { useHttpClient } from "./../../shared/hooks/http-hook";
 let itemIndex = 0;
 
 let AddRestaurantForm;
 export default AddRestaurantForm = (props) => {
-	console.log("id", props.restaurantId);
+	const { userId, token } = useAuth();
+	const { isLoading, error, sendRequest, clearError } = useHttpClient();
 	const [categoryName, setCategoryName] = useState("");
 	const [itemDescription, setItemDescription] = useState("");
 	const [itemPriority, setItemPriority] = useState("");
@@ -12,7 +15,7 @@ export default AddRestaurantForm = (props) => {
 	const [categoryNameError, setCategoryNameError] = useState("");
 	const [itemDescriptionError, setItemDescriptionError] = useState("");
 	const [itemPriorityError, setItemPriorityError] = useState("");
-	const [data, setData] = useState([]);
+	const [data, setData] = useState();
 	const [workingDays, setWorkingDays] = useState([
 		"Monday",
 		"Tuesday",
@@ -25,6 +28,35 @@ export default AddRestaurantForm = (props) => {
 	const [cuisineName, setCuisineName] = useState("");
 	const [cuisines, setCuisines] = useState([]);
 	const [currentStep, setCurrentStep] = useState(1);
+
+	useEffect(() => {
+		const dashboard = async () => {
+			console.log("Dashboard");
+			try {
+				const responseData = await sendRequest(
+					`${process.env.REACT_APP_BACKEND_URL}/get-restaurant`,
+					"POST",
+					{
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + token,
+					},
+					JSON.stringify({
+						userId,
+						restaurantId: props.restaurantId,
+					})
+				);
+				console.log("responseData", responseData);
+				setData(responseData);
+				if (!responseData.existingRestaurantAdmin.new) {
+					setCategoryName(responseData.existingRestaurantAdmin.name);
+					setItemDescription(responseData.existingRestaurant.description)
+				}
+			} catch (err) {
+				// console.log("err", err);
+			}
+		};
+		if (token && userId) dashboard();
+	}, [token, userId, sendRequest]);
 
 	const handleChangecategoryName = (event) => {
 		setCategoryName(event.target.value);
@@ -105,6 +137,7 @@ export default AddRestaurantForm = (props) => {
 	const handleNext = () => {
 		setCurrentStep(2);
 	};
+
 	return (
 		<div className='row'>
 			<div className='col-8 col-lg-3 col-md-3 updateVendorFormTitle'>

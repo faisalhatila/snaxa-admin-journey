@@ -2,6 +2,8 @@ import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
+import AddRestaurant from "./../addrestaurant/index";
+import { OrderDetails } from "./../index";
 import {
 	LeftMenu,
 	DataCounter,
@@ -11,8 +13,17 @@ import {
 } from "../../components";
 
 const HomeContainer = (props) => {
+	const [edOrder, setEditOrder] = useState();
+	const [edRestaurant, setRestaurant] = useState();
 	const { userId, token } = useAuth();
 	const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
+	const editRestaurant = (id) => {
+		setRestaurant(id);
+	};
+	const editOrder = (id) => {
+		setEditOrder(id);
+	};
 	// console.log(userId, token);
 	// const auth = useContext(AuthContext);
 	const [data, setData] = useState();
@@ -51,16 +62,18 @@ const HomeContainer = (props) => {
 							<Chart />
 						</div>
 						<div className='mt-4'>
-							<NewOrder />
+							<NewOrder editOrder={editOrder} />
 						</div>
 						<div>
-							<NewRestaurant />
+							<NewRestaurant editRestaurant={editRestaurant} />
 						</div>
 					</div>
 				</div>
 			</div>
 		);
 	else content = <p>Loading...</p>;
+	if (edRestaurant) content = <AddRestaurant restaurantId={edRestaurant} />;
+	else if (edOrder) content = <OrderDetails orderId={edOrder} />;
 	return content;
 };
 

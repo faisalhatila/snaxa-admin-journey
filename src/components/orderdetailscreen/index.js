@@ -26,7 +26,7 @@ const OrderDetails = (props) => {
 					})
 				);
 				console.log("responseData", responseData);
-				setOrderStatus(responseData.order.orderStatus);
+				setOrderStatus(responseData.order.orderStatusId);
 				setSingleOrder(responseData.order);
 			} catch (err) {
 				console.log("err", err);
@@ -44,7 +44,6 @@ const OrderDetails = (props) => {
 						orderId: props.orderId,
 					})
 				);
-				console.log("responseData", responseData);
 				setOrderStatuses(responseData.orderStatuses);
 			} catch (err) {
 				console.log("err", err);
@@ -97,7 +96,6 @@ const OrderDetails = (props) => {
 									value={orderStatus}>
 									{orderStatuses &&
 										orderStatuses.map((i) => {
-											console.log(i);
 											return <option value={i._id}>{i.orderstatus}</option>;
 										})}
 								</select>
