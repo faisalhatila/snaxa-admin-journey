@@ -395,7 +395,7 @@ h6 {
 
 .nav-menu li:hover > a,
 .nav-menu > .menu-active > a {
-  color: #18d26e;
+  /* color: #18d26e; */
 }
 
 .nav-menu > li {
@@ -423,7 +423,8 @@ h6 {
 }
 
 .nav-menu ul li:hover > a {
-  color: #18d26e;
+  /* color: #18d26e; */
+  color: #ed1b24;
 }
 
 .nav-menu ul ul {

@@ -12,6 +12,14 @@
 #logo > a > img {
   max-width: 150px;
 }
+.navbarItems {
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.navbarItemSubmenu {
+  transform: translateY(-4px);
+}
 /**************************************************Navbar End**************************************************/
 /**************************************************Login Page Start***********************************/
 .loginPageMainDiv {
@@ -234,7 +242,7 @@ thead > tr > th {
   padding: 5px 10px;
 }
 .maximumWidth {
-  min-width: 2241px;
+  /* min-width: 2241px; */
 }
 .noNewOrderHeadingDiv > h4 {
   margin: 0;
@@ -374,3 +382,28 @@ thead > tr > th {
   border-radius: 5px;
 }
 /**************************************************Add Restaurant Form End**************************************************/
+/**************************************************Add Order status Form Start**************************************************/
+.addOrderStatusButton {
+  background-color: green;
+  color: #fff;
+  margin: 0;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.deleteOrderStatusButton {
+  background-color: red;
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/**************************************************Add Order status Form End**************************************************/
+/**************************************************Add Addon Form Start**************************************************/
+.addonItemDiv,
+.addItemForm {
+  box-shadow: 0px 0px 5px 2px #ccc;
+  border-radius: 5px;
+  padding: 20px 20px;
+}
+/**************************************************Add Addon Form End**************************************************/

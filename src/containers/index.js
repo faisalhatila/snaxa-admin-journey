@@ -8,7 +8,11 @@ import _AddRestaurant from "./addrestaurant";
 import _AddOrderStatus from "./addorderstatus";
 import _AddCategory from "./addcategory";
 import _AddItem from "./additem";
+import _AddCuisine from "./addcuisine";
+import _AddAddons from "./addaddons";
+import _OrderDetails from "./orderdetails";
 
+export const OrderDetails = _OrderDetails;
 export const HomeContainer = _HomeContainer;
 export const LoginContainer = _LoginContainer;
 export const PageNotFound = _PageNotFound;
@@ -19,3 +23,5 @@ export const AddRestaurant = _AddRestaurant;
 export const AddOrderStatus = _AddOrderStatus;
 export const AddCategory = _AddCategory;
 export const AddItem = _AddItem;
+export const AddCuisine = _AddCuisine;
+export const AddAddons = _AddAddons;

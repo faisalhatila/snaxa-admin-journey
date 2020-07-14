@@ -1,253 +1,431 @@
 import { ImageUpload } from "..";
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
+import Select from "react-dropdown-select";
+import styled from "@emotion/styled";
+import { useAuth } from "./../../shared/hooks/auth-hooks";
+import { useHttpClient } from "./../../shared/hooks/http-hook";
 
-export default class AddItemForm extends Component {
-  state = {
-    categoryName: "",
-    itemDescription: "",
-    itemPriority: "",
-    itemStatus: false,
-    categoryNameError: "",
-    itemDescriptionError: "",
-    itemPriorityError: "",
-    data: [],
-  };
-  handleChangecategoryName = (event) => {
-    this.setState({
-      categoryName: event.target.value,
-      categoryNameError: "",
-    });
-  };
-  handleChangeItemDescription = (event) => {
-    this.setState({
-      itemDescription: event.target.value,
-      itemDescriptionError: "",
-    });
-  };
-  handleChangeItemPriority = (event) => {
-    this.setState({
-      itemPriority: event.target.value,
-      itemPriorityError: "",
-    });
-  };
-  handleChangeItemStatus = (event) => {
-    console.log(event.target.checked);
-    this.setState({
-      itemStatus: event.target.checked,
-    });
-  };
-  validate = () => {
-    const { categoryName, itemDescription, itemPriority } = this.state;
-    let {
-      categoryNameError,
-      itemDescriptionError,
-      itemPriorityError,
-    } = this.state;
-    if (!categoryName) {
-      categoryNameError = "Please Enter Category Name";
-    } else {
-      categoryNameError = "";
-    }
-    if (!itemDescription) {
-      itemDescriptionError = "Please Enter Item Name";
-    } else {
-      itemDescriptionError = "";
-    }
-    if (!itemPriority) {
-      itemPriorityError = "Please Enter Item Name";
-    } else {
-      itemPriorityError = "";
-    }
-    if (categoryNameError || itemPriorityError || itemDescriptionError) {
-      this.setState({
-        categoryNameError,
-        itemPriorityError,
-        itemDescriptionError,
-      });
-      return false;
-    }
-    return true;
-  };
-  handleSubmit = (event) => {
-    const {
-      categoryName,
-      itemDescription,
-      itemPriority,
-      itemStatus,
-    } = this.state;
-    event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      let collections = [
-        categoryName,
-        itemDescription,
-        itemPriority,
-        itemStatus,
-      ];
-      let { data } = this.state;
-      data.push(collections);
-      setTimeout(() => {
-        alert("perfect");
-      }, 2000);
-    }
-  };
-  render() {
-    const {
-      categoryName,
-      categoryNameError,
-      itemDescription,
-      itemDescriptionError,
-      itemPriority,
-      itemPriorityError,
-      itemStatus,
-    } = this.state;
-    return (
-      <div className="row">
-        <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
-          Item Details
-        </div>
-        <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
-          <form className="col-12 updateVendorForm">
-            <div className="row">
-              <div class="form-group col-12 col-md-6 col-lg-6">
-                <label for="exampleInputEmail1">Item Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter Item Name"
-                  onChange={this.handleChangecategoryName}
-                  value={categoryName}
-                />
-                {categoryNameError ? (
-                  <div
-                    style={{
-                      textAlign: "center",
-                      color: "red",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {categoryNameError}
-                  </div>
-                ) : null}
-              </div>
-              <div class="form-group col-12 col-md-6 col-lg-6">
-                <label for="exampleFormControlSelect1">Select Restaurant</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-            </div>
-            <div className="row">
-              <div class="form-group col-12 col-md-6 col-lg-6">
-                <label for="exampleFormControlSelect1">Select Category</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-              <div class="form-group col-12 col-md-6 col-lg-6">
-                <label for="exampleInputEmail1">Description</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter Item Name"
-                  onChange={this.handleChangeItemDescription}
-                  value={itemDescription}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div class="form-group col-6">
-                <div
-                  style={{ boxShadow: "0px 0px 5px 2px #ccc" }}
-                  className="col"
-                >
-                  <ImageUpload />
-                </div>
-              </div>
-              <div className="col-6">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Description</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter Item Name"
-                    onChange={this.handleChangeItemDescription}
-                    value={itemDescription}
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Description</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter Item Name"
-                    onChange={this.handleChangeItemDescription}
-                    value={itemDescription}
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Priority</label>
-              <input
-                type="text"
-                class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="Priority"
-                onChange={this.handleChangeItemPriority}
-                value={itemPriority}
-              />
-              {itemPriorityError ? (
-                <div
-                  style={{
-                    textAlign: "center",
-                    color: "red",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {itemPriorityError}
-                </div>
-              ) : null}
-            </div>
-            <div class="custom-control custom-switch">
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="customSwitch1"
-                onChange={this.handleChangeItemStatus}
-                checked={itemStatus}
-              />
-              <label class="custom-control-label" for="customSwitch1">
-                Status
-              </label>
-            </div>
-            <button
-              type="submit"
-              class="btn btn-primary mt-3"
-              onClick={this.handleSubmit}
-            >
-              Add Item
-            </button>
-          </form>
-        </div>
-      </div>
-    );
-  }
-}
+let AddItemForm;
+export default AddItemForm = (props) => {
+	const [categoryName, setCategoryName] = useState();
+	const [itemDescription, setItemDescription] = useState();
+	const [itemPriority, setItemPriority] = useState();
+	const [price, setPrice] = useState();
+	const [itemStatus, setItemStatus] = useState(true);
+	const [categoryNameError, setCategoryNameError] = useState();
+	const [itemPriorityError, setItemPriorityError] = useState();
+	const [restaurant, setRestaurant] = useState();
+	const [category, setCategory] = useState();
+	const [addOnList, setAddOnList] = useState([]);
+
+	const { userId, token } = useAuth();
+	const { isLoading, error, sendRequest, clearError } = useHttpClient();
+	const [data, setData] = useState([]);
+	const [dataAddCat, setDataAddCat] = useState([]);
+
+	useEffect(() => {
+		const dashboard = async () => {
+			console.log("Dashboard");
+			try {
+				const responseData = await sendRequest(
+					`${process.env.REACT_APP_BACKEND_URL}/get-all-restaurants`,
+					"POST",
+					{
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + token,
+					},
+					JSON.stringify({
+						userId,
+					})
+				);
+				console.log("responseData", responseData);
+				setData(responseData.allRestaurants);
+			} catch (err) {
+				// console.log("err", err);
+			}
+		};
+		if (token && userId) dashboard();
+	}, [token, userId, sendRequest]);
+	// setValues = (selectValues) => setState({ selectValues });
+
+	const handleChangecategoryName = (event) => {
+		setCategoryName(event.target.value);
+
+		// categoryNameError: "",
+	};
+	const handleChangeItemDescription = (event) => {
+		setItemDescription(event.target.value);
+		// itemDescriptionError: "",
+	};
+	const handleChangeItemPriority = (event) => {
+		setItemPriority(event.target.value);
+		// itemPriorityError: "",
+	};
+	const handleChangeItemStatus = (event) => {
+		setItemStatus(event.target.value);
+	};
+	const handleChangeItemPrice = (event) => {
+		setPrice(event.target.value);
+	};
+	const validate = () => {
+		// const { categoryName, itemDescription, itemPriority } = state;
+		// let {
+		// 	categoryNameError,
+		// 	itemDescriptionError,
+		// 	itemPriorityError,
+		// } = state;
+		// if (!categoryName) {
+		// 	categoryNameError = "Please Enter Category Name";
+		// } else {
+		// 	categoryNameError = "";
+		// }
+		// if (!itemDescription) {
+		// 	itemDescriptionError = "Please Enter Item Name";
+		// } else {
+		// 	itemDescriptionError = "";
+		// }
+		// if (!itemPriority) {
+		// 	itemPriorityError = "Please Enter Item Name";
+		// } else {
+		// 	itemPriorityError = "";
+		// }
+		// if (categoryNameError || itemPriorityError || itemDescriptionError) {
+		// 	setState({
+		// 		categoryNameError,
+		// 		itemPriorityError,
+		// 		itemDescriptionError,
+		// 	});
+		// 	return false;
+		// }
+		return true;
+	};
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		const isValid = validate();
+		if (isValid) {
+			try {
+				const responseData = await sendRequest(
+					`${process.env.REACT_APP_BACKEND_URL}/add-item`,
+					"POST",
+					{
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + token,
+					},
+					JSON.stringify({
+						userId,
+						restaurantId: restaurant,
+						foodCategory: category,
+						name: categoryName,
+						description: itemDescription,
+						price,
+						priceOnSelection: false,
+						addOnList,
+					})
+				);
+				console.log("responseData", responseData);
+				setCategoryName("");
+				setRestaurant(1);
+				setItemPriority("");
+				setItemDescription("");
+				setItemStatus(true);
+			} catch (err) {
+				// console.log("err", err);
+			}
+		}
+	};
+
+	const handleSelectCategory = async (event) => {
+		setCategory(event.target.value);
+	};
+	const handleSelectRestaurant = async (event) => {
+		setRestaurant(event.target.value);
+		try {
+			const responseData = await sendRequest(
+				`${process.env.REACT_APP_BACKEND_URL}/get-addons-categories`,
+				"POST",
+				{
+					"Content-Type": "application/json",
+					Authorization: "Bearer " + token,
+				},
+				JSON.stringify({
+					userId,
+					restaurantId: event.target.value,
+				})
+			);
+			console.log("responseData", responseData);
+			setDataAddCat(responseData);
+		} catch (err) {
+			// console.log("err", err);
+		}
+	};
+
+	let content;
+	if (!isLoading && data)
+		content = (
+			<div className='row'>
+				<div className='col-4 col-lg-3 col-md-3 updateVendorFormTitle'>
+					Item Details
+				</div>
+				<div className='col-12 customerDetailFormMainDiv d-lg-flex d-md-flex'>
+					<form className='col-12 updateVendorForm'>
+						<div className='row'>
+							<div class='form-group col-12 col-md-6 col-lg-6'>
+								<label for='exampleInputEmail1'>Item Name</label>
+								<input
+									type='text'
+									class='form-control'
+									id='exampleInputEmail1'
+									aria-describedby='emailHelp'
+									placeholder='Enter Item Name'
+									onChange={handleChangecategoryName}
+									value={categoryName}
+								/>
+								{categoryNameError ? (
+									<div
+										style={{
+											textAlign: "center",
+											color: "red",
+											fontWeight: "bold",
+										}}>
+										{categoryNameError}
+									</div>
+								) : null}
+							</div>
+							<div class='form-group col-12 col-md-6 col-lg-6'>
+								<label for='exampleFormControlSelect1'>Select Restaurant</label>
+								<select
+									class='form-control'
+									id='exampleFormControlSelect1'
+									onChange={handleSelectRestaurant}
+									value={restaurant}>
+									<option>Select a Restaurant</option>
+									{data.map(
+										(i) => (
+											<option value={i._id}>{i.name}</option>
+										)
+										// console.log(restaurantName)
+									)}
+								</select>
+							</div>
+						</div>
+						<div className='row'>
+							<div class='form-group col-12 col-md-6 col-lg-6'>
+								<label for='exampleFormControlSelect1'>Select Category</label>
+								<select
+									class='form-control'
+									id='exampleFormControlSelect1'
+									onChange={handleSelectCategory}>
+									<option>Select a Category</option>
+									{dataAddCat &&
+										dataAddCat.categories &&
+										dataAddCat.categories.map(
+											(i) => <option value={i._id}>{i.categoryName}</option>
+											// console.log(restaurantName)
+										)}
+								</select>
+							</div>
+							<div class='form-group col-12 col-md-6 col-lg-6'>
+								<label for='exampleInputEmail1'>Description</label>
+								<input
+									type='text'
+									class='form-control'
+									id='exampleInputEmail1'
+									aria-describedby='emailHelp'
+									placeholder='Enter Item Name'
+									onChange={handleChangeItemDescription}
+									value={itemDescription}
+								/>
+							</div>
+						</div>
+						<div className='row'>
+							<div class='form-group col-6'>
+								<div
+									style={{ boxShadow: "0px 0px 5px 2px #ccc" }}
+									className='col'>
+									<ImageUpload />
+								</div>
+							</div>
+						</div>
+						<div class='form-group'>
+							<label for='exampleInputEmail1'>Priority</label>
+							<input
+								type='text'
+								class='form-control'
+								id='exampleInputEmail1'
+								aria-describedby='emailHelp'
+								placeholder='Priority'
+								onChange={handleChangeItemPriority}
+								value={itemPriority}
+							/>
+							{itemPriorityError ? (
+								<div
+									style={{
+										textAlign: "center",
+										color: "red",
+										fontWeight: "bold",
+									}}>
+									{itemPriorityError}
+								</div>
+							) : null}
+						</div>
+						<div class='form-group'>
+							<label for='exampleInputPrice'>Price</label>
+							<input
+								type='text'
+								class='form-control'
+								id='exampleInputPrice'
+								aria-describedby='emailHelp'
+								placeholder='Price'
+								onChange={handleChangeItemPrice}
+								value={price}
+							/>
+							{/* {itemPriorityError ? (
+								<div
+									style={{
+										textAlign: "center",
+										color: "red",
+										fontWeight: "bold",
+									}}>
+									{itemPriorityError}
+								</div>
+							) : null} */}
+						</div>
+						<div class='custom-control custom-switch'>
+							<input
+								type='checkbox'
+								class='custom-control-input'
+								id='customSwitch1'
+								onChange={handleChangeItemStatus}
+								checked={itemStatus}
+							/>
+							<label class='custom-control-label' for='customSwitch1'>
+								Status
+							</label>
+						</div>
+						<button
+							type='submit'
+							class='btn btn-primary mt-3'
+							onClick={handleSubmit}>
+							Add Item
+						</button>
+					</form>
+				</div>
+			</div>
+		);
+	else content = <p>Loading...</p>;
+
+	return content;
+};
+
+const StyledSelect = styled(Select)`
+	${({ dropdownRenderer }) =>
+		dropdownRenderer &&
+		`
+		.react-dropdown-select-dropdown {
+			overflow: initial;
+		}
+	`}
+`;
+
+const SearchAndToggle = styled.div`
+	display: flex;
+	flex-direction: column;
+
+	input {
+		margin: 10px 10px 0;
+		line-height: 30px;
+		padding: 0 20px;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		:focus {
+			outline: none;
+			border: 1px solid ${({ color }) => color};
+		}
+	}
+`;
+
+const Items = styled.div`
+	overflow: auto;
+	min-height: 10px;
+	max-height: 200px;
+`;
+
+const Item = styled.div`
+	display: flex;
+	margin: 10px;
+	align-items: baseline;
+	cursor: pointer;
+	border-bottom: 1px dotted transparent;
+
+	:hover {
+		border-bottom: 1px dotted #ccc;
+	}
+
+	${({ disabled }) =>
+		disabled
+			? `
+  	opacity: 0.5;
+  	pointer-events: none;
+  	cursor: not-allowed;
+  `
+			: ""}
+`;
+
+const ItemLabel = styled.div`
+	margin: 5px 10px;
+`;
+
+const Buttons = styled.div`
+	display: flex;
+	justify-content: space-between;
+
+	& div {
+		margin: 10px 0 0 10px;
+		font-weight: 600;
+	}
+`;
+
+const Button = styled.button`
+	background: none;
+	border: 1px solid #555;
+	color: #555;
+	border-radius: 3px;
+	margin: 10px 10px 0;
+	padding: 3px 5px;
+	font-size: 10px;
+	text-transform: uppercase;
+	cursor: pointer;
+	outline: none;
+
+	&.clear {
+		color: tomato;
+		border: 1px solid tomato;
+	}
+
+	:hover {
+		border: 1px solid deepskyblue;
+		color: deepskyblue;
+	}
+`;
+
+const StyledHtmlSelect = styled.select`
+	padding: 0;
+	margin: 0 0 0 10px;
+	height: 23px !important;
+	color: #0071dc;
+	background: #fff;
+	border: 1px solid #0071dc;
+`;
+
+const StyledInput = styled.input`
+	margin: 0 0 0 10px;
+	height: 23px !important;
+	color: #0071dcimport { useAuth } from './../../shared/hooks/auth-hooks';
+;import { useHttpClient } from './../../shared/hooks/http-hook';
+
+	background: #fff;
+	border: 1px solid #0071dc;
+	border-radius: 3px;
+	padding: 13px 10px;
+	width: 70px;
+`;

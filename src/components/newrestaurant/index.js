@@ -26,7 +26,7 @@ export default NewRestaurant = (props) => {
 					})
 				);
 				console.log("responseData", responseData);
-				setData(responseData.existingRestaurants);
+				setData(responseData.existingRestaurantsAdmin);
 			} catch (err) {
 				// console.log("err", err);
 			}
@@ -35,7 +35,6 @@ export default NewRestaurant = (props) => {
 	}, [token, userId, sendRequest]);
 
 	let content;
-
 	if (!isLoading && data)
 		content = (
 			<div className='restaurantmanagementtable mb-4'>
@@ -50,59 +49,68 @@ export default NewRestaurant = (props) => {
 						<table class='table table-hover'>
 							<thead style={{ backgroundColor: "gray", color: "#fff" }}>
 								<tr>
-									<th>ID</th>
-									<th>Restaurant Name</th>
-									<th>Email</th>
-									<th>Address</th>
-									<th>Status</th>
+									<th className='orderTableTH'>ID</th>
+									<th className='orderTableTH'>Restaurant Name</th>
+									<th className='orderTableTH'>Email</th>
+									<th className='orderTableTH'>Address</th>
+									<th className='orderTableTH'>Status</th>
+									<th className='orderTableTH'>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										<input
-											type='text'
-											placeholder='Order ID'
-											className='searchOrderData orderIDSearch'
-										/>
-									</td>
-									<td>
-										<input
-											type='text'
-											placeholder='Customer Name'
-											className='searchOrderData'
-										/>
-									</td>
-									<td>
-										<input
-											type='text'
-											placeholder='Mobile No'
-											className='searchOrderData'
-										/>
-									</td>
-									<td>
-										<input
-											type='text'
-											placeholder='Restaurant'
-											className='searchOrderData'
-										/>
-									</td>
-									<td>
-										<input
-											type='text'
-											placeholder='Area'
-											className='searchOrderData'
-										/>
-									</td>
-								</tr>
+								{/* <tr>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Order ID"
+                  className="searchOrderData orderIDSearch"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Customer Name"
+                  className="searchOrderData"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Mobile No"
+                  className="searchOrderData"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Restaurant"
+                  className="searchOrderData"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Area"
+                  className="searchOrderData"
+                />
+              </td>
+            </tr> */}
 								{data.map((item) => {
 									return (
 										<tr>
-											<td>{item._id}</td>
-											<td>{item.name}</td>
-											<td>{item.email}</td>
-											<td>{item.addres}</td>
-											<td>{item.status}</td>
+											<td className='orderTableTD'>{item._id}</td>
+											<td className='orderTableTD'>{item.name}</td>
+											<td className='orderTableTD'>{item.email}</td>
+											<td className='orderTableTD'>{item.addres}</td>
+											<td className='orderTableTD'>
+												{item.approved ? "Approved" : "Not Approved"}
+											</td>
+											<td className='orderTableTD'>
+												<i
+													onClick={() => props.editRestaurant(item._id)}
+													style={{ cursor: "pointer" }}
+													class='far fa-edit'></i>
+											</td>
 										</tr>
 									);
 								})}
@@ -117,6 +125,5 @@ export default NewRestaurant = (props) => {
 			</div>
 		);
 	else content = <p>Loading...</p>;
-
 	return content;
 };
