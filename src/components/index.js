@@ -21,6 +21,10 @@ import _AddItemFrom from "./additemform";
 import _AddCuisineForm from "./addcuisineform";
 import _AddAddonForm from "./newaddon";
 import _OrderDetailsForn from "./orderdetailscreen";
+import _CustomerTable from "./customertable";
+import _NewCustomer from "./newcustomer";
+import _AddAddonCategoryForm from "./addaddoncategoryform";
+import _AddAddonItemForm from "./addaddonitemform";
 
 export const OrderDetailsForn = _OrderDetailsForn;
 export const Header = _Header;
@@ -45,3 +49,7 @@ export const AddCategoryForm = _AddCategoryForm;
 export const AddItemFrom = _AddItemFrom;
 export const AddCuisineForm = _AddCuisineForm;
 export const AddAddonForm = _AddAddonForm;
+export const CustomerTable = _CustomerTable;
+export const NewCustomer = _NewCustomer;
+export const AddAddonCategoryForm = _AddAddonCategoryForm;
+export const AddAddonItemForm = _AddAddonItemForm;

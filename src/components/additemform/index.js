@@ -1,9 +1,11 @@
 import { ImageUpload } from "..";
 import React, { Component, useState, useEffect } from "react";
-import Select from "react-dropdown-select";
 import styled from "@emotion/styled";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
+const animatedComponents = makeAnimated();
 
 let AddItemForm;
 export default AddItemForm = (props) => {
@@ -17,11 +19,13 @@ export default AddItemForm = (props) => {
 	const [restaurant, setRestaurant] = useState();
 	const [category, setCategory] = useState();
 	const [addOnList, setAddOnList] = useState([]);
-
 	const { userId, token } = useAuth();
 	const { isLoading, error, sendRequest, clearError } = useHttpClient();
 	const [data, setData] = useState([]);
 	const [dataAddCat, setDataAddCat] = useState([]);
+	const [selectedOption, setSelectedOption] = useState(null);
+	const [colourOptions, setColourOptions] = useState([]);
+	const [priceoOnSelect, setPriceoOnSelect] = useState(false);
 
 	useEffect(() => {
 		const dashboard = async () => {
@@ -62,7 +66,7 @@ export default AddItemForm = (props) => {
 		// itemPriorityError: "",
 	};
 	const handleChangeItemStatus = (event) => {
-		setItemStatus(event.target.value);
+		setItemStatus(event.target.checked);
 	};
 	const handleChangeItemPrice = (event) => {
 		setPrice(event.target.value);
@@ -117,9 +121,9 @@ export default AddItemForm = (props) => {
 						foodCategory: category,
 						name: categoryName,
 						description: itemDescription,
-						price,
-						priceOnSelection: false,
-						addOnList,
+						price: priceoOnSelect ? 0 : price,
+						priceOnSelection: priceoOnSelect,
+						addOnList: addOnList.map((i) => i.value),
 					})
 				);
 				console.log("responseData", responseData);
@@ -128,6 +132,8 @@ export default AddItemForm = (props) => {
 				setItemPriority("");
 				setItemDescription("");
 				setItemStatus(true);
+				setPrice(0);
+				setPriceoOnSelect(false);
 			} catch (err) {
 				// console.log("err", err);
 			}
@@ -136,6 +142,9 @@ export default AddItemForm = (props) => {
 
 	const handleSelectCategory = async (event) => {
 		setCategory(event.target.value);
+	};
+	const handleChangePriceSelectStatus = async (event) => {
+		setPriceoOnSelect(event.target.checked);
 	};
 	const handleSelectRestaurant = async (event) => {
 		setRestaurant(event.target.value);
@@ -154,11 +163,18 @@ export default AddItemForm = (props) => {
 			);
 			console.log("responseData", responseData);
 			setDataAddCat(responseData);
+			const temp = responseData.addons.map((i, index) => {
+				return { index, value: i._id, label: i.addOnName };
+			});
+			setColourOptions(temp);
 		} catch (err) {
 			// console.log("err", err);
 		}
 	};
-
+	const handleChange = (selectedOption) => {
+		setSelectedOption({ selectedOption });
+		console.log(`Option selected:`, selectedOption);
+	};
 	let content;
 	if (!isLoading && data)
 		content = (
@@ -245,6 +261,26 @@ export default AddItemForm = (props) => {
 									<ImageUpload />
 								</div>
 							</div>
+							<div class='form-group col-12 col-md-6 col-lg-6'>
+								<label for='exampleInputEmail1'>Select Add Ons</label>
+								{/* <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter Item Name"
+                  onChange={handleChangeItemDescription}
+                  value={itemDescription}
+                /> */}
+								<Select
+									closeMenuOnSelect={false}
+									components={animatedComponents}
+									//   defaultValue={[colourOptions[4], colourOptions[5]]}
+									isMulti
+									options={colourOptions}
+									onChange={(e) => setAddOnList(e)}
+								/>
+							</div>
 						</div>
 						<div class='form-group'>
 							<label for='exampleInputEmail1'>Priority</label>
@@ -268,18 +304,19 @@ export default AddItemForm = (props) => {
 								</div>
 							) : null}
 						</div>
-						<div class='form-group'>
-							<label for='exampleInputPrice'>Price</label>
-							<input
-								type='text'
-								class='form-control'
-								id='exampleInputPrice'
-								aria-describedby='emailHelp'
-								placeholder='Price'
-								onChange={handleChangeItemPrice}
-								value={price}
-							/>
-							{/* {itemPriorityError ? (
+						{!priceoOnSelect && (
+							<div class='form-group'>
+								<label for='exampleInputPrice'>Price</label>
+								<input
+									type='text'
+									class='form-control'
+									id='exampleInputPrice'
+									aria-describedby='emailHelp'
+									placeholder='Price'
+									onChange={handleChangeItemPrice}
+									value={price}
+								/>
+								{/* {itemPriorityError ? (
 								<div
 									style={{
 										textAlign: "center",
@@ -289,7 +326,8 @@ export default AddItemForm = (props) => {
 									{itemPriorityError}
 								</div>
 							) : null} */}
-						</div>
+							</div>
+						)}
 						<div class='custom-control custom-switch'>
 							<input
 								type='checkbox'
@@ -300,6 +338,18 @@ export default AddItemForm = (props) => {
 							/>
 							<label class='custom-control-label' for='customSwitch1'>
 								Status
+							</label>
+						</div>
+						<div class='custom-control custom-switch'>
+							<input
+								type='checkbox'
+								class='custom-control-input'
+								id='customSwitch2'
+								onChange={handleChangePriceSelectStatus}
+								checked={priceoOnSelect}
+							/>
+							<label class='custom-control-label' for='customSwitch2'>
+								Price on Select of Add Ons
 							</label>
 						</div>
 						<button

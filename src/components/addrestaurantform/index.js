@@ -12,6 +12,7 @@ export default AddRestaurantForm = (props) => {
 	const [itemDescription, setItemDescription] = useState("");
 	const [itemPriority, setItemPriority] = useState("");
 	const [itemStatus, setItemStatus] = useState(false);
+	const [approveStatus, setApproveStatus] = useState(false);
 	const [categoryNameError, setCategoryNameError] = useState("");
 	const [itemDescriptionError, setItemDescriptionError] = useState("");
 	const [itemPriorityError, setItemPriorityError] = useState("");
@@ -47,9 +48,13 @@ export default AddRestaurantForm = (props) => {
 				);
 				console.log("responseData", responseData);
 				setData(responseData);
-				if (!responseData.existingRestaurantAdmin.new) {
+				if (responseData.existingRestaurantAdmin.new) {
 					setCategoryName(responseData.existingRestaurantAdmin.name);
-					setItemDescription(responseData.existingRestaurant.description)
+				} else {
+					setCategoryName(responseData.existingRestaurantAdmin.name);
+					setItemDescription(responseData.existingRestaurant.description);
+					setApproveStatus(responseData.existingRestaurantAdmin.approved);
+					setItemStatus(responseData.existingRestaurantAdmin.active);
 				}
 			} catch (err) {
 				// console.log("err", err);
@@ -72,6 +77,9 @@ export default AddRestaurantForm = (props) => {
 	};
 	const handleChangeItemStatus = (event) => {
 		setItemStatus(event.target.checked);
+	};
+	const handleChangeItemApproveStatus = (event) => {
+		setApproveStatus(event.target.checked);
 	};
 
 	let validate = () => {
@@ -106,10 +114,30 @@ export default AddRestaurantForm = (props) => {
 		// }
 		return true;
 	};
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const isValid = validate();
 		if (isValid) {
+			try {
+				const responseData = await sendRequest(
+					`${process.env.REACT_APP_BACKEND_URL}/edit-restaurant`,
+					"POST",
+					{
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + token,
+					},
+					JSON.stringify({
+						userId,
+						active: itemStatus,
+						approve: approveStatus,
+						restaurantId: props.restaurantId,
+					})
+				);
+				console.log("responseData", responseData);
+				setCurrentStep(1);
+			} catch (err) {
+				// console.log("err", err);
+			}
 		}
 	};
 	const handleAddCuisine = () => {
@@ -138,7 +166,9 @@ export default AddRestaurantForm = (props) => {
 		setCurrentStep(2);
 	};
 
-	return (
+	return isLoading ? (
+		<p>Loading...</p>
+	) : (
 		<div className='row'>
 			<div className='col-8 col-lg-3 col-md-3 updateVendorFormTitle'>
 				Restaurant Details
@@ -260,6 +290,18 @@ export default AddRestaurantForm = (props) => {
 								<input
 									type='checkbox'
 									class='custom-control-input'
+									id='customSwitch2'
+									onChange={handleChangeItemApproveStatus}
+									checked={approveStatus}
+								/>
+								<label class='custom-control-label' for='customSwitch2'>
+									Approve
+								</label>
+							</div>
+							<div class='custom-control custom-switch'>
+								<input
+									type='checkbox'
+									class='custom-control-input'
 									id='customSwitch1'
 									onChange={handleChangeItemStatus}
 									checked={itemStatus}
@@ -306,7 +348,7 @@ export default AddRestaurantForm = (props) => {
 						<div className='addCuisineForm'>
 							<h3>Add Cuisine</h3>
 							<div class='form-group'>
-								<label for='exampleInputEmail1'>Cousine Name</label>
+								<label for='exampleInputEmail1'>Cuisine Name</label>
 								<input
 									type='text'
 									class='form-control'

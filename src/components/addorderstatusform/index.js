@@ -169,7 +169,7 @@ export default AddOrderStatusForm = (props) => {
 								<label for='exampleInputEmail1'>
 									<strong>Active Order Status</strong>
 								</label>
-								<ul>
+								{/* <ul>
 									{data.map((item, index) => {
 										return item.active === false ? (
 											<li key={index} className='mb-2'>
@@ -188,32 +188,85 @@ export default AddOrderStatusForm = (props) => {
 											</li>
 										) : null;
 									})}
-								</ul>
+								</ul> */}
+								<table class='table table-hover'>
+									<thead style={{ backgroundColor: "gray", color: "#fff" }}>
+										<tr>
+											<th className='orderTableTH'>Item Name</th>
+											<th className='orderTableTH'>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										{data.map((item, index) => {
+											return item.active === false ? (
+												<tr>
+													<td className='orderTableTD'>{item.orderstatus}</td>
+													<td className='orderTableTD'>
+														<label
+															className='noMargin deleteOrderStatusButton'
+															onClick={() =>
+																handleDeleteOrderStatusName(item._id)
+															}>
+															Delete
+														</label>
+													</td>
+												</tr>
+											) : null;
+										})}
+									</tbody>
+								</table>
 							</div>
 							<div class='form-group'>
 								<label for='exampleInputEmail1'>
 									<strong>Completed Order Status</strong>
 								</label>
-								<ul>
-									{data.map((item, index) => {
-										return item.active === true ? (
-											<li key={item._id} className='mb-2'>
-												<div className='d-flex align-items-center'>
-													<label className='mr-4 noMargin'>
-														{item.orderstatus}
-													</label>
-													<label
-														className='noMargin deleteOrderStatusButton'
-														onClick={() =>
-															handleDeleteOrderStatusName(item._id)
-														}>
-														Delete
-													</label>
-												</div>
-											</li>
-										) : null;
-									})}
-								</ul>
+								{/* <ul>
+                  {data.map((item, index) => {
+                    return item.active === true ? (
+                      <li key={item._id} className="mb-2">
+                        <div className="d-flex align-items-center">
+                          <label className="mr-4 noMargin">
+                            {item.orderstatus}
+                          </label>
+                          <label
+                            className="noMargin deleteOrderStatusButton"
+                            onClick={() =>
+                              handleDeleteOrderStatusName(item._id)
+                            }
+                          >
+                            Delete
+                          </label>
+                        </div>
+                      </li>
+                    ) : null;
+                  })}
+                </ul> */}
+								<table class='table table-hover'>
+									<thead style={{ backgroundColor: "gray", color: "#fff" }}>
+										<tr>
+											<th className='orderTableTH'>Item Name</th>
+											<th className='orderTableTH'>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										{data.map((item, index) => {
+											return item.active === true ? (
+												<tr>
+													<td className='orderTableTD'>{item.orderstatus}</td>
+													<td className='orderTableTD'>
+														<label
+															className='noMargin deleteOrderStatusButton'
+															onClick={() =>
+																handleDeleteOrderStatusName(item._id)
+															}>
+															Delete
+														</label>
+													</td>
+												</tr>
+											) : null;
+										})}
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
