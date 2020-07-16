@@ -183,7 +183,7 @@ export default AddItemForm = (props) => {
           Item Details
         </div>
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
-          <form className="col-12 updateVendorForm">
+          <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
             <div className="row">
               <div class="form-group col-12 col-md-6 col-lg-6">
                 <label for="exampleInputEmail1">Item Name</label>
@@ -257,15 +257,15 @@ export default AddItemForm = (props) => {
               </div>
             </div>
             <div className="row">
-              <div class="form-group col-6">
+              {/* <div class="form-group col-6">
                 <div
                   style={{ boxShadow: "0px 0px 5px 2px #ccc" }}
                   className="col"
                 >
                   <ImageUpload />
                 </div>
-              </div>
-              <div class="form-group col-12 col-md-6 col-lg-6">
+              </div> */}
+              <div class="form-group col-12">
                 <label for="exampleInputEmail1">Select Add Ons</label>
                 {/* <input
                   type="text"
@@ -286,42 +286,43 @@ export default AddItemForm = (props) => {
                 />
               </div>
             </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Priority</label>
-              <input
-                type="text"
-                class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="Priority"
-                onChange={handleChangeItemPriority}
-                value={itemPriority}
-              />
-              {itemPriorityError ? (
-                <div
-                  style={{
-                    textAlign: "center",
-                    color: "red",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {itemPriorityError}
-                </div>
-              ) : null}
-            </div>
-            {!priceoOnSelect && (
-              <div class="form-group">
-                <label for="exampleInputPrice">Price</label>
+            <div className="row">
+              <div class="form-group col-12 col-md-6 col-lg-6">
+                <label for="exampleInputEmail1">Priority</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="exampleInputPrice"
+                  id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  placeholder="Price"
-                  onChange={handleChangeItemPrice}
-                  value={price}
+                  placeholder="Priority"
+                  onChange={handleChangeItemPriority}
+                  value={itemPriority}
                 />
-                {/* {itemPriorityError ? (
+                {itemPriorityError ? (
+                  <div
+                    style={{
+                      textAlign: "center",
+                      color: "red",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {itemPriorityError}
+                  </div>
+                ) : null}
+              </div>
+              {!priceoOnSelect && (
+                <div class="form-group col-12 col-md-6 col-lg-6">
+                  <label for="exampleInputPrice">Price</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputPrice"
+                    aria-describedby="emailHelp"
+                    placeholder="Price"
+                    onChange={handleChangeItemPrice}
+                    value={price}
+                  />
+                  {/* {itemPriorityError ? (
 								<div
 									style={{
 										textAlign: "center",
@@ -331,8 +332,9 @@ export default AddItemForm = (props) => {
 									{itemPriorityError}
 								</div>
 							) : null} */}
-              </div>
-            )}
+                </div>
+              )}
+            </div>
             <div class="custom-control custom-switch">
               <input
                 type="checkbox"
@@ -365,6 +367,37 @@ export default AddItemForm = (props) => {
               Add Item
             </button>
           </form>
+          <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
+            {" "}
+            <table class="table table-hover">
+              <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+                <tr>
+                  <th className="orderTableTH">Item</th>
+                  <th className="orderTableTH">Restaurant</th>
+                  <th className="orderTableTH">Price</th>
+                  <th className="orderTableTH">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="orderTableTD"></td>
+                  <td className="orderTableTD"></td>
+                  <td className="orderTableTD"></td>
+                  <div className="d-flex align-items-center justify-content-center">
+                    <i
+                      style={{ cursor: "pointer" }}
+                      class="far fa-edit mr-3 editButtonIcon"
+                    ></i>
+                    <label className="noMargin deleteOrderStatusButton">
+                      Delete
+                    </label>
+                  </div>
+                </tr>
+                {/* );
+                })} */}
+              </tbody>
+            </table>
+          </div>{" "}
         </div>
       </div>
     );
