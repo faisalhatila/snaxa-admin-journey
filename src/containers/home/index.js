@@ -24,6 +24,10 @@ const HomeContainer = (props) => {
 	const editOrder = (id) => {
 		setEditOrder(id);
 	};
+	const goBack = () => {
+		setRestaurant(false);
+		setEditOrder(false);
+	};
 	// console.log(userId, token);
 	// const auth = useContext(AuthContext);
 	const [data, setData] = useState();
@@ -72,8 +76,10 @@ const HomeContainer = (props) => {
 			</div>
 		);
 	else content = <p>Loading...</p>;
-	if (edRestaurant) content = <AddRestaurant restaurantId={edRestaurant} />;
-	else if (edOrder) content = <OrderDetails orderId={edOrder} />;
+	if (edRestaurant)
+		content = <AddRestaurant goBack={goBack} restaurantId={edRestaurant} />;
+	else if (edOrder)
+		content = <OrderDetails goBack={goBack} orderId={edOrder} />;
 	return content;
 };
 

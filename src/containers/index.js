@@ -13,7 +13,7 @@ import _AddAddons from "./addaddons";
 import _OrderDetails from "./orderdetails";
 import _CustomerManagementTable from "./customermanagementtable";
 import _AddAddonCategory from "./addaddoncategory";
-import _AddAddonItem from "./addaddonitem";
+import _AddAddonItem from "./addaddonitem"
 
 export const OrderDetails = _OrderDetails;
 export const HomeContainer = _HomeContainer;
