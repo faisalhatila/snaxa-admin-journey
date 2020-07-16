@@ -85,22 +85,40 @@
   margin: 0;
   color: #fff;
 }
-.topMenuMainDiv > div > div > div > div > p {
+.userInfoDiv > div > p {
   margin: 0;
 }
 .topMenuMainDiv > div > div > div > div > i,
 .topMenuMainDiv > div > div > div > i {
   color: #000;
 }
-.topMenuMainDiv > div > div > div > div > i {
+.logoutDiv > div > i,
+.userInfoDiv > div > i {
   font-size: 20px;
   background-color: #ffd9d9;
   border-radius: 50%;
+}
+.userInfoDiv > div > i {
   padding: 10px;
 }
-.userInfoDiv {
+.logoutDiv > div > i,
+.logoutDiv > div > p {
+  color: red;
+}
+.logoutDiv > div > p {
+  font-weight: 600;
+}
+.logoutDiv {
+  min-width: 184px;
+}
+.logoutDiv > div > i {
+  padding: 8.3px;
+}
+.userInfoDiv,
+.logoutDiv {
   background-color: #fff;
   padding: 3px 10px;
+  z-index: 1;
 }
 .userName {
   font-size: 13px;
