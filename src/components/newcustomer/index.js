@@ -42,13 +42,19 @@ export default NewCustomerTable = (props) => {
   };
   const searchingById = (searchByID) => {
     return (result) => {
-      return result._id.includes(searchByID) || !searchingById;
+      return (
+        result._id.toLowerCase().includes(searchByID.toLowerCase()) ||
+        !searchingById
+      );
       //   return console.log(result);
     };
   };
   const searchingByEmail = (searchByEmail) => {
     return (result) => {
-      return result.email.includes(searchByEmail) || !searchByEmail;
+      return (
+        result.email.toLowerCase().includes(searchByEmail.toLowerCase()) ||
+        !searchByEmail
+      );
       //   return console.log(result);
     };
   };
