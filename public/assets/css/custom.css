@@ -4,6 +4,13 @@
 .redFont {
   color: red;
 }
+.editButtonIcon {
+  cursor: pointer;
+  background-color: green;
+  color: #fff;
+  padding: 5px 5px 6px 7px;
+  border-radius: 5px;
+}
 /**************************************************Navbar Start**************************************************/
 .headerDiv {
   background-color: #ed1b24;
