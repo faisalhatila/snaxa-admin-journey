@@ -7,54 +7,10 @@ let NewCustomerTable;
 export default NewCustomerTable = (props) => {
   const [data, setData] = useState();
   const [searchByID, setSearchByID] = useState("");
+  const [searchByEmail, setSearchByEmail] = useState("");
 
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  //*********************************/ Here Is Dummy Data Render On Table Start****************************
-  //   const dummyData = [
-  //     {
-  //       id: 0,
-  //       email: "abcd@email.com",
-  //       firstName: "Faisal",
-  //       lastName: "Hanif",
-  //       gender: "Male",
-  //       dateOfBirth: "26/03/1994",
-  //     },
-  //     {
-  //       id: 1,
-  //       email: "abcd@email.com",
-  //       firstName: "Muzammil",
-  //       lastName: "Sheikh",
-  //       gender: "Male",
-  //       dateOfBirth: "26/03/1994",
-  //     },
-  //     {
-  //       id: 2,
-  //       email: "abcd@email.com",
-  //       firstName: "Faisal",
-  //       lastName: "Hanif",
-  //       gender: "Male",
-  //       dateOfBirth: "26/03/1994",
-  //     },
-  //     {
-  //       id: 3,
-  //       email: "abcd@email.com",
-  //       firstName: "Muzammil",
-  //       lastName: "Sheikh",
-  //       gender: "Male",
-  //       dateOfBirth: "26/03/1994",
-  //     },
-  //     {
-  //       id: 4,
-  //       email: "abcd@email.com",
-  //       firstName: "Faisal",
-  //       lastName: "Hanif",
-  //       gender: "Male",
-  //       dateOfBirth: "26/03/1994",
-  //     },
-  //   ];
-  //*********************************/ Here Is Dummy Data Render On Table End****************************
-  //   console.log(dummyData);
   useEffect(() => {
     const dashboard = async () => {
       console.log("new-restaurants");
@@ -81,9 +37,18 @@ export default NewCustomerTable = (props) => {
   const handleIDSearch = (event) => {
     setSearchByID(event.target.value);
   };
+  const handleEmailSearch = (event) => {
+    setSearchByEmail(event.target.value);
+  };
   const searchingById = (searchByID) => {
     return (result) => {
       return result._id.includes(searchByID) || !searchingById;
+      //   return console.log(result);
+    };
+  };
+  const searchingByEmail = (searchByEmail) => {
+    return (result) => {
+      return result.email.includes(searchByEmail) || !searchByEmail;
       //   return console.log(result);
     };
   };
@@ -130,35 +95,40 @@ export default NewCustomerTable = (props) => {
                       type="text"
                       placeholder="Enter Email"
                       className="searchOrderData"
+                      onChange={handleEmailSearch}
+                      value={searchByEmail}
                     />
                   </td>
                   <td></td>
                   <td></td>
                   <td></td>
                 </tr>
-                {data.filter(searchingById(searchByID)).map((item, index) => {
-                  return (
-                    <tr key={index}>
-                      <td className="orderTableTD">{item._id}</td>
-                      <td className="orderTableTD">{item.fname}</td>
-                      <td className="orderTableTD">{item.lname}</td>
-                      <td className="orderTableTD">{item.email}</td>
-                      <td className="orderTableTD">{item.gender}</td>
-                      <td className="orderTableTD">
-                        {new Date(item.date).toDateString()}
-                        {/* <br /> */}
-                        {/* {new Date(item.date).toLocaleTimeString()} */}
-                      </td>
-                      <td className="orderTableTD">
-                        <i
-                          onClick={() => props.editCustomer(item._id)}
-                          style={{ cursor: "pointer" }}
-                          class="far fa-edit"
-                        ></i>
-                      </td>
-                    </tr>
-                  );
-                })}
+                {data
+                  .filter(searchingById(searchByID))
+                  .filter(searchingByEmail(searchByEmail))
+                  .map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <td className="orderTableTD">{item._id}</td>
+                        <td className="orderTableTD">{item.fname}</td>
+                        <td className="orderTableTD">{item.lname}</td>
+                        <td className="orderTableTD">{item.email}</td>
+                        <td className="orderTableTD">{item.gender}</td>
+                        <td className="orderTableTD">
+                          {new Date(item.date).toDateString()}
+                          {/* <br /> */}
+                          {/* {new Date(item.date).toLocaleTimeString()} */}
+                        </td>
+                        <td className="orderTableTD">
+                          <i
+                            onClick={() => props.editCustomer(item._id)}
+                            style={{ cursor: "pointer" }}
+                            class="far fa-edit"
+                          ></i>
+                        </td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
           ) : (
