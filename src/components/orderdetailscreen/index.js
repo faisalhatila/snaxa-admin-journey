@@ -131,6 +131,9 @@ const OrderDetails = (props) => {
                   <p>{singleOrder.city}</p>
                 </div>
               </div>
+              <label className="noMargin mt-5 goBackBtn" onClick={props.goBack}>
+                Back
+              </label>
             </div>
             <div className="col-12 col-lg-4 col-md-4">
               <div className="orderDetailsRow2Col1">
