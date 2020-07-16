@@ -274,6 +274,14 @@ export default CustomerForm = (props) => {
               </div>
             </div>
             <button
+              type="button"
+              class="btn btn-primary mt-3 mr-4"
+              onClick={props.goBack}
+              style={{ backgroundColor: "green", border: "green" }}
+            >
+              Back
+            </button>
+            <button
               type="submit"
               class="btn btn-primary mt-3"
               onClick={handleSubmit}
