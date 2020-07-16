@@ -178,14 +178,27 @@ export default AddCuisineForm = (props) => {
                       return (
                         <tr>
                           <td className="orderTableTD">{item.cuisine}</td>
-                          <td className="orderTableTD">
+                          {/* <td className="orderTableTD">
                             <label
                               className="noMargin deleteOrderStatusButton"
                               onClick={() => handleDeletecuisineName(item._id)}
                             >
                               Delete
                             </label>
-                          </td>
+                          </td> */}
+                          <div className="d-flex align-items-center justify-content-center">
+                            <i
+                              //   onClick={() => props.editRestaurant(item._id)}
+                              style={{ cursor: "pointer" }}
+                              class="far fa-edit mr-3 editButtonIcon"
+                            ></i>
+                            <label
+                              className="noMargin deleteOrderStatusButton"
+                              onClick={() => handleDeletecuisineName(item._id)}
+                            >
+                              Delete
+                            </label>
+                          </div>
                         </tr>
                       );
                     })}
