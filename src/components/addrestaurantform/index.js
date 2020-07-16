@@ -473,6 +473,17 @@ export default AddRestaurantForm = (props) => {
                 Status
               </label>
             </div> */}
+          {/* <label className="noMargin goBackBtn" onClick={props.goBack}>
+            Back
+          </label> */}
+          <button
+            type="button"
+            class="btn btn-primary mt-3 mr-4"
+            onClick={props.goBack}
+            style={{ backgroundColor: "green", border: "green" }}
+          >
+            Back
+          </button>
           {currentStep === 1 ? (
             <button
               type="button"
