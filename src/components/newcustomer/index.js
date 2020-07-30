@@ -1,22 +1,23 @@
-import React, { Component, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
+import { useInfiniteScrolling } from "../../shared/hooks/infinite-scrolling-hook";
 
-let NewCustomerTable;
+// let NewCustomerTable;
 
-export default NewCustomerTable = (props) => {
-	const [data, setData] = useState();
-	const [searchByID, setSearchByID] = useState("");
+const NewCustomerTable = (props) => {
+	// const [searchByID, setSearchByID] = useState("");
 	const [searchByEmail, setSearchByEmail] = useState("");
 
 	const { userId, token } = useAuth();
 	const { isLoading, error, sendRequest, clearError } = useHttpClient();
+	const { list, setList, skip, setSkip, handleScroll } = useInfiniteScrolling();
 	useEffect(() => {
 		const dashboard = async () => {
 			console.log("new-restaurants");
 			try {
 				const responseData = await sendRequest(
-					`${process.env.REACT_APP_BACKEND_URL}/new-customers`,
+					`${process.env.REACT_APP_BACKEND_URL}/new-customers?skip=${skip}`,
 					"POST",
 					{
 						"Content-Type": "application/json",
@@ -26,24 +27,26 @@ export default NewCustomerTable = (props) => {
 						userId,
 					})
 				);
-				console.log("responseData", responseData);
-				setData(responseData.existingUsers);
+				console.log("responseData1", responseData);
+				setList([...list, ...responseData.existingUsers]);
+
+				// setList([...list, ...responseData.existingUsers]);
 			} catch (err) {
 				// console.log("err", err);
 			}
 		};
 		if (token && userId) dashboard();
-	}, [token, userId, sendRequest]);
-	const handleIDSearch = (event) => {
-		setSearchByID(event.target.value);
-	};
+	}, [token, userId, sendRequest, skip]);
+	// const handleIDSearch = (event) => {
+	// 	setSearchByID(event.target.value);
+	// };
 	const emailRef = useRef();
 	useEffect(() => {
 		const timer = setTimeout(async () => {
 			if (searchByEmail === emailRef.current.value) {
 				try {
 					const responseData = await sendRequest(
-						`${process.env.REACT_APP_BACKEND_URL}/get-customer-by-email`,
+						`${process.env.REACT_APP_BACKEND_URL}/get-customer-by-email?skip=${skip}`,
 						"POST",
 						{
 							"Content-Type": "application/json",
@@ -56,7 +59,7 @@ export default NewCustomerTable = (props) => {
 						})
 					);
 					console.log("responseData", responseData);
-					setData(responseData.users);
+					setList([...list, ...responseData.users]);
 				} catch (err) {}
 			}
 		}, 500);
@@ -65,66 +68,38 @@ export default NewCustomerTable = (props) => {
 		};
 	}, [searchByEmail, sendRequest, userId]);
 
-	const searchingById = (searchByID) => {
-		return (result) => {
-			return (
-				result._id.toLowerCase().includes(searchByID.toLowerCase()) ||
-				!searchingById
-			);
-			//   return console.log(result);
-		};
-	};
-	const searchingByEmail = (searchByEmail) => {
-		return (result) => {
-			return (
-				result.email.toLowerCase().includes(searchByEmail.toLowerCase()) ||
-				!searchByEmail
-			);
-			//   return console.log(result);
-		};
-	};
-
 	let content;
-	if (!isLoading && data)
-		content = data
-			// .filter(searchingById(searchByID))
-			// .filter(searchingByEmail(searchByEmail))
-			.map((item, index) => {
-				return (
-					<tr key={index}>
-						{/* <td className="orderTableTD">{item._id}</td> */}
-						<td className='orderTableTD'>{item.fname}</td>
-						<td className='orderTableTD'>{item.lname}</td>
-						<td className='orderTableTD'>{item.email}</td>
-						<td className='orderTableTD'>{item.gender}</td>
-						<td className='orderTableTD'>
-							{new Date(item.date).toDateString()}
-							{/* <br /> */}
-							{/* {new Date(item.date).toLocaleTimeString()} */}
-						</td>
-						<td className='orderTableTD'>
-							<i
-								onClick={() => props.editCustomer(item._id)}
-								style={{ cursor: "pointer" }}
-								class='far fa-edit'></i>
-						</td>
-					</tr>
-				);
-			});
+	if (list.length > 0)
+		content = list.map((item, index) => {
+			return (
+				<tr key={index}>
+					<td className='orderTableTD'>{item.fname}</td>
+					<td className='orderTableTD'>{item.lname}</td>
+					<td className='orderTableTD'>{item.email}</td>
+					<td className='orderTableTD'>{item.gender}</td>
+					<td className='orderTableTD'>{new Date(item.date).toDateString()}</td>
+					<td className='orderTableTD'>
+						<i
+							onClick={() => props.editCustomer(item._id)}
+							style={{ cursor: "pointer" }}
+							class='far fa-edit'></i>
+					</td>
+				</tr>
+			);
+		});
 	else content = <p></p>;
 	return (
-		<div className='restaurantmanagementtable mb-4'>
+		<div className='restaurantmanagementtable mb-4' onScroll={handleScroll}>
 			<div class='container'>
 				<div
 					className={`newOrderTableHeading ${
-						data && data.length > 0 ? " maximumWidthRestaurant" : null
+						list && list.length > 0 ? " maximumWidthRestaurant" : null
 					}`}>
 					<h3>New Customers</h3>
 				</div>
 				<table class='table table-hover mt-3'>
 					<thead style={{ backgroundColor: "gray", color: "#fff" }}>
-						<tr>
-							{/* <th className="orderTableTH">ID</th> */}
+						<tr className='customerTableHeaderRow'>
 							<th className='orderTableTH'>First Name</th>
 							<th className='orderTableTH'>Last Name</th>
 							<th className='orderTableTH'>Email</th>
@@ -135,16 +110,6 @@ export default NewCustomerTable = (props) => {
 					</thead>
 					<tbody>
 						<tr>
-							{/* <td>
-              <input
-                type='text'
-                placeholder='Enter ID'
-                className='searchOrderData'
-                onChange={handleIDSearch}
-                value={searchByID}
-              />
-            </td> */}
-							<td></td>
 							<td></td>
 							<td>
 								<input
@@ -152,7 +117,11 @@ export default NewCustomerTable = (props) => {
 									type='text'
 									placeholder='Enter Email'
 									className='searchOrderData'
-									onChange={(e) => setSearchByEmail(e.target.value)}
+									onChange={(e) => {
+										setSearchByEmail(e.target.value);
+										setSkip(0);
+										setList([]);
+									}}
 									value={searchByEmail}
 								/>
 							</td>
@@ -160,7 +129,7 @@ export default NewCustomerTable = (props) => {
 							<td></td>
 							<td></td>
 						</tr>
-						{data && data.length > 0 ? (
+						{list && list.length > 0 ? (
 							content
 						) : (
 							<div className='noNewOrderHeadingDiv mt-3'>
@@ -175,3 +144,4 @@ export default NewCustomerTable = (props) => {
 		</div>
 	);
 };
+export default NewCustomerTable

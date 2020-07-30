@@ -1,60 +1,65 @@
-import { ImageUpload } from "..";
-import React, { Component, useState, useEffect } from "react";
-import { set } from "lodash";
+// import { ImageUpload } from "..";
+import React, { useState, useEffect } from "react";
+// import { set } from "lodash";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
-let itemIndex = 0;
-let AddCuisineForm;
-export default AddCuisineForm = (props) => {
+import useForm from "./useform";
+import validate from "./validate";
+
+// let itemIndex = 0;
+// let AddCuisineForm;
+const AddCuisineForm = (props) => {
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [data, setData] = useState([]);
   const [cuisineName, setcuisineName] = useState("");
   const [cuisineNameError, setCuisineNameError] = useState("");
-  const validate = () => {
-    // const { cuisineName } = state;
-    // let { cuisineNameError } = state;
-    // if (!cuisineName) {
-    //   cuisineNameError = "Please Enter Cuisine Name";
-    // } else {
-    //   cuisineNameError = "";
-    // }
-    // if (cuisineNameError) {
-    //   setState({
-    //     cuisineNameError,
-    //   });
-    //   return false;
-    // }
-    return true;
-  };
+  // const validate = () => {
+  //   // const { cuisineName } = state;
+  //   // let { cuisineNameError } = state;
+  //   // if (!cuisineName) {
+  //   //   cuisineNameError = "Please Enter Cuisine Name";
+  //   // } else {
+  //   //   cuisineNameError = "";
+  //   // }
+  //   // if (cuisineNameError) {
+  //   //   setState({
+  //   //     cuisineNameError,
+  //   //   });
+  //   //   return false;
+  //   // }
+  //   return true;
+  // };
   const handleChangeCuisineName = (e) => {
     setcuisineName(e.target.value);
     // cuisineNameError: "",
   };
-  const handleAddCuisineName = async () => {
+  const handleAddCuisineName = async (e) => {
     // const isValid = validate();
-    if (true) {
-      try {
-        const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/add-cuisine`,
-          "POST",
-          {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-          JSON.stringify({
-            userId,
-            cuisine: cuisineName,
-          })
-        );
-        console.log("responseData", responseData);
-        setData(responseData.cuisines);
-      } catch (err) {
-        // console.log("err", err);
-      }
-      setcuisineName("");
-      setCuisineNameError(false);
+    e.preventDefault();
+    handleSubmit();
+    // if (true) {
+    // }
+    try {
+      const responseData = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/add-cuisine`,
+        "POST",
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        JSON.stringify({
+          userId,
+          cuisine: cuisineName,
+        })
+      );
+      console.log("responseData", responseData);
+      setData(responseData.cuisines);
+    } catch (err) {
+      // console.log("err", err);
     }
+    setcuisineName("");
+    setCuisineNameError(false);
   };
   const handleDeletecuisineName = async (itemIndex) => {
     try {
@@ -98,6 +103,14 @@ export default AddCuisineForm = (props) => {
     };
     if (token && userId) dashboard();
   }, [token, userId, sendRequest]);
+  const { handleChange, handleSubmit, values, errors } = useForm(
+    submit,
+    validate
+  );
+  function submit() {
+    console.log("success");
+  }
+
   let content;
   if (!isLoading)
     content = (
@@ -113,35 +126,36 @@ export default AddCuisineForm = (props) => {
                 <div className="d-flex align-items-center">
                   <input
                     type="text"
+                    name="cuisinename"
                     class="form-control mr-4"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     placeholder="Enter Cuisine Name"
-                    onChange={handleChangeCuisineName}
-                    value={cuisineName}
+                    onChange={handleChange}
+                    value={values.cuisineName}
                   />
-                  <label
+                  <button
+                    type="submit"
                     className="addOrderStatusButton"
                     onClick={handleAddCuisineName}
                   >
                     Add
-                  </label>
+                  </button>
                 </div>
-                {cuisineNameError ? (
+                {errors.cuisineNameError ? (
                   <div
                     style={{
-                      textAlign: "center",
                       color: "red",
                       fontWeight: "bold",
                     }}
                   >
-                    {cuisineNameError}
+                    {errors.cuisineNameError}
                   </div>
                 ) : null}
               </div>
-              <button type="submit" class="btn btn-primary mt-3">
+              {/* <button type="submit" class="btn btn-primary mt-3">
                 Add Item
-              </button>
+              </button> */}
             </form>
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
@@ -213,3 +227,4 @@ export default AddCuisineForm = (props) => {
   else content = <p>Loading...</p>;
   return content;
 };
+export default AddCuisineForm;

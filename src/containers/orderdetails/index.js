@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { OrderDetailsForn } from "../../components";
-let OrderDetails;
-export default OrderDetails = (props) => {
+// let OrderDetails;
+const OrderDetails = (props) => {
   return (
     <div className="container">
       <div className="row">
@@ -12,3 +12,4 @@ export default OrderDetails = (props) => {
     </div>
   );
 };
+export default OrderDetails

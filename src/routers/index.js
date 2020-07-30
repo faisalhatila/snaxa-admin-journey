@@ -19,6 +19,7 @@ import {
   CustomerManagementTable,
   AddAddonCategory,
   AddAddonItem,
+  ChangePassword,
 } from "../containers";
 const Router = (props) => {
   const { userId, token } = useAuth();
@@ -27,6 +28,8 @@ const Router = (props) => {
     content = (
       <Switch>
         <PvtRoute exact path="/" component={LoginContainer} />
+        <PvtRoute exact path="/change-password" component={ChangePassword} />
+        <PvtRoute exact path="/reset/:token/:date" component={ChangePassword} />
         <Route component={PageNotFound} />
       </Switch>
     );

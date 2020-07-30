@@ -1,18 +1,18 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import {
-  LeftMenu,
-  NewRestaurant,
-  RestaurantTable,
-  AddRestaurantForm,
+  // LeftMenu,
+  // NewRestaurant,
+  // RestaurantTable,
+  // AddRestaurantForm,
   CustomerTable,
   NewCustomer,
 } from "../../components";
-import { AddRestaurant } from "..";
+// import { AddRestaurant } from "..";
 import CustomerForm from "./../../components/customerdetails/index";
 
-let CustomerManagement;
+// let CustomerManagement;
 
-export default CustomerManagement = (props) => {
+const CustomerManagement = (props) => {
   const [editCustomerStatus, setEditCustomerStatus] = useState(false);
   const [customer, setCustomer] = useState(false);
 
@@ -45,3 +45,4 @@ export default CustomerManagement = (props) => {
     </div>
   );
 };
+export default CustomerManagement;

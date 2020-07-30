@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 export default class Chart extends Component {
   state = {
@@ -73,10 +73,10 @@ export default class Chart extends Component {
     },
   };
   render() {
-    const { chartData, chartData2 } = this.state;
+    const { chartData } = this.state;
     return (
       <div>
-        <Line data={chartData2} data={chartData} options={{}} />
+        <Line data={chartData} options={{}} />
       </div>
     );
   }

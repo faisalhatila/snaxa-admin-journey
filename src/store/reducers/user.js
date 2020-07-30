@@ -1,9 +1,7 @@
-import Constants from "../constants";
-
 const initialState = {
   isLogin: false,
   isError: false,
-  isSuccess: false
+  isSuccess: false,
 };
 
 export default (state = initialState, { type, payload }) => {

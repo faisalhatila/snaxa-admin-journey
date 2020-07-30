@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 export default class BarChart extends Component {
   state = {
@@ -74,10 +74,10 @@ export default class BarChart extends Component {
   };
 
   render() {
-    const { chartData, chartData2 } = this.state;
+    const { chartData } = this.state;
     return (
       <div>
-        <Bar data={chartData2} data={chartData} options={{}} />
+        <Bar data={chartData} options={{}} />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
+import { Link } from "react-router-dom";
 
 const OrderDetails = (props) => {
   // console.log(props.orderStatus);
@@ -124,7 +125,7 @@ const OrderDetails = (props) => {
                 </div>
                 <div className="orderDetailsRow2Col1DescriptionDiv">
                   <p className="bold">Order#</p>
-                  <p>{singleOrder._id}</p>
+                  <p>{singleOrder.oid}</p>
                   <p className="bold">Restaurant</p>
                   <p>{singleOrder.RestaurantName}</p>
                   <p className="bold">Location</p>
@@ -134,6 +135,11 @@ const OrderDetails = (props) => {
               <label className="noMargin mt-5 goBackBtn" onClick={props.goBack}>
                 Back
               </label>
+              <Link to="/punched-orders">
+                <label className="ml-2 receiptButton receiptPrintButton">
+                  <i class="fas fa-print pr-2"></i>Print View
+                </label>
+              </Link>
             </div>
             <div className="col-12 col-lg-4 col-md-4">
               <div className="orderDetailsRow2Col1">
@@ -161,11 +167,20 @@ const OrderDetails = (props) => {
                   <p className="bold">Item List</p>
                   <div>
                     {singleOrder.items.map((i) => (
-                      <div>
-                        <p className="noMargin" style={{ fontWeight: "bold" }}>
+                      <div
+                        className={`${
+                          i.addOnList.length > 0 && "AddOns: " ? "d-flex" : null
+                        }`}
+                      >
+                        <p
+                          className={`noMargin ${
+                            i.addOnList.length > 0 && "AddOns: " ? "mr-2" : null
+                          }`}
+                          style={{ fontWeight: "bold" }}
+                        >
                           {i.quantity} x {i.name}
                         </p>
-                        <br />
+                        {/* <br /> */}
                         {i.addOnList.length > 0 && "AddOns: "}
                         {i.addOnList.map((j) => (
                           <span>{j} </span>

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { AddAddonCategoryForm } from "../../components";
-let AddAddonCategory;
-export default AddAddonCategory = (props) => {
+// let AddAddonCategory;
+const AddAddonCategory = (props) => {
   return (
     <div className="container">
       <div className="row">
@@ -12,3 +12,4 @@ export default AddAddonCategory = (props) => {
     </div>
   );
 };
+export default AddAddonCategory;

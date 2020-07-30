@@ -1,7 +1,7 @@
 import _Header from "./header";
 import _Footer from "./footer";
 import _Layout from "./layout";
-import _LeftMenu from "./leftmenu";
+// import _LeftMenu from "./leftmenu";
 import _TopMenu from "./topmenu";
 import _BChart from "./barchart";
 import _LChart from "./linechart";
@@ -30,7 +30,7 @@ export const OrderDetailsForn = _OrderDetailsForn;
 export const Header = _Header;
 export const Footer = _Footer;
 export const Layout = _Layout;
-export const LeftMenu = _LeftMenu;
+// export const LeftMenu = _LeftMenu;
 export const TopMenu = _TopMenu;
 export const BChart = _BChart;
 export const LChart = _LChart;

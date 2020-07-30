@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { AddAddonItemForm } from "../../components";
-let AddAddonItem;
-export default AddAddonItem = (props) => {
+// let AddAddonItem;
+const AddAddonItem = (props) => {
   return (
     <div className="container">
       <div className="row">
@@ -12,3 +12,4 @@ export default AddAddonItem = (props) => {
     </div>
   );
 };
+export default AddAddonItem

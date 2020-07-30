@@ -1,18 +1,18 @@
-import { ImageUpload } from "..";
-import React, { Component, useState, useEffect } from "react";
-import { set } from "lodash";
+// import { ImageUpload } from "..";
+import React, { useState, useEffect } from "react";
+// import { set } from "lodash";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import Select from "react-select";
-import makeAnimated from "react-select/animated";
-const animatedComponents = makeAnimated();
+// import makeAnimated from "react-select/animated";
+// const animatedComponents = makeAnimated();
 
-let itemIndex = 0;
-let AddAddonCategoryForm;
-export default AddAddonCategoryForm = (props) => {
+// let itemIndex = 0;
+// let AddAddonCategoryForm;
+const AddAddonCategoryForm = (props) => {
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [addOnItemName, setaddOnItemName] = useState("");
   const [addonPrice, setAddonPrice] = useState();
   const [addOnItemNameError, setaddOnItemNameError] = useState("");
@@ -23,22 +23,22 @@ export default AddAddonCategoryForm = (props) => {
   const [restaurant, selectRestaurant] = useState();
   const [restaurantID, setRestaurantID] = useState();
   const [categoryID, setCategoryID] = useState();
-  const validate = () => {
-    // const { cuisineName } = state;
-    // let { cuisineNameError } = state;
-    // if (!cuisineName) {
-    //   cuisineNameError = "Please Enter Cuisine Name";
-    // } else {
-    //   cuisineNameError = "";
-    // }
-    // if (cuisineNameError) {
-    //   setState({
-    //     cuisineNameError,
-    //   });
-    //   return false;
-    // }
-    return true;
-  };
+  // const validate = () => {
+  // 	// const { cuisineName } = state;
+  // 	// let { cuisineNameError } = state;
+  // 	// if (!cuisineName) {
+  // 	//   cuisineNameError = "Please Enter Cuisine Name";
+  // 	// } else {
+  // 	//   cuisineNameError = "";
+  // 	// }
+  // 	// if (cuisineNameError) {
+  // 	//   setState({
+  // 	//     cuisineNameError,
+  // 	//   });
+  // 	//   return false;
+  // 	// }
+  // 	return true;
+  // };
   const handleChangeAddonItemName = (e) => {
     setaddOnItemName(e.target.value);
     // cuisineNameError: "",
@@ -62,7 +62,7 @@ export default AddAddonCategoryForm = (props) => {
             userId,
             addOn: categoryID,
             name: addOnItemName,
-            price: addonPrice,
+            price: addonPrice ? addonPrice : "",
           })
         );
         console.log("responseData", responseData);
@@ -170,7 +170,7 @@ export default AddAddonCategoryForm = (props) => {
           })
         );
         console.log("responseData", responseData);
-        setData(responseData.allRestaurants);
+        // setData(responseData.allRestaurants);
         const temp = responseData.allRestaurants.map((i, index) => {
           return { index, value: i.restaurant, label: i.name };
         });
@@ -350,3 +350,4 @@ const groupBadgeStyles = {
   padding: "0.16666666666667em 0.5em",
   textAlign: "center",
 };
+export default AddAddonCategoryForm;

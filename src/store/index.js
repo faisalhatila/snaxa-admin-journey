@@ -10,7 +10,7 @@ const persistConfig = {
   key: "root",
   storage,
   blacklist: [],
-  debug: true
+  debug: true,
 };
 const enhancer = compose(applyMiddleware(thunk, logger));
 const initialState = {};

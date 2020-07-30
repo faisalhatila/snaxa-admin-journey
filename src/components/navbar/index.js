@@ -43,7 +43,7 @@ export default class Navbar extends Component {
             <div class="">
               <div id="logo" class="pull-left">
                 <Link to="/">
-                  <img src="assets/img/logo.svg" className="mr-3" />
+                  <img alt="Logo" src="assets/img/logo.svg" className="mr-3" />
                 </Link>
               </div>
               <nav id="nav-menu-container">
@@ -57,14 +57,18 @@ export default class Navbar extends Component {
                     </Link>
                   </li>
                   <li className="navbarItems">
-                    Restaurant Management{" "}
+                    <Link to="restaurant-management-table">
+                      Restaurant Management
+                    </Link>
                     <i
                       class="fas fa-chevron-down"
                       style={{ transform: "translateY(2px)" }}
                     ></i>
                     <ul className="navbarItemSubmenu">
                       <li>
-                        <Link to="/restaurant-management-table">Table</Link>
+                        <Link to="/restaurant-management-table">
+                          Add Restaurants
+                        </Link>
                       </li>
                       <li>
                         <Link to="add-order-status">Add Order Status</Link>
@@ -78,7 +82,7 @@ export default class Navbar extends Component {
                     <Link to="/order-management-table">Order Management</Link>
                   </li>
                   <li className="navbarItems">
-                    Kitchen Management{" "}
+                    <Link>Kitchen Management</Link>
                     <i
                       class="fas fa-chevron-down"
                       style={{ transform: "translateY(2px)" }}

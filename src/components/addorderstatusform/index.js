@@ -1,33 +1,37 @@
-import { ImageUpload } from "..";
-import React, { Component, useState, useEffect } from "react";
-import { set } from "lodash";
+// import { ImageUpload } from "..";
+import React, { useState, useEffect } from "react";
+// import { set } from "lodash";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
-let itemIndex = 0;
-let AddOrderStatusForm;
-export default AddOrderStatusForm = (props) => {
+import useForm from "./useform";
+import validate from "./validate";
+
+// let itemIndex = 0;
+// let AddOrderStatusForm;
+const AddOrderStatusForm = (props) => {
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [data, setData] = useState([]);
   const [orderStatusName, setOrderStatusName] = useState("");
-  const [orderStatusNameError, setOrderStatusNameError] = useState("");
+  // const [orderStatusNameError, setOrderStatusNameError] = useState("");
   const [isCompletedStatus, setIsCompletedStatus] = useState(false);
-  const validate = () => {
-    // const { orderStatusName } = state;
-    // let { orderStatusNameError } = state;
-    // if (!orderStatusName) {
-    // 	orderStatusNameError = "Please Enter Order Status Name";
-    // } else {
-    // 	orderStatusNameError = "";
-    // }
-    // if (orderStatusNameError) {
-    // 	setState({
-    // 		orderStatusNameError,
-    // 	});
-    // 	return false;
-    // }
-    return true;
-  };
+  const [isCancelledStatus, setIsCancelledStatus] = useState(false);
+  // const validate = () => {
+  //   // const { orderStatusName } = state;
+  //   // let { orderStatusNameError } = state;
+  //   // if (!orderStatusName) {
+  //   // 	orderStatusNameError = "Please Enter Order Status Name";
+  //   // } else {
+  //   // 	orderStatusNameError = "";
+  //   // }
+  //   // if (orderStatusNameError) {
+  //   // 	setState({
+  //   // 		orderStatusNameError,
+  //   // 	});
+  //   // 	return false;
+  //   // }
+  //   return true;
+  // };
 
   const handleChangeOrderStatusName = (e) => {
     setOrderStatusName(e.target.value);
@@ -35,32 +39,36 @@ export default AddOrderStatusForm = (props) => {
   };
   const handleCompletedMarkCheck = (e) => {
     setIsCompletedStatus(e.target.checked);
+    setIsCancelledStatus(false);
   };
-  const handleAddOrderStatusName = async () => {
-    // const isValid = validate();
-    if (true) {
-      try {
-        const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/add-order-status`,
-          "POST",
-          {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-          JSON.stringify({
-            userId,
-            orderStatus: orderStatusName,
-            active: isCompletedStatus,
-          })
-        );
-        console.log("responseData", responseData);
-        setData(responseData.orderStatuses);
-      } catch (err) {
-        // console.log("err", err);
-      }
-      setOrderStatusName("");
-      setIsCompletedStatus(false);
+  const handleCencelledMarkCheck = (e) => {
+    setIsCompletedStatus(false);
+    setIsCancelledStatus(e.target.checked);
+  };
+  const handleAddOrderStatusName = async (e) => {
+    e.preventDefault();
+    handleSubmit();
+    try {
+      const responseData = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/add-order-status`,
+        "POST",
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        JSON.stringify({
+          userId,
+          orderStatus: orderStatusName,
+          active: isCompletedStatus,
+        })
+      );
+      console.log("responseData", responseData);
+      setData(responseData.orderStatuses);
+    } catch (err) {
+      // console.log("err", err);
     }
+    setOrderStatusName("");
+    setIsCompletedStatus(false);
   };
   const handleDeleteOrderStatusName = async (itemIndex) => {
     try {
@@ -105,6 +113,13 @@ export default AddOrderStatusForm = (props) => {
     };
     if (token && userId) dashboard();
   }, [token, userId, sendRequest]);
+  const { handleChange, handleSubmit, values, errors } = useForm(
+    submit,
+    validate
+  );
+  function submit() {
+    console.log("success");
+  }
   let content;
   if (!isLoading)
     content = (
@@ -119,22 +134,34 @@ export default AddOrderStatusForm = (props) => {
                 <label for="exampleInputEmail1">Order Status Name</label>
                 <div className="d-flex align-items-center">
                   <input
+                    onChange={handleChange}
+                    value={values.orderStatusName}
+                    name="orderstatus"
                     type="text"
                     class="form-control mr-4"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     placeholder="Enter Order Status Name"
-                    onChange={handleChangeOrderStatusName}
-                    value={orderStatusName}
                   />
-                  <label
+                  <button
+                    type="submit"
                     className="addOrderStatusButton"
                     onClick={handleAddOrderStatusName}
                   >
                     Add
-                  </label>
+                  </button>
                 </div>
-                {orderStatusNameError ? (
+                {errors.orderStatusNameError ? (
+                  <div
+                    style={{
+                      color: "red",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {errors.orderStatusNameError}
+                  </div>
+                ) : null}
+                {/* {orderStatusNameError ? (
                   <div
                     style={{
                       textAlign: "center",
@@ -144,7 +171,7 @@ export default AddOrderStatusForm = (props) => {
                   >
                     {orderStatusNameError}
                   </div>
-                ) : null}
+                ) : null} */}
                 <div class="form-check mt-4">
                   <input
                     type="checkbox"
@@ -157,14 +184,26 @@ export default AddOrderStatusForm = (props) => {
                     Will it mark an order as completed order
                   </label>
                 </div>
+                <div class="form-check mt-4">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="exampleCheck1"
+                    onChange={handleCencelledMarkCheck}
+                    checked={isCancelledStatus}
+                  />
+                  <label class="form-check-label" for="exampleCheck1">
+                    Will it mark an order as cancelled order
+                  </label>
+                </div>
               </div>
-              <button
+              {/* <button
                 type="submit"
                 class="btn btn-primary mt-3"
                 // onClick={handleSubmit}
               >
                 Add Item
-              </button>
+              </button> */}
             </form>
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
@@ -284,6 +323,66 @@ export default AddOrderStatusForm = (props) => {
                   </tbody>
                 </table>
               </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">
+                  <strong>Cancelled Order Status</strong>
+                </label>
+                {/* <ul>
+                  {data.map((item, index) => {
+                    return item.active === true ? (
+                      <li key={item._id} className="mb-2">
+                        <div className="d-flex align-items-center">
+                          <label className="mr-4 noMargin">
+                            {item.orderstatus}
+                          </label>
+                          <label
+                            className="noMargin deleteOrderStatusButton"
+                            onClick={() =>
+                              handleDeleteOrderStatusName(item._id)
+                            }
+                          >
+                            Delete
+                          </label>
+                        </div>
+                      </li>
+                    ) : null;
+                  })}
+                </ul> */}
+                <table class="table table-hover">
+                  <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+                    <tr>
+                      <th className="orderTableTH">Item Name</th>
+                      <th className="orderTableTH">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.map((item, index) => {
+                      return item.active === true ? (
+                        <tr>
+                          <td className="orderTableTD">{item.orderstatus}</td>
+                          <td className="orderTableTD">
+                            <div className="d-flex align-items-center justify-content-center">
+                              <i
+                                //   onClick={() => props.editRestaurant(item._id)}
+                                style={{ cursor: "pointer" }}
+                                class="far fa-edit mr-3 editButtonIcon"
+                              ></i>
+                              <label
+                                className="noMargin deleteOrderStatusButton"
+                                onClick={() =>
+                                  handleDeleteOrderStatusName(item._id)
+                                }
+                              >
+                                Delete
+                              </label>
+                            </div>
+                          </td>
+                        </tr>
+                      ) : null;
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -292,3 +391,4 @@ export default AddOrderStatusForm = (props) => {
   else content = <p>Loading...</p>;
   return content;
 };
+export default AddOrderStatusForm;

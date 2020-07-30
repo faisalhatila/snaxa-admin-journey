@@ -13,7 +13,8 @@ import _AddAddons from "./addaddons";
 import _OrderDetails from "./orderdetails";
 import _CustomerManagementTable from "./customermanagementtable";
 import _AddAddonCategory from "./addaddoncategory";
-import _AddAddonItem from "./addaddonitem"
+import _AddAddonItem from "./addaddonitem";
+import _ChangePassword from "./changepassword";
 
 export const OrderDetails = _OrderDetails;
 export const HomeContainer = _HomeContainer;
@@ -31,3 +32,4 @@ export const AddAddons = _AddAddons;
 export const CustomerManagementTable = _CustomerManagementTable;
 export const AddAddonCategory = _AddAddonCategory;
 export const AddAddonItem = _AddAddonItem;
+export const ChangePassword = _ChangePassword;

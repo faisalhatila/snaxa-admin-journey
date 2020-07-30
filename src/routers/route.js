@@ -1,10 +1,9 @@
 import React from "react";
 import { Route as ReactRouter } from "react-router-dom";
 import { Footer, Header, Layout } from "../components";
-import { useAuth } from './../shared/hooks/auth-hooks';
+// import { useAuth } from './../shared/hooks/auth-hooks';
 
-const Route = props => {
-  
+const Route = (props) => {
   const withoutHeaderAndFooter = props.withoutHeaderAndFooter;
   const schema = (
     <React.Fragment>

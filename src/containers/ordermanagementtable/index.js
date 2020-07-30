@@ -1,10 +1,10 @@
-import React, { Component, useState } from "react";
-import { LeftMenu, OrderTable, NewOrder } from "../../components";
-import { AddOrderStatus } from "..";
+import React, { useState } from "react";
+import { OrderTable, NewOrder } from "../../components";
+// import { AddOrderStatus } from "..";
 import OrderDetails from "../orderdetails";
 
-let OrderManagement;
-export default OrderManagement = (props) => {
+// let OrderManagement;
+const OrderManagement = (props) => {
   const [editRestaurantStatus, setEditRestaurantStatus] = useState(false);
   const [orderId, setOrderId] = useState(false);
 
@@ -35,3 +35,4 @@ export default OrderManagement = (props) => {
 
   return content;
 };
+export default OrderManagement;

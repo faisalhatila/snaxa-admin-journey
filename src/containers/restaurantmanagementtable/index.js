@@ -1,15 +1,15 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import {
-  LeftMenu,
+  // LeftMenu,
   NewRestaurant,
   RestaurantTable,
-  AddRestaurantForm,
+  // AddRestaurantForm,
 } from "../../components";
 import { AddRestaurant } from "..";
 
-let RestaurantManagement;
+// let RestaurantManagement;
 
-export default RestaurantManagement = (props) => {
+const RestaurantManagement = (props) => {
   const [editRestaurantStatus, setEditRestaurantStatus] = useState(false);
   const [restaurant, setRestaurant] = useState(false);
 
@@ -42,3 +42,4 @@ export default RestaurantManagement = (props) => {
 
   return content;
 };
+export default RestaurantManagement;

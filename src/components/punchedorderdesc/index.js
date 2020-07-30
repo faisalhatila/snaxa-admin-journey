@@ -3,17 +3,17 @@ import React, { Component } from "react";
 export default class PunchedOrderDesc extends Component {
   render() {
     return (
-      <div className="punchedOrderMainParent pb-1">
+      <div className="punchedOrderMainParent pb-1 mt-5">
         <div className="punchedOrderHeadingDiv">
           <h3>Punched Orders</h3>
         </div>
         <div className="container">
           <div className="receiptFirstRow d-flex justify-content-between">
             <div className="receiptLogoDiv">
-              <img src="assets/img/receiptLogo.svg" />
+              <img alt="Logo" src="assets/img/receiptLogo.svg" />
             </div>
             <div className="receiptFirstRowButtonsDiv">
-              <div className="d-flex">
+              {/* <div className="d-flex">
                 <label className="mr-2 receiptButton receiptDeclineButton">
                   <i class="fas fa-times pr-2"></i>Decline
                 </label>
@@ -23,10 +23,10 @@ export default class PunchedOrderDesc extends Component {
                 >
                   <i class="fas fa-print pr-2"></i>Print
                 </label>
-              </div>
+              </div> */}
             </div>
           </div>
-          <div className="receiptSecondDiv">
+          <div className="receiptSecondDiv mt-3">
             <p className="noMargin">
               <i class="far fa-check-circle pr-2 redFont"></i>Accepted and
               delivered this order

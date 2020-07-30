@@ -35,6 +35,15 @@
 }
 /**************************************************Navbar End**************************************************/
 /**************************************************Login Page Start***********************************/
+.forgetPasswordText {
+  margin: 0;
+  font-size: 13px;
+  text-align: right;
+}
+.forgetPasswordLabel {
+  color: #b40008;
+  font-weight: 600;
+}
 .loginPageMainDiv {
   min-width: 100%;
   min-height: 100vh;
@@ -536,3 +545,31 @@ thead > tr > th {
   padding: 10px 5px;
 }
 /**************************************************Order Screen End**************************************************/
+.becomeAPartnerPageMainDiv {
+  min-width: 100%;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.becomeAPartnerPageFormDiv {
+  background-color: #fff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 2px;
+  min-width: 100%;
+  margin: 0;
+}
+.becomeAPartnerBigHeading {
+  font-size: 40px;
+  font-weight: 700;
+}
+.becomeAPartnerFormTitle {
+  text-align: center;
+  color: #b40008;
+  font-weight: 600;
+  font-size: 30px;
+}
+.becomeAPartnerFormActiveTab {
+  border-bottom: solid 2px #b40008;
+}

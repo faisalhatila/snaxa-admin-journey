@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { AddRestaurantForm } from "../../components";
 
-let AddRestaurant;
-export default AddRestaurant = (props) => {
+// let AddRestaurant;
+const AddRestaurant = (props) => {
   return (
     <div className="container">
       <div className="row">
@@ -17,3 +17,4 @@ export default AddRestaurant = (props) => {
     </div>
   );
 };
+export default AddRestaurant
