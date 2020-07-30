@@ -26,6 +26,7 @@ import _NewCustomer from "./newcustomer";
 import _AddAddonCategoryForm from "./addaddoncategoryform";
 import _AddAddonItemForm from "./addaddonitemform";
 import _Faqdetails from "./faqdetails";
+import _Termsandconditionsform from "./termsandconditionsform";
 
 export const OrderDetailsForn = _OrderDetailsForn;
 export const Header = _Header;
@@ -55,3 +56,4 @@ export const NewCustomer = _NewCustomer;
 export const AddAddonCategoryForm = _AddAddonCategoryForm;
 export const AddAddonItemForm = _AddAddonItemForm;
 export const Faqdetails = _Faqdetails;
+export const Termsandconditionsform = _Termsandconditionsform;
