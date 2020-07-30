@@ -36,4 +36,4 @@ export const AddAddonCategory = _AddAddonCategory;
 export const AddAddonItem = _AddAddonItem;
 export const ChangePassword = _ChangePassword;
 export const Faqs = _Faqs;
-export const Termsandconditions = Termsandconditions;
+export const Termsandconditions = _Termsandconditions;
