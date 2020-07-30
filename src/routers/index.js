@@ -20,6 +20,7 @@ import {
   AddAddonCategory,
   AddAddonItem,
   ChangePassword,
+  Faqs,
 } from "../containers";
 const Router = (props) => {
   const { userId, token } = useAuth();
@@ -53,6 +54,7 @@ const Router = (props) => {
           component={CustomerManagementTable}
         />
         <Route exact path="/punched-orders" component={PunchedOrders} />
+        <Route exact path="/faqs" component={Faqs} />
         <Route exact path="/add-restaurant" component={AddRestaurant} />
         <Route exact path="/add-category" component={AddCategory} />
         <Route exact path="/add-item" component={AddItem} />
