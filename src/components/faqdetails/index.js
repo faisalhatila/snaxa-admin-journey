@@ -142,6 +142,13 @@ const Faqdetails = (props) => {
                   style={{ resize: "none" }}
                 ></textarea>
               </div>
+              <button
+                type="submit"
+                className="addOrderStatusButton"
+                onClick={handleAddOrderStatusName}
+              >
+                Add
+              </button>
             </form>
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
