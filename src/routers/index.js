@@ -22,6 +22,7 @@ import {
   ChangePassword,
   Faqs,
 } from "../containers";
+import Termsandconditions from "../containers/termsandconditions";
 const Router = (props) => {
   const { userId, token } = useAuth();
   let content;
@@ -55,6 +56,11 @@ const Router = (props) => {
         />
         <Route exact path="/punched-orders" component={PunchedOrders} />
         <Route exact path="/faqs" component={Faqs} />
+        <Route
+          exact
+          path="/terms-and-conditions"
+          component={Termsandconditions}
+        />
         <Route exact path="/add-restaurant" component={AddRestaurant} />
         <Route exact path="/add-category" component={AddCategory} />
         <Route exact path="/add-item" component={AddItem} />
