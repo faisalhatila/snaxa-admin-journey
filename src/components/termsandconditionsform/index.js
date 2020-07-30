@@ -3,7 +3,6 @@ import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import useForm from "./useform";
 import validate from "./validate";
-import { Termsandconditionsform } from "..";
 
 const Termsandconditionsform = (props) => {
   const { userId, token } = useAuth();
