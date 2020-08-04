@@ -96,7 +96,7 @@ const Faqdetails = (props) => {
     content = (
       <div className="row">
         <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
-          Faqs
+          FAQs
         </div>
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <div className="row col-12">
@@ -138,8 +138,8 @@ const Faqdetails = (props) => {
                 <textarea
                   class="form-control"
                   id="exampleFormControlTextarea1"
-                  rows="3"
-                  style={{ resize: "none" }}
+                  rows="5"
+                  // style={{ resize: "none" }}
                 ></textarea>
               </div>
               <button
@@ -153,12 +153,12 @@ const Faqdetails = (props) => {
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
                 <label for="exampleInputEmail1">
-                  <strong>Faqs Table</strong>
+                  <strong>FAQs Table</strong>
                 </label>
                 <table class="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
-                      <th className="orderTableTH">Faq</th>
+                      <th className="orderTableTH">FAQ</th>
                       <th className="orderTableTH">Action</th>
                     </tr>
                   </thead>
