@@ -91,6 +91,167 @@ const SitemapForm = (props) => {
   function submit() {
     console.log("success");
   }
+  const [sitemapArray, setSiteMapArray] = useState([
+    {
+      id: 0,
+      menuId: "OB",
+      menuTitle: "Our Branches",
+      submenu: [],
+      name: "ourbranches",
+      isChecked: false,
+    },
+    {
+      id: 1,
+      menuId: "MA",
+      menuTitle: "Members Area",
+      submenu: [],
+      name: "membersarea",
+      isChecked: false,
+    },
+    {
+      id: 2,
+      menuId: "AB",
+      menuTitle: "About",
+      name: "aboutsnaxa",
+      isChecked: false,
+      submenu: [
+        {
+          id: 200,
+          subMenuId: "ATS",
+          subMenuTitle: "About The Site",
+          name: "aboutthesite",
+          isChecked: false,
+        },
+        {
+          id: 201,
+          subMenuId: "FR",
+          subMenuTitle: "For Restaurants",
+          name: "forrestaurant",
+          isChecked: false,
+        },
+        {
+          id: 202,
+          subMenuId: "SC",
+          subMenuTitle: "Stay Connected",
+          name: "stayconnected",
+          isChecked: false,
+        },
+        {
+          id: 203,
+          subMenuId: "SA",
+          subMenuTitle: "Snaxa Apps",
+          name: "snaxaapps",
+          isChecked: false,
+        },
+      ],
+    },
+    {
+      id: 3,
+      menuId: "Ar",
+      menuTitle: "Areas",
+      name: "areas",
+      isChecked: false,
+      submenu: [
+        {
+          id: 300,
+          subMenuId: "Du",
+          subMenuTitle: "Dubai",
+          name: "dubai",
+          isChecked: false,
+        },
+        {
+          id: 301,
+          subMenuId: "AD",
+          subMenuTitle: "Abu Dhabi",
+          name: "abudhabi",
+          isChecked: false,
+        },
+        {
+          id: 302,
+          subMenuId: "Sh",
+          subMenuTitle: "Sharjah",
+          name: "sharjah",
+          isChecked: false,
+        },
+        {
+          id: 303,
+          subMenuId: "Aj",
+          subMenuTitle: "Ajman",
+          name: "ajman",
+          isChecked: false,
+        },
+        {
+          id: 303,
+          subMenuId: "AA",
+          subMenuTitle: "Al Ain",
+          name: "alain",
+          isChecked: false,
+        },
+        {
+          id: 304,
+          subMenuId: "Fu",
+          subMenuTitle: "Fujairah",
+          name: "fujairah",
+          isChecked: false,
+        },
+        {
+          id: 305,
+          subMenuId: "RAK",
+          subMenuTitle: "Ras Al Khaima",
+          name: "rasalkhaima",
+          isChecked: false,
+        },
+        {
+          id: 306,
+          subMenuId: "UAQ",
+          subMenuTitle: "Umm Al-Quwain",
+          name: "ummalqueain",
+          isChecked: false,
+        },
+      ],
+    },
+    {
+      id: 4,
+      menuId: "Of",
+      menuTitle: "Offers",
+      name: "offers",
+      submenu: [],
+      isChecked: false,
+    },
+  ]);
+  const handleMenuCheck = (menu) => {
+    let temp = sitemapArray;
+    temp = temp.map((i) => {
+      if (i.isChecked) {
+        i.isChecked = !i.isChecked;
+        // i.submenu.map((j) => {
+        //   if (j.isChecked) {
+        //     j.isChecked = !j.isChecked;
+        //     return j;
+        //   } else return j;
+        // });
+        return i;
+      } else return i;
+    });
+    const tempObj = temp[menu];
+    tempObj.isChecked = !temp[menu].isChecked;
+    temp[menu] = tempObj;
+    setSiteMapArray(temp);
+    console.log(temp);
+  };
+  const handleSubMenuCheck = (subMenu) => {
+    console.log(subMenu);
+    // //   let temp = sitemapArray;
+    // //   temp = temp.map((i) => {
+
+    // //   })
+    // let temp = sitemapArray;
+    // const tempObj = sitemapArray[subMenu];
+    // tempObj.isChecked = !tempObj.isChecked;
+    // temp[subMenu] = tempObj;
+    // setSiteMapArray(temp);
+    // console.log(temp);
+  };
   let content;
   if (!isLoading)
     content = (
@@ -102,7 +263,7 @@ const SitemapForm = (props) => {
           <div className="row col-12">
             <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
-                <label for="exampleInputEmail1">Question</label>
+                <label>Title</label>
                 <div className="d-flex align-items-center">
                   <input
                     onChange={handleChange}
@@ -114,33 +275,22 @@ const SitemapForm = (props) => {
                     aria-describedby="emailHelp"
                     placeholder="Enter Question"
                   />
-                  {/* <button
-                    type="submit"
-                    className="addOrderStatusButton"
-                    onClick={handleAddOrderStatusName}
-                  >
-                    Add
-                  </button> */}
                 </div>
-                {/* {errors.orderStatusNameError ? (
-                  <div
-                    style={{
-                      color: "red",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {errors.orderStatusNameError}
-                  </div>
-                ) : null} */}
               </div>
               <div class="form-group">
-                <label for="exampleFormControlTextarea1">Answer</label>
-                <textarea
-                  class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                  style={{ resize: "none" }}
-                ></textarea>
+                <label>URL</label>
+                <div className="d-flex align-items-center">
+                  <input
+                    onChange={handleChange}
+                    value={values.orderStatusName}
+                    name="orderstatus"
+                    type="text"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter Url"
+                  />
+                </div>
               </div>
               <button
                 type="submit"
@@ -152,7 +302,55 @@ const SitemapForm = (props) => {
             </form>
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
-                <label for="exampleInputEmail1">
+                <label>
+                  <strong>Select Menu</strong>
+                </label>
+                <div>
+                  {sitemapArray.map((item, i) => {
+                    return (
+                      <div key={i}>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="menuRadios"
+                            id={item.name}
+                            onChange={() => handleMenuCheck(item.id)}
+                          />
+                          <label class="form-check-label" for={item.name}>
+                            {item.menuTitle}
+                          </label>
+                        </div>
+                        {item.submenu &&
+                          item.isChecked &&
+                          item.submenu.map((subMenu, i) => {
+                            return (
+                              <div class="form-check  ml-4">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="submenuRadios"
+                                  id={subMenu.name}
+                                  onChange={() =>
+                                    handleSubMenuCheck(subMenu.id)
+                                  }
+                                />
+                                <label
+                                  class="form-check-label"
+                                  for={subMenu.name}
+                                >
+                                  {subMenu.subMenuTitle}
+                                </label>
+                              </div>
+                            );
+                          })}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div class="form-group">
+                <label>
                   <strong>Faqs Table</strong>
                 </label>
                 <table class="table table-hover">
