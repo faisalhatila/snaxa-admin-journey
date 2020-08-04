@@ -21,6 +21,7 @@ import {
   AddAddonItem,
   ChangePassword,
   Faqs,
+  Sitemap,
 } from "../containers";
 import Termsandconditions from "../containers/termsandconditions";
 const Router = (props) => {
@@ -61,6 +62,7 @@ const Router = (props) => {
           path="/terms-and-conditions"
           component={Termsandconditions}
         />
+        <Route path="/sitemap" component={Sitemap} />
         <Route exact path="/add-restaurant" component={AddRestaurant} />
         <Route exact path="/add-category" component={AddCategory} />
         <Route exact path="/add-item" component={AddItem} />
