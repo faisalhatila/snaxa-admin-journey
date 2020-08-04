@@ -100,9 +100,9 @@ const Termsandconditionsform = (props) => {
         </div>
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <div className="row col-12">
-            <form className="col-12 updateVendorForm">
+            <form className="col-12  col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
-                <label for="exampleInputEmail1">Term</label>
+                <label for="exampleInputEmail1">Term Title</label>
                 <div className="d-flex align-items-center">
                   <input
                     onChange={handleChange}
@@ -133,6 +133,17 @@ const Termsandconditionsform = (props) => {
                   </div>
                 ) : null} */}
               </div>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">
+                  Term Description
+                </label>
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="5"
+                  // style={{ resize: "none" }}
+                ></textarea>
+              </div>
               <button
                 type="submit"
                 className="addOrderStatusButton"
@@ -141,7 +152,7 @@ const Termsandconditionsform = (props) => {
                 Add
               </button>
             </form>
-            {/* <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
+            <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
                 <label for="exampleInputEmail1">
                   <strong>Faqs Table</strong>
@@ -178,7 +189,7 @@ const Termsandconditionsform = (props) => {
                   </tbody>
                 </table>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
