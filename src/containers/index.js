@@ -17,7 +17,7 @@ import _AddAddonItem from "./addaddonitem";
 import _ChangePassword from "./changepassword";
 import _Faqs from "./faqs";
 import _Termsandconditions from "./termsandconditions";
-
+import _Sitemap from "./sitemap";
 export const OrderDetails = _OrderDetails;
 export const HomeContainer = _HomeContainer;
 export const LoginContainer = _LoginContainer;
@@ -37,3 +37,4 @@ export const AddAddonItem = _AddAddonItem;
 export const ChangePassword = _ChangePassword;
 export const Faqs = _Faqs;
 export const Termsandconditions = _Termsandconditions;
+export const Sitemap = _Sitemap;
