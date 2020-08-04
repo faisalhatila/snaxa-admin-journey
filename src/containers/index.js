@@ -18,6 +18,7 @@ import _ChangePassword from "./changepassword";
 import _Faqs from "./faqs";
 import _Termsandconditions from "./termsandconditions";
 import _Sitemap from "./sitemap";
+
 export const OrderDetails = _OrderDetails;
 export const HomeContainer = _HomeContainer;
 export const LoginContainer = _LoginContainer;
