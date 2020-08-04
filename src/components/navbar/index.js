@@ -116,14 +116,16 @@ export default Navbar = (props) => {
                     style={{ boxShadow: "0px 0px 5px 2px grey" }}
                   >
                     <li>
-                      <Link to="/add-category">Faqs</Link>
+                      <Link to="/faqs">Faqs</Link>
                     </li>
                     <li>
-                      <Link to="/add-item">Terms and conditions</Link>
+                      <Link to="/terms-and-conditions">
+                        Terms and conditions
+                      </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link to="/add-addon-category">Sitemap</Link>
-                    </li>
+                    </li> */}
                   </ul>
                 </li>
                 {/* <li>
