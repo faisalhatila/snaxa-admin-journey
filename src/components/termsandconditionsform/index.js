@@ -155,12 +155,12 @@ const Termsandconditionsform = (props) => {
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
                 <label for="exampleInputEmail1">
-                  <strong>Faqs Table</strong>
+                  <strong>Terms Table</strong>
                 </label>
                 <table class="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
-                      <th className="orderTableTH">Faq</th>
+                      <th className="orderTableTH">Term</th>
                       <th className="orderTableTH">Action</th>
                     </tr>
                   </thead>
