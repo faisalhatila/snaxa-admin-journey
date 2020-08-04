@@ -188,11 +188,11 @@ const AddOrderStatusForm = (props) => {
                   <input
                     type="checkbox"
                     class="form-check-input"
-                    id="exampleCheck1"
+                    id="exampleCheck2"
                     onChange={handleCencelledMarkCheck}
                     checked={isCancelledStatus}
                   />
-                  <label class="form-check-label" for="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck2">
                     Will it mark an order as cancelled order
                   </label>
                 </div>
