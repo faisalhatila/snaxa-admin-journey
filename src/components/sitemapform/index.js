@@ -96,7 +96,7 @@ const SitemapForm = (props) => {
     content = (
       <div className="row">
         <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
-          Faqs
+          Sitemap
         </div>
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <div className="row col-12">
