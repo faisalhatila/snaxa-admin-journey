@@ -186,14 +186,14 @@ const AddAddonCategoryForm = (props) => {
   if (!isLoading)
     content = (
       <div className="row">
-        <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
+        {/* <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
           Add Addon Item
-        </div>
+        </div> */}
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <div className="row col-12">
             <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div className="row">
-                <div class="form-group col">
+                {/* <div class="form-group col">
                   <label for="exampleInputEmail1">Select Restaurant</label>
                   <Select
                     defaultValue={colourOptions[restaurant]}
@@ -201,7 +201,7 @@ const AddAddonCategoryForm = (props) => {
                     formatGroupLabel={formatGroupLabel}
                     onChange={handleRestaurantSelect}
                   />
-                </div>
+                </div> */}
                 <div class="form-group col">
                   <label for="exampleInputEmail1">Select Addon Category</label>
                   <Select

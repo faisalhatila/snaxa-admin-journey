@@ -4,6 +4,12 @@ import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import {
+  AddCategoryForm,
+  AddItemFrom,
+  AddAddonCategoryForm,
+  AddAddonItemForm,
+} from "..";
 const animatedComponents = makeAnimated();
 // let AddRestaurantForm;
 const AddRestaurantForm = (props) => {
@@ -280,10 +286,12 @@ const AddRestaurantForm = (props) => {
     <p>Loading...</p>
   ) : (
     <div className="row">
+      <div className="col-8 col-lg-3 col-md-3 updateVendorFormTitle">Info</div>
+      <div className="col-8 col-lg-3 col-md-3 updateVendorFormTitle">Menu</div>
       <div className="col-8 col-lg-3 col-md-3 updateVendorFormTitle">
-        Restaurant Details
+        Reviews
       </div>
-      <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
+      {/* <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
         <form className="col-12 updateVendorForm">
           <div className={`row ${currentStep === 2 ? "d-none" : null}`}>
             <div className="col-12 col-md-6 col-lg-6">
@@ -298,16 +306,7 @@ const AddRestaurantForm = (props) => {
                   onChange={handleChangecategoryName}
                   value={categoryName}
                 />
-                {/* {categoryNameError ? (
-									<div
-										style={{
-											textAlign: "center",
-											color: "red",
-											fontWeight: "bold",
-										}}>
-										{categoryNameError}
-									</div>
-								) : null} */}
+                 
               </div>
               <div className="row">
                 <div class="form-group col-6">
@@ -399,85 +398,15 @@ const AddRestaurantForm = (props) => {
                   value={itemDescription}
                   onChange={handleChangeItemDescription}
                 ></textarea>
-                {/* {itemDescriptionError ? (
-									<div
-										style={{
-											textAlign: "center",
-											color: "red",
-											fontWeight: "bold",
-										}}>
-										{itemDescriptionError}
-									</div>
-								) : null} */}
+                 
               </div>
               <div className="row">
-                {/* <div class='form-group col-6'>
-									<label for='exampleInputEmail1'>Min Delivery Order</label>
-									<input
-										type='number'
-										class='form-control'
-										id='exampleInputEmail1'
-										aria-describedby='emailHelp'
-										placeholder='Enter Item Name'
-										onChange={handleChangecategoryName}
-										value={categoryName}
-									/>
-								</div> */}
-                {/* {categoryNameError ? (
-										<div
-											style={{
-												textAlign: "center",
-												color: "red",
-												fontWeight: "bold",
-											}}>
-											{categoryNameError}
-										</div>
-									) : null} */}
-                {/* <div class='form-group col-6'>
-									<label for='exampleInputEmail1'>Delivery Charges</label>
-									<input
-										type='number'
-										class='form-control'
-										id='exampleInputEmail1'
-										aria-describedby='emailHelp'
-										placeholder='Enter Item Name'
-										onChange={handleChangecategoryName}
-										value={categoryName}
-									/>
-								</div> */}
-                {/* {categoryNameError ? (
-										<div
-											style={{
-												textAlign: "center",
-												color: "red",
-												fontWeight: "bold",
-											}}>
-											{categoryNameError}
-										</div>
-									) : null} */}
+                 
               </div>
               <div className="row">
-                {/* <div class='form-group d-flex col align-items-center'>
-									<label
-										className='mr-4'
-										for='exampleInputEmail1'
-										style={{ marginBottom: 0 }}>
-										Pre Order
-									</label>
-									<input type='checkbox' /> */}
-                {/* {categoryNameError ? (
-									<div
-										style={{
-											textAlign: "center",
-											color: "red",
-											fontWeight: "bold",
-										}}>
-										{categoryNameError}
-									</div>
-								) : null} */}
-                {/* </div> */}
+                 
                 <div class="form-group col-12 ">
-                  {/* <div class='form-group col-12 col-md-6 col-lg-6'> */}
+                   
                   <label for="exampleInputEmail1">Select Cuisines</label>
                   <Select
                     closeMenuOnSelect={false}
@@ -581,6 +510,32 @@ const AddRestaurantForm = (props) => {
             Submit
           </button>
         </form>
+      </div> */}
+      <div className="col-12 customerDetailFormMainDiv">
+        <div className="row col-6 justify-content-between mt-1">
+          <label className="noMargin restaurantMenuTabsLabels">
+            Add Category
+          </label>
+          <label className="noMargin restaurantMenuTabsLabels">Add Item</label>
+          <label className="noMargin restaurantMenuTabsLabels">
+            Add Addon Category
+          </label>
+          <label className="noMargin restaurantMenuTabsLabels restaurantMenuTabsActiveLabel">
+            Add Addon Item
+          </label>
+        </div>
+        {/* <div className="col mt-3">
+          <AddCategoryForm />
+        </div> */}
+        {/* <div className="col mt-3">
+          <AddItemFrom />
+        </div> */}
+        {/* <div className="col mt-3">
+          <AddAddonCategoryForm />
+        </div> */}
+        <div className="col mt-3">
+          <AddAddonItemForm />
+        </div>
       </div>
     </div>
   );

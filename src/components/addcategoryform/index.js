@@ -253,13 +253,13 @@ const AddCategoryForm = (props) => {
   if (!isLoading && data.length > 0)
     content = (
       <div className="row">
-        <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
+        {/* <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
           Category Details
-        </div>
+        </div> */}
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
             <div className="row">
-              <div class="form-group col-12 col-md-6 col-lg-6">
+              <div class="form-group col-12">
                 <label for="exampleInputEmail1">Category Name</label>
                 <input
                   type="text"
@@ -281,28 +281,15 @@ const AddCategoryForm = (props) => {
 									</div>
 								) : null} */}
               </div>
-              <div class="form-group col-12 col-md-6 col-lg-6">
+              {/* <div class="form-group col-12 col-md-6 col-lg-6">
                 <label for="exampleFormControlSelect1">Select Restaurant</label>
-                {/* <select
-                  class="form-control"
-                  id="exampleFormControlSelect1"
-                  value={restaurant}
-                  onChange={handleSelectRestaurant}
-                >
-                  <option value="" disabled selected>
-                    Select a Restaurant
-                  </option>
-                  {data.map((i) => (
-                    <option value={i._id}>{i.name}</option>
-                  ))}
-                </select> */}
                 <Select
                   defaultValue={colourOptions[restaurant]}
                   options={colourOptions}
                   formatGroupLabel={formatGroupLabel}
                   onChange={handleSelectRestaurant}
                 />
-              </div>
+              </div> */}
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Priority</label>
