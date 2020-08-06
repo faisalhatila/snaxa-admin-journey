@@ -37,6 +37,14 @@ const AddRestaurantForm = (props) => {
   const [inputs, setInputs] = useState({});
   const [cuisines, setCuisines] = useState([]);
   const [currentStep, setCurrentStep] = useState(1);
+  const [editRestaurantActiveTab, setEditRestaurantActiveTab] = useState(
+    "Info"
+  );
+  const [
+    editRestaurantItemsActiveTab,
+    setEditRestaurantItemActiveTab,
+  ] = useState("Category");
+  const [reviewTableStatus, setReviewTableStatus] = useState(0);
   const [workingDays, setWorkingDays] = useState([
     {
       isChecked: false,
@@ -88,7 +96,19 @@ const AddRestaurantForm = (props) => {
       endTime: "",
     },
   ]);
-
+  const editRestaurantTabs = ["Info", "Menu", "Reviews"];
+  const editRestaurantItemTabs = [
+    "Category",
+    "Category Item",
+    "Addon Category",
+    "Addon Item",
+  ];
+  const handleActiveEditRestaurantTab = (tab) => {
+    setEditRestaurantActiveTab(tab);
+  };
+  const handleActiveEditRestaurantItemTab = (tab) => {
+    setEditRestaurantItemActiveTab(tab);
+  };
   const startTimeHandler = (b, e) => {
     console.log("e", e.target);
     setWorkingDays((prevState) => {
@@ -291,263 +311,311 @@ const AddRestaurantForm = (props) => {
     <p>Loading...</p>
   ) : (
     <div className="row">
-      <div className="col-8 col-lg-3 col-md-3 updateVendorFormTitle">Info</div>
-      <div className="col-8 col-lg-3 col-md-3 updateVendorFormTitle">Menu</div>
-      <div className="col-8 col-lg-3 col-md-3 updateVendorFormTitle">
-        Reviews
+      {/* <div className="col-8 col-lg-3 col-md-3 editRestaurantScreenTabsTitle editRestaurantScreenTabsTitleActive">
+        Info
       </div>
-      {/* <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
-        <form className="col-12 updateVendorForm">
-          <div className={`row ${currentStep === 2 ? "d-none" : null}`}>
-            <div className="col-12 col-md-6 col-lg-6">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Restaurant Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter Item Name"
-                  onChange={handleChangecategoryName}
-                  value={categoryName}
-                />
-                 
-              </div>
-              <div className="row">
-                <div class="form-group col-6">
-                  <label>Owner's First Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter First Name"
-                    value={fName}
-                    onChange={(e) => setFName(e.target.value)}
-                  />
-                </div>
-                <div class="form-group col-6">
-                  <label>Owner's Last Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Last Name"
-                    value={lName}
-                    onChange={(e) => setLName(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div class="form-group col-12">
-                  <label>Owner's Email</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div class="form-group col-6">
-                  <label>Country</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Country"
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
-                  />
-                </div>
-                <div class="form-group col-6">
-                  <label>City</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter City"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div class="form-group col-6">
-                  <label>Mobile Number</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Mobile Number"
-                    value={mobile}
-                    onChange={(e) => setMobile(e.target.value)}
-                  />
-                </div>
-                <div class="form-group col-6">
-                  <label>Website</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Website"
-                    value={storeWeb}
-                    onChange={(e) => setStoreWeb(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">
-                  Short Description
-                </label>
-                <textarea
-                  class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                  placeholder="Enter Item Description"
-                  value={itemDescription}
-                  onChange={handleChangeItemDescription}
-                ></textarea>
-                 
-              </div>
-              <div className="row">
-                 
-              </div>
-              <div className="row">
-                 
-                <div class="form-group col-12 ">
-                   
-                  <label for="exampleInputEmail1">Select Cuisines</label>
-                  <Select
-                    closeMenuOnSelect={false}
-                    components={animatedComponents}
-                    //   defaultValue={[colourOptions[4], colourOptions[5]]}
-                    isMulti
-                    options={colourOptions}
-                    onChange={(e) => setCuisines(e)}
-                  />
-                </div>
-              </div>
-              <div class="custom-control custom-switch">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="customSwitch2"
-                  onChange={handleChangeItemApproveStatus}
-                  checked={approveStatus}
-                />
-                <label class="custom-control-label" for="customSwitch2">
-                  Approve
-                </label>
-              </div>
-              <div class="custom-control custom-switch">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="customSwitch1"
-                  onChange={handleChangeItemStatus}
-                  checked={itemStatus}
-                />
-                <label class="custom-control-label" for="customSwitch1">
-                  Active Status
-                </label>
-              </div>
-            </div>
-            <div
-              className="col-12 col-md-6 col-lg-6"
-              style={{ overflowX: "auto" }}
-            >
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Days</th>
-                    <th>From</th>
-                    <th>To</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {workingDays.map((days) => {
-                    return (
-                      <tr key={days.id}>
-                        <th scope="row">
-                          <input
-                            checked={days.isChecked}
-                            type="checkbox"
-                            onChange={() => workingDayHandler(days.id)}
-                          />
-                        </th>
-                        <td>{days.label}</td>
-                        <td>
-                          <input
-                            // disabled={!days.isChecked}
-                            type="time"
-                            // id="appt"
-                            // value={days.startTime}
-                            // placeholder='20:20'
-                            onChange={(e) => startTimeHandler(days.id, e)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="time"
-                            // id="appt2"
-                            // value={days.endTime}
-                            onChange={(e) => endTimeHandler(days.id, e)}
-                          />
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <button
-            type="button"
-            class="btn btn-primary mt-3 mr-4"
-            onClick={props.goBack}
-            style={{ backgroundColor: "green", border: "green" }}
-          >
-            Back
-          </button>
-          <button
-            type="submit"
-            class="btn btn-primary mt-3"
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
-        </form>
+      <div className="col-8 col-lg-3 col-md-3 editRestaurantScreenTabsTitle">
+        Menu
+      </div>
+      <div className="col-8 col-lg-3 col-md-3 editRestaurantScreenTabsTitle">
+        Reviews
       </div> */}
-      <div className="col-12 customerDetailFormMainDiv">
-        <div className="row col-6 justify-content-between mt-1">
-          <label className="noMargin restaurantMenuTabsLabels">
-            Add Category
-          </label>
-          <label className="noMargin restaurantMenuTabsLabels">Add Item</label>
-          <label className="noMargin restaurantMenuTabsLabels">
-            Add Addon Category
-          </label>
-          <label className="noMargin restaurantMenuTabsLabels restaurantMenuTabsActiveLabel">
-            Add Addon Item
-          </label>
+      {editRestaurantTabs.map((tab, i) => {
+        //     <div className="col-8 col-lg-3 col-md-3 editRestaurantScreenTabsTitle editRestaurantScreenTabsTitleActive">
+        //   Info
+        // </div>
+        return (
+          <div
+            key={i}
+            onClick={() => handleActiveEditRestaurantTab(tab)}
+            className={`col-8 col-lg-3 col-md-3 editRestaurantScreenTabsTitle ${
+              editRestaurantActiveTab === tab &&
+              "editRestaurantScreenTabsTitleActive"
+            }`}
+          >
+            {tab}
+          </div>
+        );
+      })}
+      {editRestaurantActiveTab === "Info" && (
+        <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
+          <form className="col-12 updateVendorForm">
+            <div className={`row ${currentStep === 2 ? "d-none" : null}`}>
+              <div className="col-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Restaurant Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter Item Name"
+                    onChange={handleChangecategoryName}
+                    value={categoryName}
+                  />
+                </div>
+                <div className="row">
+                  <div class="form-group col-6">
+                    <label>Owner's First Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter First Name"
+                      value={fName}
+                      onChange={(e) => setFName(e.target.value)}
+                    />
+                  </div>
+                  <div class="form-group col-6">
+                    <label>Owner's Last Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Last Name"
+                      value={lName}
+                      onChange={(e) => setLName(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div class="form-group col-12">
+                    <label>Owner's Email</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div class="form-group col-6">
+                    <label>Country</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Country"
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                    />
+                  </div>
+                  <div class="form-group col-6">
+                    <label>City</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter City"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div class="form-group col-6">
+                    <label>Mobile Number</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Mobile Number"
+                      value={mobile}
+                      onChange={(e) => setMobile(e.target.value)}
+                    />
+                  </div>
+                  <div class="form-group col-6">
+                    <label>Website</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Website"
+                      value={storeWeb}
+                      onChange={(e) => setStoreWeb(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">
+                    Short Description
+                  </label>
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    placeholder="Enter Item Description"
+                    value={itemDescription}
+                    onChange={handleChangeItemDescription}
+                  ></textarea>
+                </div>
+                <div className="row"></div>
+                <div className="row">
+                  <div class="form-group col-12 ">
+                    <label for="exampleInputEmail1">Select Cuisines</label>
+                    <Select
+                      closeMenuOnSelect={false}
+                      components={animatedComponents}
+                      //   defaultValue={[colourOptions[4], colourOptions[5]]}
+                      isMulti
+                      options={colourOptions}
+                      onChange={(e) => setCuisines(e)}
+                    />
+                  </div>
+                </div>
+                <div class="custom-control custom-switch">
+                  <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    id="customSwitch2"
+                    onChange={handleChangeItemApproveStatus}
+                    checked={approveStatus}
+                  />
+                  <label class="custom-control-label" for="customSwitch2">
+                    Approve
+                  </label>
+                </div>
+                <div class="custom-control custom-switch">
+                  <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    id="customSwitch1"
+                    onChange={handleChangeItemStatus}
+                    checked={itemStatus}
+                  />
+                  <label class="custom-control-label" for="customSwitch1">
+                    Active Status
+                  </label>
+                </div>
+              </div>
+              <div
+                className="col-12 col-md-6 col-lg-6"
+                style={{ overflowX: "auto" }}
+              >
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Days</th>
+                      <th>From</th>
+                      <th>To</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {workingDays.map((days) => {
+                      return (
+                        <tr key={days.id}>
+                          <th scope="row">
+                            <input
+                              checked={days.isChecked}
+                              type="checkbox"
+                              onChange={() => workingDayHandler(days.id)}
+                            />
+                          </th>
+                          <td>{days.label}</td>
+                          <td>
+                            <input
+                              // disabled={!days.isChecked}
+                              type="time"
+                              // id="appt"
+                              // value={days.startTime}
+                              // placeholder='20:20'
+                              onChange={(e) => startTimeHandler(days.id, e)}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="time"
+                              // id="appt2"
+                              // value={days.endTime}
+                              onChange={(e) => endTimeHandler(days.id, e)}
+                            />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-primary mt-3 mr-4"
+              onClick={props.goBack}
+              style={{ backgroundColor: "green", border: "green" }}
+            >
+              Back
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary mt-3"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </form>
         </div>
-        {/* <div className="col mt-3">
-          <AddCategoryForm restaurantId={props.restaurantId} />
-        </div> */}
-        {/* <div className="col mt-3">
-          <AddItemFrom restaurantId={props.restaurantId} />
-        </div> */}
-        {/* <div className="col mt-3">
-          <AddAddonCategoryForm restaurantId={props.restaurantId} />
-        </div> */}
-        {/* <div className="col mt-3">
-          <AddAddonItemForm restaurantId={props.restaurantId} />
-        </div> */}
-        {/* <div className="col mt-3">
-          <ReviewTableShort />
-        </div> */}
-        <div className="col mt-3">
+      )}
+      {editRestaurantActiveTab === "Menu" && (
+        <div className="col-12 customerDetailFormMainDiv">
+          <div className="row col-5 justify-content-between mt-1">
+            {/* <label className="noMargin restaurantMenuTabsLabels">
+              Add Category
+            </label>
+            <label className="noMargin restaurantMenuTabsLabels">
+              Add Item
+            </label>
+            <label className="noMargin restaurantMenuTabsLabels">
+              Add Addon Category
+            </label>
+            <label className="noMargin restaurantMenuTabsLabels restaurantMenuTabsActiveLabel">
+              Add Addon Item
+            </label> */}
+            {editRestaurantItemTabs.map((tab, i) => {
+              return (
+                <label
+                  onClick={() => handleActiveEditRestaurantItemTab(tab)}
+                  className={`noMargin restaurantMenuTabsLabels ${
+                    editRestaurantItemsActiveTab === tab &&
+                    " restaurantMenuTabsActiveLabel"
+                  }`}
+                >
+                  {tab}
+                </label>
+              );
+            })}
+          </div>
+          {editRestaurantItemsActiveTab === "Category" && (
+            <div className="col mt-3">
+              <AddCategoryForm restaurantId={props.restaurantId} />
+            </div>
+          )}
+          {editRestaurantItemsActiveTab === "Category Item" && (
+            <div className="col mt-3">
+              <AddItemFrom restaurantId={props.restaurantId} />
+            </div>
+          )}
+          {editRestaurantItemsActiveTab === "Addon Category" && (
+            <div className="col mt-3">
+              <AddAddonCategoryForm restaurantId={props.restaurantId} />
+            </div>
+          )}
+          {editRestaurantItemsActiveTab === "Addon Item" && (
+            <div className="col mt-3">
+              <AddAddonItemForm restaurantId={props.restaurantId} />
+            </div>
+          )}
+        </div>
+      )}
+      {editRestaurantActiveTab === "Reviews" && reviewTableStatus === 0 && (
+        <div className="col customerDetailFormMainDiv pt-4">
+          <ReviewTableShort
+            handleReviewTableStatus={() => setReviewTableStatus(1)}
+          />
+        </div>
+      )}
+      {editRestaurantActiveTab === "Reviews" && reviewTableStatus === 1 && (
+        <div className="col customerDetailFormMainDiv pt-4">
           <ReviewsDetailed />
         </div>
-      </div>
+      )}
     </div>
   );
 };

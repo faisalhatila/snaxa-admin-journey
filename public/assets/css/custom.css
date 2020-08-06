@@ -467,6 +467,8 @@ thead > tr > th {
 .restaurantMenuTabsLabels {
   box-shadow: 0px 0px 5px 2px #ccc;
   padding: 5px 5px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 .restaurantMenuTabsActiveLabel {
   background-color: #d70d47;
@@ -544,6 +546,29 @@ thead > tr > th {
   padding: 10px 5px;
 }
 /**************************************************Order Screen End**************************************************/
+/**************************************************Edit Restaurant End**************************************************/
+
+.editRestaurantScreenTabsTitle {
+  /* box-shadow: 0px -3px 5px 2px #ccc; */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top: solid 1px #ccc;
+  border-right: solid 1px #ccc;
+  border-left: solid 1px #ccc;
+  /* background-color: #d70d47;
+  color: #fff; */
+  /* border-bottom: solid 1px #d70d47; */
+  z-index: 10;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  cursor: pointer;
+}
+.editRestaurantScreenTabsTitleActive {
+  background-color: #d70d47;
+  color: #fff;
+}
+/**************************************************Edit Restaurant End**************************************************/
+
 /**************************************************Review Table Screen Start**************************************************/
 .reviewTableViewButton {
   background-color: green;

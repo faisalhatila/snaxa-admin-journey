@@ -114,7 +114,7 @@ const ReviewTableDetail = (props) => {
     //     </tr>
     //   );
     // });
-    content = [...Array(5)].map((item, i) => {
+    content = [...Array(1)].map((item, i) => {
       return (
         <tr>
           <td className="orderTableTD">Faisal</td>
@@ -122,11 +122,11 @@ const ReviewTableDetail = (props) => {
           <td className="orderTableTD">Food Item</td>
           <td className="orderTableTD">5 *</td>
           <td className="orderTableTD">Superb Restaurant</td>
-          <td className="orderTableTD">
-            {/* <i style={{ cursor: "pointer" }} class="far fa-edit"></i> */}
+          {/* <td className="orderTableTD">
+            <i style={{ cursor: "pointer" }} class="far fa-edit"></i>
             <label className="reviewTableViewButton mr-2">View</label>
             <label className="reviewTableDeleteButton">Delete</label>
-          </td>
+          </td> */}
         </tr>
       );
     });
@@ -155,7 +155,7 @@ const ReviewTableDetail = (props) => {
               <th className="orderTableTH">Food Item</th>
               <th className="orderTableTH">Rating</th>
               <th className="orderTableTH">Message</th>
-              <th className="orderTableTH">Action</th>
+              {/* <th className="orderTableTH">Action</th> */}
             </tr>
           </thead>
           <tbody>

@@ -114,7 +114,7 @@ const ReviewTableDetailRating = (props) => {
     //     </tr>
     //   );
     // });
-    content = [...Array(5)].map((item, i) => {
+    content = [...Array(1)].map((item, i) => {
       return (
         <tr>
           <td className="orderTableTD">Biryani</td>
