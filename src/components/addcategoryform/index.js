@@ -136,33 +136,33 @@ const AddCategoryForm = (props) => {
     // }
     return true;
   };
-  const handleSelectRestaurant = async (event) => {
-    console.log(event);
-    setEditing(false);
-    setRestaurant(event.index);
-    setRestaurantID(event.value);
-    try {
-      const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/get-categories`,
-        "POST",
-        {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-        JSON.stringify({
-          userId,
-          restaurantId: event.value,
-        })
-      );
-      console.log("responseData", responseData);
-      setCategories(responseData.existingCategories);
-      setCategoryName("");
-      setItemPriority("");
-      setItemStatus(true);
-    } catch (err) {
-      // console.log("err", err);
-    }
-  };
+  // const handleSelectRestaurant = async (event) => {
+  //   console.log(event);
+  //   setEditing(false);
+  //   setRestaurant(event.index);
+  //   setRestaurantID(event.value);
+  //   try {
+  //     const responseData = await sendRequest(
+  //       `${process.env.REACT_APP_BACKEND_URL}/get-categories`,
+  //       "POST",
+  //       {
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer " + token,
+  //       },
+  //       JSON.stringify({
+  //         userId,
+  //         restaurantId: event.value,
+  //       })
+  //     );
+  //     console.log("responseData", responseData);
+  //     setCategories(responseData.existingCategories);
+  //     setCategoryName("");
+  //     setItemPriority("");
+  //     setItemStatus(true);
+  //   } catch (err) {
+  //     // console.log("err", err);
+  //   }
+  // };
   const handleSubmit = async (event) => {
     event.preventDefault();
     const isValid = validate();
@@ -291,7 +291,7 @@ const AddCategoryForm = (props) => {
 									</div>
 								) : null} */}
               </div>
-              <div class="form-group col-12 col-md-6 col-lg-6">
+              {/* <div class="form-group col-12 col-md-6 col-lg-6">
                 <label for="exampleFormControlSelect1">Select Restaurant</label>
                 <Select
                   defaultValue={colourOptions[restaurant]}
@@ -299,7 +299,7 @@ const AddCategoryForm = (props) => {
                   formatGroupLabel={formatGroupLabel}
                   onChange={handleSelectRestaurant}
                 />
-              </div>
+              </div> */}
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Priority</label>
