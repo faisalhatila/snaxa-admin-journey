@@ -3,7 +3,7 @@ import { useAuth } from "../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 
 // let ReviewTableShort;
-const ReviewTableShort = (props) => {
+const ReviewTableDetail = (props) => {
   const [data, setData] = useState();
 
   const { userId, token } = useAuth();
@@ -195,4 +195,4 @@ const ReviewTableShort = (props) => {
     </div>
   );
 };
-export default ReviewTableShort;
+export default ReviewTableDetail;
