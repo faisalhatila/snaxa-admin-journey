@@ -31,7 +31,7 @@ import _ReviewTableShort from "./reviewtableshort";
 import _ReviewTableDetail from "./reviewtabledetail";
 import _ReviewTableDetailRating from "./reviewtabledetailrating";
 import _ReviewsDetailed from "./reviewsdetailed";
-import _RestaurantContact from "./restaurantcontacttable";
+import _RestaurantContactTable from "./restaurantcontacttable";
 
 export const OrderDetailsForn = _OrderDetailsForn;
 export const Header = _Header;
@@ -66,4 +66,4 @@ export const ReviewTableShort = _ReviewTableShort;
 export const ReviewTableDetail = _ReviewTableDetail;
 export const ReviewTableDetailRating = _ReviewTableDetailRating;
 export const ReviewsDetailed = _ReviewsDetailed;
-export const RestaurantContact = _RestaurantContact;
+export const RestaurantContactTable = _RestaurantContactTable;
