@@ -39,6 +39,38 @@ const AddAddonCategoryForm = (props) => {
   // 	// }
   // 	return true;
   // };
+  useEffect(() => {
+    const dashboard = async () => {
+      selectRestaurant(props.restaurantId);
+      setRestaurantID(props.restaurantId);
+      selectCategory();
+      try {
+        const responseData = await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/get-all-addons`,
+          "POST",
+          {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          JSON.stringify({
+            userId,
+            restaurant: props.restaurantId,
+          })
+        );
+        console.log("responseData", responseData.addOns);
+        const temp = responseData.addOns.map((i, index) => {
+          return { index, value: i._id, label: i.addOnName };
+        });
+        console.log("Temp", temp);
+        setCateogryData(temp);
+        // selectCategory(cateogryData[responseData.addOns[0].]);
+      } catch (err) {
+        // console.log("err", err);
+      }
+    };
+    if (token && userId) dashboard();
+  }, [token, userId, sendRequest]);
+
   const handleChangeAddonItemName = (e) => {
     setaddOnItemName(e.target.value);
     // cuisineNameError: "",
@@ -268,7 +300,7 @@ const AddAddonCategoryForm = (props) => {
                 <table class="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
-                      <th className="orderTableTH">Restaurant</th>
+                      {/* <th className="orderTableTH">Restaurant</th> */}
                       <th className="orderTableTH">Addon Category</th>
                       <th className="orderTableTH">Addon Item Name</th>
                       <th className="orderTableTH">Addon Price</th>
@@ -279,9 +311,9 @@ const AddAddonCategoryForm = (props) => {
                     {addOnData.map((item) => {
                       return (
                         <tr>
-                          <td className="orderTableTD">
+                          {/* <td className="orderTableTD">
                             {colourOptions[restaurant].label}
-                          </td>
+                          </td> */}
                           <td className="orderTableTD">
                             {cateogryData[category].label}
                           </td>
