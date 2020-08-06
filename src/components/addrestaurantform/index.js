@@ -118,6 +118,9 @@ const AddRestaurantForm = (props) => {
   };
 
   useEffect(() => {
+    // console.log("###################################################");
+    // console.log(props.restaurantId);
+    // console.log("###################################################");
     const dashboard = async () => {
       console.log("Dashboard");
       try {
@@ -513,29 +516,29 @@ const AddRestaurantForm = (props) => {
       </div> */}
       <div className="col-12 customerDetailFormMainDiv">
         <div className="row col-6 justify-content-between mt-1">
-          <label className="noMargin restaurantMenuTabsLabels">
+          <label className="noMargin restaurantMenuTabsLabels restaurantMenuTabsActiveLabel">
             Add Category
           </label>
           <label className="noMargin restaurantMenuTabsLabels">Add Item</label>
           <label className="noMargin restaurantMenuTabsLabels">
             Add Addon Category
           </label>
-          <label className="noMargin restaurantMenuTabsLabels restaurantMenuTabsActiveLabel">
+          <label className="noMargin restaurantMenuTabsLabels">
             Add Addon Item
           </label>
         </div>
-        {/* <div className="col mt-3">
-          <AddCategoryForm />
-        </div> */}
-        {/* <div className="col mt-3">
-          <AddItemFrom />
-        </div> */}
-        {/* <div className="col mt-3">
-          <AddAddonCategoryForm />
-        </div> */}
         <div className="col mt-3">
-          <AddAddonItemForm />
+          <AddCategoryForm restaurantId={props.restaurantId} />
         </div>
+        {/* <div className="col mt-3">
+          <AddItemFrom restaurantId={props.restaurantId} />
+        </div> */}
+        {/* <div className="col mt-3">
+          <AddAddonCategoryForm restaurantId={props.restaurantId} />
+        </div> */}
+        {/* <div className="col mt-3">
+          <AddAddonItemForm restaurantId={props.restaurantId} />
+        </div> */}
       </div>
     </div>
   );

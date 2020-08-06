@@ -27,29 +27,38 @@ const AddCategoryForm = (props) => {
   const [colourOptions, setColourOptions] = useState([]);
   const [restaurantID, setRestaurantID] = useState();
 
-  // useEffect(() => {
-  //   const dashboard = async () => {
-  //     console.log("Dashboard");
-  //     try {
-  //       const responseData = await sendRequest(
-  //         `${process.env.REACT_APP_BACKEND_URL}/get-all-restaurants`,
-  //         "POST",
-  //         {
-  //           "Content-Type": "application/json",
-  //           Authorization: "Bearer " + token,
-  //         },
-  //         JSON.stringify({
-  //           userId,
-  //         })
-  //       );
-  //       console.log("responseData", responseData);
-  //       setData(responseData.allRestaurants);
-  //     } catch (err) {
-  //       // console.log("err", err);
-  //     }
-  //   };
-  //   if (token && userId) dashboard();
-  // }, [token, userId, sendRequest]);
+  useEffect(() => {
+    const dashboard = async () => {
+      // console.log(event);
+      setEditing(false);
+      // setRestaurant(event.index);
+      setRestaurantID(props.restaurantId);
+      try {
+        const responseData = await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/get-categories`,
+          "POST",
+          {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          JSON.stringify({
+            userId,
+            restaurantId: props.restaurantId,
+          })
+        );
+        console.log("responseData", responseData);
+        setCategories(responseData.existingCategories);
+        setCategoryName("");
+        setItemPriority("");
+        setItemStatus(true);
+      } catch (err) {
+        console.log("##############################################");
+        console.log("err", err);
+        console.log("##############################################");
+      }
+    };
+    if (token && userId) dashboard();
+  }, [token, userId, sendRequest]);
   useEffect(() => {
     const dashboard = async () => {
       console.log("Dashboard");
@@ -172,7 +181,8 @@ const AddCategoryForm = (props) => {
             userId,
             categoryName: categoryName,
             priority: itemPriority,
-            restaurantId: restaurant,
+            // restaurantId: restaurant,
+            restaurantId: props.restaurantId,
             status: itemStatus,
             categoryId,
           })
@@ -281,7 +291,7 @@ const AddCategoryForm = (props) => {
 									</div>
 								) : null} */}
               </div>
-              {/* <div class="form-group col-12 col-md-6 col-lg-6">
+              <div class="form-group col-12 col-md-6 col-lg-6">
                 <label for="exampleFormControlSelect1">Select Restaurant</label>
                 <Select
                   defaultValue={colourOptions[restaurant]}
@@ -289,7 +299,7 @@ const AddCategoryForm = (props) => {
                   formatGroupLabel={formatGroupLabel}
                   onChange={handleSelectRestaurant}
                 />
-              </div> */}
+              </div>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Priority</label>

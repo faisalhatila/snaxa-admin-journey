@@ -37,6 +37,10 @@ const RestaurantManagement = (props) => {
     );
 
   if (editRestaurantStatus)
+    //   console.log("###################################################");
+    // console.log(restaurant);
+    // console.log("###################################################");
+
     // content = <AddRestaurantForm restaurantId={props.restaurantId} />;
     content = <AddRestaurant goBack={goBack} restaurantId={restaurant} />;
 

@@ -3,6 +3,9 @@ import { AddRestaurantForm } from "../../components";
 
 // let AddRestaurant;
 const AddRestaurant = (props) => {
+  // console.log("###################################################");
+  // console.log(props.restaurantId);
+  // console.log("###################################################");
   return (
     <div className="container">
       <div className="row">
@@ -17,4 +20,4 @@ const AddRestaurant = (props) => {
     </div>
   );
 };
-export default AddRestaurant
+export default AddRestaurant;
