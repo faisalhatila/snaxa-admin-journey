@@ -119,6 +119,8 @@ const ReviewTableDetail = (props) => {
         <tr>
           <td className="orderTableTD">Faisal</td>
           <td className="orderTableTD">Alaska</td>
+          <td className="orderTableTD">Food Item</td>
+          <td className="orderTableTD">5 *</td>
           <td className="orderTableTD">Superb Restaurant</td>
           <td className="orderTableTD">
             {/* <i style={{ cursor: "pointer" }} class="far fa-edit"></i> */}
@@ -150,6 +152,8 @@ const ReviewTableDetail = (props) => {
               <th className="orderTableTH">Action</th> */}
               <th className="orderTableTH">Name</th>
               <th className="orderTableTH">Name Restaurant</th>
+              <th className="orderTableTH">Food Item</th>
+              <th className="orderTableTH">Rating</th>
               <th className="orderTableTH">Message</th>
               <th className="orderTableTH">Action</th>
             </tr>
