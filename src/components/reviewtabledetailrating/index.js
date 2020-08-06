@@ -122,11 +122,6 @@ const ReviewTableDetailRating = (props) => {
           <td className="orderTableTD">5 *</td>
           <td className="orderTableTD">5 *</td>
           <td className="orderTableTD">5 *</td>
-          <td className="orderTableTD">
-            {/* <i style={{ cursor: "pointer" }} class="far fa-edit"></i> */}
-            <label className="reviewTableViewButton mr-2">View</label>
-            <label className="reviewTableDeleteButton">Delete</label>
-          </td>
         </tr>
       );
     });
