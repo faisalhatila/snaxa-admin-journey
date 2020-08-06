@@ -96,7 +96,7 @@ const AddRestaurantForm = (props) => {
       endTime: "",
     },
   ]);
-  const editRestaurantTabs = ["Info", "Menu", "Reviews"];
+  const editRestaurantTabs = ["Info", "Menu", "Reviews", "Contact"];
   const editRestaurantItemTabs = [
     "Category",
     "Category Item",
