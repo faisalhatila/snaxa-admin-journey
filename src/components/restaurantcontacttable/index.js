@@ -122,11 +122,11 @@ const RestaurantContactTable = (props) => {
           <td className="orderTableTD">Dubai</td>
           <td className="orderTableTD">admin@admin.com</td>
           <td className="orderTableTD">+001-123-456-789</td>
-          {/* <td className="orderTableTD">
+          <td className="orderTableTD">
             <i style={{ cursor: "pointer" }} class="far fa-edit"></i>
-            <label className="reviewTableViewButton mr-2">View</label>
-            <label className="reviewTableDeleteButton">Delete</label>
-          </td> */}
+            {/* <label className="reviewTableViewButton mr-2">View</label>
+            <label className="reviewTableDeleteButton">Delete</label> */}
+          </td>
         </tr>
       );
     });
@@ -155,7 +155,7 @@ const RestaurantContactTable = (props) => {
               <th className="orderTableTH">Address</th>
               <th className="orderTableTH">Email</th>
               <th className="orderTableTH">Contact No</th>
-              {/* <th className="orderTableTH">Action</th> */}
+              <th className="orderTableTH">Action</th>
             </tr>
           </thead>
           <tbody>
