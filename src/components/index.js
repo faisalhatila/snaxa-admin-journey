@@ -29,6 +29,7 @@ import _Termsandconditionsform from "./termsandconditionsform";
 import _SitemapForm from "./sitemapform";
 import _ReviewTableShort from "./reviewtableshort";
 import _ReviewTableDetail from "./reviewtabledetail";
+import _ReviewTableDetailRating from "./reviewtabledetailrating";
 
 export const OrderDetailsForn = _OrderDetailsForn;
 export const Header = _Header;
@@ -61,3 +62,4 @@ export const Termsandconditionsform = _Termsandconditionsform;
 export const SitemapForm = _SitemapForm;
 export const ReviewTableShort = _ReviewTableShort;
 export const ReviewTableDetail = _ReviewTableDetail;
+export const ReviewTableDetailRating = _ReviewTableDetailRating;
