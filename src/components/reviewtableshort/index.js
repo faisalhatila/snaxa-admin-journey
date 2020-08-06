@@ -40,25 +40,25 @@ const ReviewTableShort = (props) => {
   const emailRef = useRef();
   useEffect(() => {
     const timer = setTimeout(async () => {
-      if (searchByEmail === emailRef.current.value) {
-        try {
-          const responseData = await sendRequest(
-            `${process.env.REACT_APP_BACKEND_URL}/get-restaurant-by-email`,
-            "POST",
-            {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + token,
-            },
-            JSON.stringify({
-              userId,
-              emailQuery: searchByEmail,
-              type: "New",
-            })
-          );
-          console.log("responseData", responseData);
-          setData(responseData.restaurants);
-        } catch (err) {}
-      }
+      //   if (searchByEmail === emailRef.current.value) {
+      try {
+        const responseData = await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/get-restaurant-by-email`,
+          "POST",
+          {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          JSON.stringify({
+            userId,
+            emailQuery: searchByEmail,
+            type: "New",
+          })
+        );
+        console.log("responseData", responseData);
+        setData(responseData.restaurants);
+      } catch (err) {}
+      //   }
     }, 500);
     return () => {
       clearTimeout(timer);
@@ -68,25 +68,25 @@ const ReviewTableShort = (props) => {
   const nameRef = useRef();
   useEffect(() => {
     const timer = setTimeout(async () => {
-      if (searchByName === nameRef.current.value) {
-        try {
-          const responseData = await sendRequest(
-            `${process.env.REACT_APP_BACKEND_URL}/get-restaurant-by-name`,
-            "POST",
-            {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + token,
-            },
-            JSON.stringify({
-              userId,
-              emailQuery: searchByName,
-              type: "New",
-            })
-          );
-          console.log("responseData", responseData);
-          setData(responseData.restaurants);
-        } catch (err) {}
-      }
+      //   if (searchByName === nameRef.current.value) {
+      try {
+        const responseData = await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/get-restaurant-by-name`,
+          "POST",
+          {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          JSON.stringify({
+            userId,
+            emailQuery: searchByName,
+            type: "New",
+          })
+        );
+        console.log("responseData", responseData);
+        setData(responseData.restaurants);
+      } catch (err) {}
+      //   }
     }, 500);
     return () => {
       clearTimeout(timer);
@@ -121,7 +121,9 @@ const ReviewTableShort = (props) => {
           <td className="orderTableTD">Alaska</td>
           <td className="orderTableTD">Superb Restaurant</td>
           <td className="orderTableTD">
-            <i style={{ cursor: "pointer" }} class="far fa-edit"></i>
+            {/* <i style={{ cursor: "pointer" }} class="far fa-edit"></i> */}
+            <label className="reviewTableViewButton mr-2">View</label>
+            <label className="reviewTableDeleteButton">Delete</label>
           </td>
         </tr>
       );
@@ -135,7 +137,7 @@ const ReviewTableShort = (props) => {
             data && data.length > 0 ? " maximumWidthRestaurant" : null
           }`}
         >
-          <h3>New Restaurants</h3>
+          <h3>Customers Reviews</h3>
         </div>
         <table class="table table-hover">
           <thead style={{ backgroundColor: "gray", color: "#fff" }}>
@@ -153,7 +155,7 @@ const ReviewTableShort = (props) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {/* <tr>
               <td>
                 <input
                   ref={nameRef}
@@ -177,7 +179,7 @@ const ReviewTableShort = (props) => {
               <td></td>
               <td></td>
               <td></td>
-            </tr>
+            </tr> */}
             {data && data.length > 0 ? (
               content
             ) : (

@@ -9,6 +9,7 @@ import {
   AddItemFrom,
   AddAddonCategoryForm,
   AddAddonItemForm,
+  ReviewTableShort,
 } from "..";
 const animatedComponents = makeAnimated();
 // let AddRestaurantForm;
@@ -536,8 +537,11 @@ const AddRestaurantForm = (props) => {
         {/* <div className="col mt-3">
           <AddAddonCategoryForm restaurantId={props.restaurantId} />
         </div> */}
-        <div className="col mt-3">
+        {/* <div className="col mt-3">
           <AddAddonItemForm restaurantId={props.restaurantId} />
+        </div> */}
+        <div className="col mt-3">
+          <ReviewTableShort />
         </div>
       </div>
     </div>
