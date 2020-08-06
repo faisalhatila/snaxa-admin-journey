@@ -519,10 +519,8 @@ const AddRestaurantForm = (props) => {
           <label className="noMargin restaurantMenuTabsLabels">
             Add Category
           </label>
-          <label className="noMargin restaurantMenuTabsLabels  restaurantMenuTabsActiveLabel">
-            Add Item
-          </label>
-          <label className="noMargin restaurantMenuTabsLabels">
+          <label className="noMargin restaurantMenuTabsLabels">Add Item</label>
+          <label className="noMargin restaurantMenuTabsLabels restaurantMenuTabsActiveLabel">
             Add Addon Category
           </label>
           <label className="noMargin restaurantMenuTabsLabels">
@@ -532,12 +530,12 @@ const AddRestaurantForm = (props) => {
         {/* <div className="col mt-3">
           <AddCategoryForm restaurantId={props.restaurantId} />
         </div> */}
-        <div className="col mt-3">
-          <AddItemFrom restaurantId={props.restaurantId} />
-        </div>
         {/* <div className="col mt-3">
-          <AddAddonCategoryForm restaurantId={props.restaurantId} />
+          <AddItemFrom restaurantId={props.restaurantId} />
         </div> */}
+        <div className="col mt-3">
+          <AddAddonCategoryForm restaurantId={props.restaurantId} />
+        </div>
         {/* <div className="col mt-3">
           <AddAddonItemForm restaurantId={props.restaurantId} />
         </div> */}

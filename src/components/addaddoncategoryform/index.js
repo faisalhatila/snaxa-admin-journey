@@ -28,6 +28,33 @@ const AddAddonCategoryForm = (props) => {
   // const [addOnCategoryNameError, setaddOnCategoryNameError] = useState("");
   const [editing, setEditing] = useState(false);
   const [addOnId, setAddOnId] = useState();
+  useEffect(() => {
+    const dashboard = async () => {
+      cancelEditing();
+      selectRestaurant(props.restaurantId);
+      setRestaurantID(props.restaurantId);
+      try {
+        const responseData = await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/get-all-addons`,
+          "POST",
+          {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          JSON.stringify({
+            userId,
+            // restaurant: e.value,
+            restaurant: props.restaurantId,
+          })
+        );
+        console.log("responseData", responseData.addOns);
+        setAddOnData(responseData.addOns);
+      } catch (err) {
+        // console.log("err", err);
+      }
+    };
+    if (token && userId) dashboard();
+  }, [token, userId, sendRequest]);
 
   // const validate = () => {
   // 	// const { cuisineName } = state;
@@ -217,7 +244,7 @@ const AddAddonCategoryForm = (props) => {
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <div className="row col-12">
             <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
-              {/* <div class="form-group">
+              <div class="form-group">
                 <label for="exampleInputEmail1">Select Restaurant</label>
                 <Select
                   defaultValue={colourOptions[restaurant]}
@@ -225,7 +252,7 @@ const AddAddonCategoryForm = (props) => {
                   formatGroupLabel={formatGroupLabel}
                   onChange={handleRestaurantSelect}
                 />
-              </div> */}
+              </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Add On Category</label>
                 <div className="d-flex align-items-center">
@@ -378,7 +405,7 @@ const AddAddonCategoryForm = (props) => {
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
                       <th className="orderTableTH">Addon Category Name</th>
-                      <th className="orderTableTH">Restaurant Name</th>
+                      {/* <th className="orderTableTH">Restaurant Name</th> */}
                       <th className="orderTableTH">Action</th>
                     </tr>
                   </thead>
@@ -386,10 +413,11 @@ const AddAddonCategoryForm = (props) => {
                     {addOnData.map((item) => {
                       return (
                         <tr>
+                          {/* {console.log(colourOptions)} */}
                           <td className="orderTableTD">{item.addOnName}</td>
-                          <td className="orderTableTD">
+                          {/* <td className="orderTableTD">
                             {colourOptions[restaurant].label}
-                          </td>
+                          </td> */}
                           {/* <td className='orderTableTD'>
 														<label
 															className='noMargin deleteOrderStatusButton'
