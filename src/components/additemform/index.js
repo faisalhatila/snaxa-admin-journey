@@ -27,6 +27,39 @@ const AddItemForm = (props) => {
 
   useEffect(() => {
     const dashboard = async () => {
+      // console.log(event);
+      // setRestaurant(event.index);
+      // setItems([]);
+      setCategory();
+      handleCancelEdit();
+      setEditing(false);
+      try {
+        const responseData = await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/get-addons-categories`,
+          "POST",
+          {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          JSON.stringify({
+            userId,
+            restaurantId: props.restaurantId,
+          })
+        );
+        console.log("responseData", responseData);
+        setDataAddCat(responseData);
+        const temp = responseData.addons.map((i, index) => {
+          return { index, value: i._id, label: i.addOnName };
+        });
+        // setColourOptions(temp);
+      } catch (err) {
+        console.log("err", err);
+      }
+    };
+    if (token && userId) dashboard();
+  }, [token, userId, sendRequest]);
+  useEffect(() => {
+    const dashboard = async () => {
       console.log("Dashboard");
       try {
         const responseData = await sendRequest(
@@ -113,34 +146,38 @@ const AddItemForm = (props) => {
   const handleChangePriceSelectStatus = async (event) => {
     setPriceoOnSelect(event.target.checked);
   };
-  const handleSelectRestaurant = async (event) => {
-    console.log(event);
-    setRestaurant(event.index);
-    setItems([]);
-    setCategory();
-    handleCancelEdit();
-    setEditing(false);
-    try {
-      const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/get-addons-categories`,
-        "POST",
-        {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-        JSON.stringify({
-          userId,
-          restaurantId: event.target.value,
-        })
-      );
-      console.log("responseData", responseData);
-      setDataAddCat(responseData);
-      const temp = responseData.addons.map((i, index) => {
-        return { index, value: i._id, label: i.addOnName };
-      });
-      setColourOptions(temp);
-    } catch (err) {}
-  };
+  // const handleSelectRestaurant = async (event) => {
+  //   // console.log("################################################");
+  //   // console.log(event);
+  //   // console.log("################################################");
+  //   setRestaurant(event.index);
+  //   // setItems([]);
+  //   setCategory();
+  //   handleCancelEdit();
+  //   setEditing(false);
+  //   try {
+  //     const responseData = await sendRequest(
+  //       `${process.env.REACT_APP_BACKEND_URL}/get-addons-categories`,
+  //       "POST",
+  //       {
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer " + token,
+  //       },
+  //       JSON.stringify({
+  //         userId,
+  //         restaurantId: event.value,
+  //       })
+  //     );
+  //     console.log("responseData", responseData);
+  //     setDataAddCat(responseData);
+  //     const temp = responseData.addons.map((i, index) => {
+  //       return { index, value: i._id, label: i.addOnName };
+  //     });
+  //     // setColourOptions(temp);
+  //   } catch (err) {
+  //     console.log("err", err);
+  //   }
+  // };
   const handleSelectCategory = async (event) => {
     setCategory(event.target.value);
     handleCancelEdit();
@@ -263,7 +300,7 @@ const AddItemForm = (props) => {
             <div className="row">
               <div class="form-group col-12 col-md-6 col-lg-6">
                 <label for="exampleFormControlSelect1">Select Category</label>
-                {/* <select
+                <select
                   class="form-control"
                   id="exampleFormControlSelect1"
                   onChange={handleSelectCategory}
@@ -277,13 +314,13 @@ const AddItemForm = (props) => {
                     dataAddCat.categories.map((i) => (
                       <option value={i._id}>{i.categoryName}</option>
                     ))}
-                </select> */}
-                <Select
+                </select>
+                {/* <Select
                   defaultValue={dataAddCat && dataAddCat[category]}
                   options={cateogryData}
                   formatGroupLabel={formatGroupLabel}
                   onChange={handleSelectCategory}
-                />
+                /> */}
               </div>
               <div class="form-group col-12 col-md-6 col-lg-6">
                 <label for="exampleInputEmail1">Description</label>
@@ -301,13 +338,29 @@ const AddItemForm = (props) => {
             <div className="row">
               <div class="form-group col-12">
                 <label for="exampleInputEmail1">Select Add Ons</label>
-                <Select
+                <select
+                  class="form-control"
+                  id="exampleFormControlSelect1"
+                  // onChange={handleSelectCategory}
+                  onChange={(e) => setAddOnList(e)}
+                  value={category}
+                >
+                  <option disabled selected>
+                    Select a Category
+                  </option>
+                  {dataAddCat &&
+                    dataAddCat.addons &&
+                    dataAddCat.addons.map((i) => (
+                      <option value={i._id}>{i.addOnName}</option>
+                    ))}
+                </select>
+                {/* <Select
                   closeMenuOnSelect={false}
                   components={animatedComponents}
                   isMulti
                   options={colourOptions}
                   onChange={(e) => setAddOnList(e)}
-                />
+                /> */}
               </div>
             </div>
             <div className="row">
