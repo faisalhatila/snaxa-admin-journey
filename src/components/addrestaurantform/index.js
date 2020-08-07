@@ -11,6 +11,7 @@ import {
   AddAddonItemForm,
   ReviewTableShort,
   ReviewsDetailed,
+  RestaurantContactTable,
 } from "..";
 const animatedComponents = makeAnimated();
 // let AddRestaurantForm;
@@ -614,6 +615,11 @@ const AddRestaurantForm = (props) => {
       {editRestaurantActiveTab === "Reviews" && reviewTableStatus === 1 && (
         <div className="col customerDetailFormMainDiv pt-4">
           <ReviewsDetailed />
+        </div>
+      )}
+      {editRestaurantActiveTab === "Contact" && (
+        <div className="col customerDetailFormMainDiv pt-4">
+          <RestaurantContactTable />
         </div>
       )}
     </div>
