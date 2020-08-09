@@ -70,6 +70,10 @@ export default Navbar = (props) => {
       label: "Reviews",
       path: "/reviews",
     },
+    {
+      label: "Social Network",
+      path: "/social-network",
+    },
   ];
   return (
     <div>
