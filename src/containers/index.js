@@ -22,6 +22,7 @@ import _Newsletters from "./newsletters";
 import _Privacy from "./privacy";
 import _ContactQueries from "./contactqueries";
 import _Reviews from "./reviews";
+import _Feedback from "./feedback";
 
 export const OrderDetails = _OrderDetails;
 export const HomeContainer = _HomeContainer;
@@ -47,3 +48,4 @@ export const Newsletters = _Newsletters;
 export const Privacy = _Privacy;
 export const ContactQueries = _ContactQueries;
 export const Reviews = _Reviews;
+export const Feedback = _Feedback;
