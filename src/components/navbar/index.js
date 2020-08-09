@@ -157,7 +157,7 @@ export default Navbar = (props) => {
                     className="navbarItemSubmenu"
                     style={{ boxShadow: "0px 0px 5px 2px grey" }}
                   >
-                    <li>
+                    {/* <li>
                       <Link to="/faqs">Faqs</Link>
                     </li>
                     <li>
@@ -167,7 +167,14 @@ export default Navbar = (props) => {
                     </li>
                     <li>
                       <Link to="/add-addon-category">Sitemap</Link>
-                    </li>
+                    </li> */}
+                    {routeArr.map((nav, i) => {
+                      return (
+                        <li key={i}>
+                          <Link to={nav.path}>{nav.label}</Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </li>
                 {/* <li>
