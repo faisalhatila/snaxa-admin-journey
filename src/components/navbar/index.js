@@ -33,6 +33,48 @@ export default Navbar = (props) => {
       document.getElementById("toggleButton").classList.add("fa-bars");
     }
   };
+  const routeArr = [
+    {
+      label: "Site Info",
+      path: "/site-info",
+    },
+    {
+      label: "Newsletters",
+      path: "/news-letters",
+    },
+    {
+      label: "Feedback",
+      path: "/site-info",
+    },
+    {
+      label: "Feedback",
+      path: "/feedback",
+    },
+    {
+      label: "Terms & Conditions",
+      path: "/terms-and-conditions",
+    },
+    {
+      label: "FAQs",
+      path: "/faqs",
+    },
+    {
+      label: "Privacy",
+      path: "/privacy",
+    },
+    {
+      label: "Sitemap",
+      path: "/site-map",
+    },
+    {
+      label: "Contact Us",
+      path: "/contact-us",
+    },
+    {
+      label: "Reviews",
+      path: "/reviews",
+    },
+  ];
   return (
     <div>
       <div id="mobile-body-overly" className="d-none" />
@@ -123,9 +165,9 @@ export default Navbar = (props) => {
                         Terms and conditions
                       </Link>
                     </li>
-                    {/* <li>
+                    <li>
                       <Link to="/add-addon-category">Sitemap</Link>
-                    </li> */}
+                    </li>
                   </ul>
                 </li>
                 {/* <li>
