@@ -33,6 +33,7 @@ import _ReviewTableDetailRating from "./reviewtabledetailrating";
 import _ReviewsDetailed from "./reviewsdetailed";
 import _RestaurantContactTable from "./restaurantcontacttable";
 import _NewsletterTable from "./newslettertable";
+import _Privacyform from "./privacyform";
 
 export const OrderDetailsForn = _OrderDetailsForn;
 export const Header = _Header;
@@ -69,3 +70,4 @@ export const ReviewTableDetailRating = _ReviewTableDetailRating;
 export const ReviewsDetailed = _ReviewsDetailed;
 export const RestaurantContactTable = _RestaurantContactTable;
 export const NewsletterTable = _NewsletterTable;
+export const Privacyform = _Privacyform;
