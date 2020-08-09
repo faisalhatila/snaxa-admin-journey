@@ -333,7 +333,7 @@ const SiteinfoForm = (props) => {
               </div>
               <div class="form-group">
                 <label>
-                  <strong>Faqs Table</strong>
+                  <strong>Siteinfo Table</strong>
                 </label>
                 <table class="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { FeedbackTable, SiteinfoForm } from "../../components";
+import { SiteinfoForm } from "../../components";
 // let OrderDetails;
 const SiteInfo = (props) => {
   return (
