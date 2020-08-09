@@ -19,6 +19,7 @@ import _Faqs from "./faqs";
 import _Termsandconditions from "./termsandconditions";
 import _Sitemap from "./sitemap";
 import _Newsletters from "./newsletters";
+import _Privacy from "./privacy";
 
 export const OrderDetails = _OrderDetails;
 export const HomeContainer = _HomeContainer;
@@ -41,3 +42,4 @@ export const Faqs = _Faqs;
 export const Termsandconditions = _Termsandconditions;
 export const Sitemap = _Sitemap;
 export const Newsletters = _Newsletters;
+export const Privacy = _Privacy;
