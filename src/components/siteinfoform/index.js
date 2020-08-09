@@ -219,39 +219,44 @@ const SiteinfoForm = (props) => {
       isChecked: false,
     },
   ]);
+  const [siteinfoArray, setSiteinfoArray] = useState([
+    {
+      id: 0,
+      menuId: "R",
+      menuTitle: "Restaurant",
+      isChecked: false,
+      name: "restaurant",
+    },
+    {
+      id: 1,
+      menuId: "PC",
+      menuTitle: "Popular Cuisines",
+      isChecked: false,
+      name: "popularcuisines",
+    },
+    {
+      id: 1,
+      menuId: "PA",
+      menuTitle: "Popular Areas",
+      isChecked: false,
+      name: "popularareas",
+    },
+  ]);
   const handleMenuCheck = (menu) => {
-    let temp = sitemapArray;
+    let temp = siteinfoArray;
     temp = temp.map((i) => {
       if (i.isChecked) {
         i.isChecked = !i.isChecked;
-        // i.submenu.map((j) => {
-        //   if (j.isChecked) {
-        //     j.isChecked = !j.isChecked;
-        //     return j;
-        //   } else return j;
-        // });
         return i;
       } else return i;
     });
     const tempObj = temp[menu];
     tempObj.isChecked = !temp[menu].isChecked;
     temp[menu] = tempObj;
-    setSiteMapArray(temp);
+    setSiteinfoArray(temp);
     console.log(temp);
   };
-  const handleSubMenuCheck = (subMenu) => {
-    console.log(subMenu);
-    // //   let temp = sitemapArray;
-    // //   temp = temp.map((i) => {
 
-    // //   })
-    // let temp = sitemapArray;
-    // const tempObj = sitemapArray[subMenu];
-    // tempObj.isChecked = !tempObj.isChecked;
-    // temp[subMenu] = tempObj;
-    // setSiteMapArray(temp);
-    // console.log(temp);
-  };
   let content;
   if (!isLoading)
     content = (
@@ -273,7 +278,7 @@ const SiteinfoForm = (props) => {
                     class="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
-                    placeholder="Enter Question"
+                    placeholder="Enter Title"
                   />
                 </div>
               </div>
@@ -303,10 +308,10 @@ const SiteinfoForm = (props) => {
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
                 <label>
-                  <strong>Select Menu</strong>
+                  <strong>Select Category</strong>
                 </label>
                 <div>
-                  {sitemapArray.map((item, i) => {
+                  {siteinfoArray.map((item, i) => {
                     return (
                       <div key={i}>
                         <div class="form-check">
@@ -321,29 +326,6 @@ const SiteinfoForm = (props) => {
                             {item.menuTitle}
                           </label>
                         </div>
-                        {item.submenu &&
-                          item.isChecked &&
-                          item.submenu.map((subMenu, i) => {
-                            return (
-                              <div class="form-check  ml-4">
-                                <input
-                                  class="form-check-input"
-                                  type="radio"
-                                  name="submenuRadios"
-                                  id={subMenu.name}
-                                  onChange={() =>
-                                    handleSubMenuCheck(subMenu.id)
-                                  }
-                                />
-                                <label
-                                  class="form-check-label"
-                                  for={subMenu.name}
-                                >
-                                  {subMenu.subMenuTitle}
-                                </label>
-                              </div>
-                            );
-                          })}
                       </div>
                     );
                   })}

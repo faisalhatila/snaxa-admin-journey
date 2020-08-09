@@ -73,7 +73,7 @@ const Router = (props) => {
         <Route exact path="/contact-queries" component={ContactQueries} />
         <Route exact path="/reviews" component={Reviews} />
         <Route exact path="/feedback" component={Feedback} />
-        <Route exact path="/siteinfo" component={Siteinfo} />
+        <Route exact path="/site-info" component={Siteinfo} />
         <Route path="/sitemap" component={Sitemap} />
         <Route exact path="/add-restaurant" component={AddRestaurant} />
         <Route exact path="/add-category" component={AddCategory} />
