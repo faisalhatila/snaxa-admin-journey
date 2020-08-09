@@ -1,11 +1,13 @@
 import React from "react";
-import { FeedbackTable } from "../../components";
+import { SocialNetworkForm } from "../../components";
 // let OrderDetails;
 const SocialNetwork = (props) => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-12 mt-4">{/* <SocialNetworkTable /> */}</div>
+        <div className="col-12 mt-4">
+          <SocialNetworkForm />
+        </div>
       </div>
     </div>
   );
