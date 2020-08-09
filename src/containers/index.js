@@ -20,6 +20,7 @@ import _Termsandconditions from "./termsandconditions";
 import _Sitemap from "./sitemap";
 import _Newsletters from "./newsletters";
 import _Privacy from "./privacy";
+import _ContactQueries from "./contactqueries";
 
 export const OrderDetails = _OrderDetails;
 export const HomeContainer = _HomeContainer;
@@ -43,3 +44,4 @@ export const Termsandconditions = _Termsandconditions;
 export const Sitemap = _Sitemap;
 export const Newsletters = _Newsletters;
 export const Privacy = _Privacy;
+export const ContactQueries = __ContactQueries;
