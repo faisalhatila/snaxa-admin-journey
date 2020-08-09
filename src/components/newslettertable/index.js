@@ -145,31 +145,20 @@ const NewsletterTable = (props) => {
             </tr>
           </thead>
           <tbody>
-            {/* <tr>
+            <tr>
               <td>
                 <input
                   ref={nameRef}
                   type="text"
-                  placeholder="Enter Name"
+                  placeholder="Email"
                   className="searchOrderData"
                   onChange={(e) => setSearchByName(e.target.value)}
                   value={searchByName}
                 />
               </td>
-              <td>
-                <input
-                  ref={emailRef}
-                  type="text"
-                  placeholder="Enter Email"
-                  className="searchOrderData"
-                  onChange={(e) => setSearchByEmail(e.target.value)}
-                  value={searchByEmail}
-                />
-              </td>
+
               <td></td>
-              <td></td>
-              <td></td>
-            </tr> */}
+            </tr>
             {/* {data && data.length > 0 ? ( */}
             {content}
             {/* ) : (
