@@ -36,6 +36,7 @@ import _NewsletterTable from "./newslettertable";
 import _Privacyform from "./privacyform";
 import _ContactQureyTable from "./contactquerytable";
 import _ReviewsTable from "./reviewstable";
+import _Feedback from "./feedbacktable";
 
 export const OrderDetailsForn = _OrderDetailsForn;
 export const Header = _Header;
@@ -75,3 +76,4 @@ export const NewsletterTable = _NewsletterTable;
 export const Privacyform = _Privacyform;
 export const ContactQureyTable = _ContactQureyTable;
 export const ReviewsTable = _ReviewsTable;
+export const Feedback = _Feedback;
