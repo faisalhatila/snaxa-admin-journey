@@ -44,4 +44,4 @@ export const Termsandconditions = _Termsandconditions;
 export const Sitemap = _Sitemap;
 export const Newsletters = _Newsletters;
 export const Privacy = _Privacy;
-export const ContactQueries = __ContactQueries;
+export const ContactQueries = _ContactQueries;
