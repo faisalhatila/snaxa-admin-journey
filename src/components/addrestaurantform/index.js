@@ -139,6 +139,32 @@ const AddRestaurantForm = (props) => {
     });
     console.log("prevState", workingDays);
   };
+  const cuisinesArr = [];
+  // const colourOptions1 = [
+  //   { value: "ocean", label: "Ocean", color: "#00B8D9", isFixed: true },
+  //   { value: "blue", label: "Blue", color: "#0052CC", isDisabled: true },
+  //   { value: "purple", label: "Purple", color: "#5243AA" },
+  //   { value: "red", label: "Red", color: "#FF5630", isFixed: true },
+  //   { value: "orange", label: "Orange", color: "#FF8B00" },
+  //   { value: "yellow", label: "Yellow", color: "#FFC400" },
+  //   { value: "green", label: "Green", color: "#36B37E" },
+  //   { value: "forest", label: "Forest", color: "#00875A" },
+  //   { value: "slate", label: "Slate", color: "#253858" },
+  //   { value: "silver", label: "Silver", color: "#666666" },
+  // ];
+  // const colourOptions1 = [
+  //   { value: "ocean", label: "Ocean", color: "#00B8D9", isFixed: true },
+  //   { value: "blue", label: "Blue", color: "#0052CC", isDisabled: true },
+  //   { value: "purple", label: "Purple", color: "#5243AA" },
+  //   { value: "red", label: "Red", color: "#FF5630", isFixed: true },
+  //   { value: "orange", label: "Orange", color: "#FF8B00" },
+  //   { value: "yellow", label: "Yellow", color: "#FFC400" },
+  //   { value: "green", label: "Green", color: "#36B37E" },
+  //   { value: "forest", label: "Forest", color: "#00875A" },
+  //   { value: "slate", label: "Slate", color: "#253858" },
+  //   { value: "silver", label: "Silver", color: "#666666" },
+  // ];
+  const colourOptions1 = [];
 
   useEffect(() => {
     // console.log("###################################################");
@@ -202,9 +228,19 @@ const AddRestaurantForm = (props) => {
         );
         console.log("responseData", responseData);
         const temp = responseData.cuisines.map((i) => {
-          return { value: i._id, label: i.cuisine };
+          // return { value: i._id, label: i.cuisine, isFixed: true };
+          return {
+            value: i.cuisine.toLowerCase(),
+            label: i.cuisine,
+            color: "#FFC400",
+          };
         });
         setColourOptions(temp);
+        cuisinesArr.push(temp);
+        colourOptions1.push(temp);
+        console.log("############################################");
+        console.log(colourOptions1);
+        console.log("############################################");
       } catch (err) {
         // console.log("err", err);
       }
@@ -447,19 +483,41 @@ const AddRestaurantForm = (props) => {
                   ></textarea>
                 </div>
                 <div className="row"></div>
-                <div className="row">
+                {/* <div className="row">
                   <div class="form-group col-12 ">
                     <label for="exampleInputEmail1">Select Cuisines</label>
                     <Select
                       closeMenuOnSelect={false}
                       components={animatedComponents}
-                      //   defaultValue={[colourOptions[4], colourOptions[5]]}
+                      // defaultValue={[colourOptions[0], colourOptions[1]]}
+                      // defaultValue={[cuisinesArr[0], cuisinesArr[1]]}
+                      // defaultValue={[colourOptions1[2], colourOptions1[3]]}
+                      defaultValue={colourOptions1.map((item, i) => item)}
                       isMulti
                       options={colourOptions}
                       onChange={(e) => setCuisines(e)}
                     />
                   </div>
-                </div>
+                </div> */}
+                {console.log(colourOptions1)}
+                {/* {colourOptions1 && (
+                  <div className="row">
+                    <div class="form-group col-12 ">
+                      <label for="exampleInputEmail1">Select Cuisines</label>
+                      <Select
+                        closeMenuOnSelect={false}
+                        components={animatedComponents}
+                        // defaultValue={[colourOptions[0], colourOptions[1]]}
+                        // defaultValue={[cuisinesArr[0], cuisinesArr[1]]}
+                        // defaultValue={[colourOptions1[2], colourOptions1[3]]}
+                        defaultValue={colourOptions1.map((item, i) => item)}
+                        isMulti
+                        options={colourOptions}
+                        onChange={(e) => setCuisines(e)}
+                      />
+                    </div>
+                  </div>
+                )} */}
                 <div class="custom-control custom-switch">
                   <input
                     type="checkbox"
