@@ -117,17 +117,10 @@ const NewsletterTable = (props) => {
   content = [...Array(5)].map((item, i) => {
     return (
       <tr>
-        <td className="orderTableTD">Faisal</td>
-        <td className="orderTableTD">Alaska</td>
-        <td className="orderTableTD">Superb Restaurant</td>
+        <td className="orderTableTD">admin@admin.com</td>
         <td className="orderTableTD">
           {/* <i style={{ cursor: "pointer" }} class="far fa-edit"></i> */}
-          <label
-            className="reviewTableViewButton mr-2"
-            onClick={props.handleReviewTableStatus}
-          >
-            View
-          </label>
+          <label className="reviewTableViewButton mr-2">View</label>
           <label className="reviewTableDeleteButton">Delete</label>
         </td>
       </tr>
@@ -147,15 +140,7 @@ const NewsletterTable = (props) => {
         <table class="table table-hover">
           <thead style={{ backgroundColor: "gray", color: "#fff" }}>
             <tr className="restaurantTableHeadiingRow">
-              {/* <th className='orderTableTH'>ID</th> */}
-              {/* <th className="orderTableTH">Restaurant Name</th>
               <th className="orderTableTH">Email</th>
-              <th className="orderTableTH">Address</th>
-              <th className="orderTableTH">Status</th>
-              <th className="orderTableTH">Action</th> */}
-              <th className="orderTableTH">Name</th>
-              <th className="orderTableTH">Name Restaurant</th>
-              <th className="orderTableTH">Message</th>
               <th className="orderTableTH">Action</th>
             </tr>
           </thead>
