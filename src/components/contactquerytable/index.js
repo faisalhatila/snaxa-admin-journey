@@ -138,7 +138,7 @@ const ContactQureyTable = (props) => {
             data && data.length > 0 ? " maximumWidthRestaurant" : null
           }`}
         >
-          <h3>Newsletters</h3>
+          <h3>Contact Queries</h3>
         </div>
         <table class="table table-hover">
           <thead style={{ backgroundColor: "gray", color: "#fff" }}>
