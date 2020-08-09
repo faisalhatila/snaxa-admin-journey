@@ -94,46 +94,46 @@ const ReviewTableShort = (props) => {
   }, [searchByName, sendRequest, userId]);
 
   let content;
-  if (!isLoading && data)
-    // content = data.map((item) => {
-    //   return (
-    //     <tr>
-    //       <td className="orderTableTD">{item.name}</td>
-    //       <td className="orderTableTD">{item.email}</td>
-    //       <td className="orderTableTD">{item.addres}</td>
-    //       <td className="orderTableTD">
-    //         {item.approved ? "Approved" : "Not Approved"}
-    //       </td>
-    //       <td className="orderTableTD">
-    //         <i
-    //           onClick={() => props.editRestaurant(item._id)}
-    //           style={{ cursor: "pointer" }}
-    //           class="far fa-edit"
-    //         ></i>
-    //       </td>
-    //     </tr>
-    //   );
-    // });
-    content = [...Array(5)].map((item, i) => {
-      return (
-        <tr>
-          <td className="orderTableTD">Faisal</td>
-          <td className="orderTableTD">Alaska</td>
-          <td className="orderTableTD">Superb Restaurant</td>
-          <td className="orderTableTD">
-            {/* <i style={{ cursor: "pointer" }} class="far fa-edit"></i> */}
-            <label
-              className="reviewTableViewButton mr-2"
-              onClick={props.handleReviewTableStatus}
-            >
-              View
-            </label>
-            <label className="reviewTableDeleteButton">Delete</label>
-          </td>
-        </tr>
-      );
-    });
-  else content = <p>Loading...</p>;
+  // if (!isLoading && data)
+  // content = data.map((item) => {
+  //   return (
+  //     <tr>
+  //       <td className="orderTableTD">{item.name}</td>
+  //       <td className="orderTableTD">{item.email}</td>
+  //       <td className="orderTableTD">{item.addres}</td>
+  //       <td className="orderTableTD">
+  //         {item.approved ? "Approved" : "Not Approved"}
+  //       </td>
+  //       <td className="orderTableTD">
+  //         <i
+  //           onClick={() => props.editRestaurant(item._id)}
+  //           style={{ cursor: "pointer" }}
+  //           class="far fa-edit"
+  //         ></i>
+  //       </td>
+  //     </tr>
+  //   );
+  // });
+  content = [...Array(5)].map((item, i) => {
+    return (
+      <tr>
+        <td className="orderTableTD">Faisal</td>
+        <td className="orderTableTD">Alaska</td>
+        <td className="orderTableTD">Superb Restaurant</td>
+        <td className="orderTableTD">
+          {/* <i style={{ cursor: "pointer" }} class="far fa-edit"></i> */}
+          <label
+            className="reviewTableViewButton mr-2"
+            onClick={props.handleReviewTableStatus}
+          >
+            View
+          </label>
+          <label className="reviewTableDeleteButton">Delete</label>
+        </td>
+      </tr>
+    );
+  });
+  // else content = <p>Loading...</p>;
   return (
     <div className="restaurantmanagementtable mb-4">
       <div class="container">
@@ -185,15 +185,15 @@ const ReviewTableShort = (props) => {
               <td></td>
               <td></td>
             </tr> */}
-            {data && data.length > 0 ? (
-              content
-            ) : (
+            {/* {data && data.length > 0 ? ( */}
+            {content}
+            {/* ) : (
               <div className="noNewOrderHeadingDiv mt-3">
                 <tr>
                   <h4>No New Restaurant Added</h4>
                 </tr>
               </div>
-            )}
+            )} */}
           </tbody>
         </table>
       </div>
