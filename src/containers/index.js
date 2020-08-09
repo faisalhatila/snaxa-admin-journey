@@ -24,6 +24,7 @@ import _ContactQueries from "./contactqueries";
 import _Reviews from "./reviews";
 import _Feedback from "./feedback";
 import _Siteinfo from "./siteinfo";
+import _SocialNetwork from "./socialnetwork";
 
 export const OrderDetails = _OrderDetails;
 export const HomeContainer = _HomeContainer;
@@ -51,3 +52,4 @@ export const ContactQueries = _ContactQueries;
 export const Reviews = _Reviews;
 export const Feedback = _Feedback;
 export const Siteinfo = _Siteinfo;
+export const SocialNetwork = _SocialNetwork;
