@@ -158,10 +158,11 @@ const FeedbackTable = (props) => {
               <th className="orderTableTH">Effort (max. 5)</th>
               <th className="orderTableTH">Recommend (max. 10)</th>
               <th className="orderTableTH">Suggestion</th>
+              <th className="orderTableTH">Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {/* <tr>
               <td></td>
               <td>
                 <input
@@ -175,7 +176,7 @@ const FeedbackTable = (props) => {
               </td>
               <td></td>
               <td></td>
-            </tr>
+            </tr> */}
             {/* {data && data.length > 0 ? ( */}
             {content}
             {/* ) : (
