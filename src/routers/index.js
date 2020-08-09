@@ -29,6 +29,7 @@ import {
   Reviews,
   Feedback,
   Siteinfo,
+  SocialNetwork,
 } from "../containers";
 const Router = (props) => {
   const { userId, token } = useAuth();
@@ -74,6 +75,7 @@ const Router = (props) => {
         <Route exact path="/reviews" component={Reviews} />
         <Route exact path="/feedback" component={Feedback} />
         <Route exact path="/site-info" component={Siteinfo} />
+        <Route exact path="/social-network" component={SocialNetwork} />
         <Route path="/sitemap" component={Sitemap} />
         <Route exact path="/add-restaurant" component={AddRestaurant} />
         <Route exact path="/add-category" component={AddCategory} />
