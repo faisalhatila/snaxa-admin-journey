@@ -64,7 +64,7 @@ export default Navbar = (props) => {
     },
     {
       label: "Sitemap",
-      path: "/site-map",
+      path: "/sitemap",
     },
     {
       label: "Contact Us",
