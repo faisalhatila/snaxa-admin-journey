@@ -23,8 +23,9 @@ import {
   Faqs,
   Sitemap,
   Newsletters,
+  Termsandconditions,
+  Privacy,
 } from "../containers";
-import Termsandconditions from "../containers/termsandconditions";
 const Router = (props) => {
   const { userId, token } = useAuth();
   let content;
@@ -64,6 +65,7 @@ const Router = (props) => {
           component={Termsandconditions}
         />
         <Route exact path="/news-letters" component={Newsletters} />
+        <Route exact path="/privacy" component={Privacy} />
         <Route path="/sitemap" component={Sitemap} />
         <Route exact path="/add-restaurant" component={AddRestaurant} />
         <Route exact path="/add-category" component={AddCategory} />
