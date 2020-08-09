@@ -26,6 +26,7 @@ import {
   Termsandconditions,
   Privacy,
   ContactQueries,
+  Reviews,
 } from "../containers";
 const Router = (props) => {
   const { userId, token } = useAuth();
@@ -68,6 +69,7 @@ const Router = (props) => {
         <Route exact path="/news-letters" component={Newsletters} />
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/contact-queries" component={ContactQueries} />
+        <Route exact path="/reviews" component={Reviews} />
         <Route path="/sitemap" component={Sitemap} />
         <Route exact path="/add-restaurant" component={AddRestaurant} />
         <Route exact path="/add-category" component={AddCategory} />
