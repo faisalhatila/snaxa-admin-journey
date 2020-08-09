@@ -68,7 +68,7 @@ export default Navbar = (props) => {
     },
     {
       label: "Contact Us",
-      path: "/contact-us",
+      path: "/contact-queries",
     },
     {
       label: "Reviews",
