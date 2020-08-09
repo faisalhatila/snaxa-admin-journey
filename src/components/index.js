@@ -32,6 +32,7 @@ import _ReviewTableDetail from "./reviewtabledetail";
 import _ReviewTableDetailRating from "./reviewtabledetailrating";
 import _ReviewsDetailed from "./reviewsdetailed";
 import _RestaurantContactTable from "./restaurantcontacttable";
+import _NewsletterTable from "./newslettertable";
 
 export const OrderDetailsForn = _OrderDetailsForn;
 export const Header = _Header;
@@ -67,3 +68,4 @@ export const ReviewTableDetail = _ReviewTableDetail;
 export const ReviewTableDetailRating = _ReviewTableDetailRating;
 export const ReviewsDetailed = _ReviewsDetailed;
 export const RestaurantContactTable = _RestaurantContactTable;
+export const NewsletterTable = _NewsletterTable;
