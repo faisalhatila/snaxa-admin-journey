@@ -43,7 +43,7 @@ export default Navbar = (props) => {
       path: "/news-letters",
     },
     {
-      label: "Feedback",
+      label: "Site Info",
       path: "/site-info",
     },
     {
