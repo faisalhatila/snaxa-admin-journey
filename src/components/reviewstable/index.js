@@ -160,22 +160,13 @@ const ReviewTable = (props) => {
             </tr>
           </thead>
           <tbody>
-            {/* <tr>
-              <td>
-                <input
-                  ref={nameRef}
-                  type="text"
-                  placeholder="Enter Name"
-                  className="searchOrderData"
-                  onChange={(e) => setSearchByName(e.target.value)}
-                  value={searchByName}
-                />
-              </td>
+            <tr>
+              <td></td>
               <td>
                 <input
                   ref={emailRef}
                   type="text"
-                  placeholder="Enter Email"
+                  placeholder="Enter Restaurant Name"
                   className="searchOrderData"
                   onChange={(e) => setSearchByEmail(e.target.value)}
                   value={searchByEmail}
@@ -183,8 +174,7 @@ const ReviewTable = (props) => {
               </td>
               <td></td>
               <td></td>
-              <td></td>
-            </tr> */}
+            </tr>
             {/* {data && data.length > 0 ? ( */}
             {content}
             {/* ) : (
