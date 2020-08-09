@@ -515,7 +515,7 @@ const AddRestaurantForm = (props) => {
                               // disabled={!days.isChecked}
                               type="time"
                               // id="appt"
-                              // value={days.startTime}
+                              value={days.startTime}
                               // placeholder='20:20'
                               onChange={(e) => startTimeHandler(days.id, e)}
                             />
@@ -524,7 +524,7 @@ const AddRestaurantForm = (props) => {
                             <input
                               type="time"
                               // id="appt2"
-                              // value={days.endTime}
+                              value={days.endTime}
                               onChange={(e) => endTimeHandler(days.id, e)}
                             />
                           </td>
