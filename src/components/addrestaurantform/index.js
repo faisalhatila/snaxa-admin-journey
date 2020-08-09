@@ -97,7 +97,7 @@ const AddRestaurantForm = (props) => {
       endTime: "",
     },
   ]);
-  const editRestaurantTabs = ["Info", "Menu", "Reviews", "Contact"];
+  const editRestaurantTabs = ["Info", "Menu", "Reviews"];
   const editRestaurantItemTabs = [
     "Category",
     "Category Item",
@@ -617,11 +617,11 @@ const AddRestaurantForm = (props) => {
           <ReviewsDetailed />
         </div>
       )}
-      {editRestaurantActiveTab === "Contact" && (
+      {/* {editRestaurantActiveTab === "Contact" && (
         <div className="col customerDetailFormMainDiv pt-4">
           <RestaurantContactTable />
         </div>
-      )}
+      )} */}
     </div>
   );
 };
