@@ -262,39 +262,73 @@ const SocialNetworkForm = (props) => {
     content = (
       <div className="row">
         <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
-          Siteinfo
+          Social Network
         </div>
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <div className="row col-12">
-            <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
-              <div class="form-group">
-                <label>Title</label>
-                <div className="d-flex align-items-center">
-                  <input
-                    onChange={handleChange}
-                    value={values.orderStatusName}
-                    name="orderstatus"
-                    type="text"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter Title"
-                  />
+            <form className="col-12 updateVendorForm">
+              <div className="row">
+                <div class="form-group col">
+                  <label>Facebook</label>
+                  <div className="d-flex align-items-center">
+                    <input
+                      onChange={handleChange}
+                      value={values.orderStatusName}
+                      name="orderstatus"
+                      type="text"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter URL"
+                    />
+                  </div>
+                </div>
+                <div class="form-group col">
+                  <label>Twitter</label>
+                  <div className="d-flex align-items-center">
+                    <input
+                      onChange={handleChange}
+                      value={values.orderStatusName}
+                      name="orderstatus"
+                      type="text"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter URL"
+                    />
+                  </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label>URL</label>
-                <div className="d-flex align-items-center">
-                  <input
-                    onChange={handleChange}
-                    value={values.orderStatusName}
-                    name="orderstatus"
-                    type="text"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter Url"
-                  />
+              <div className="row">
+                <div class="form-group col">
+                  <label>Linkedin</label>
+                  <div className="d-flex align-items-center">
+                    <input
+                      onChange={handleChange}
+                      value={values.orderStatusName}
+                      name="orderstatus"
+                      type="text"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter Url"
+                    />
+                  </div>
+                </div>
+                <div class="form-group col">
+                  <label>Instagram</label>
+                  <div className="d-flex align-items-center">
+                    <input
+                      onChange={handleChange}
+                      value={values.orderStatusName}
+                      name="orderstatus"
+                      type="text"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter Url"
+                    />
+                  </div>
                 </div>
               </div>
               <button
@@ -305,69 +339,6 @@ const SocialNetworkForm = (props) => {
                 Add
               </button>
             </form>
-            <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
-              <div class="form-group">
-                <label>
-                  <strong>Select Category</strong>
-                </label>
-                <div>
-                  {siteinfoArray.map((item, i) => {
-                    return (
-                      <div key={i}>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="menuRadios"
-                            id={item.name}
-                            onChange={() => handleMenuCheck(item.id)}
-                          />
-                          <label class="form-check-label" for={item.name}>
-                            {item.menuTitle}
-                          </label>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              <div class="form-group">
-                <label>
-                  <strong>Faqs Table</strong>
-                </label>
-                <table class="table table-hover">
-                  <thead style={{ backgroundColor: "gray", color: "#fff" }}>
-                    <tr>
-                      <th className="orderTableTH">Faq</th>
-                      <th className="orderTableTH">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.map((item, index) => {
-                      return item.active === false ? (
-                        <tr>
-                          <td className="orderTableTD">{item.orderstatus}</td>
-                          <div className="d-flex align-items-center justify-content-center">
-                            <i
-                              style={{ cursor: "pointer" }}
-                              class="far fa-edit mr-3 editButtonIcon"
-                            ></i>
-                            <label
-                              className="noMargin deleteOrderStatusButton"
-                              //   onClick={() =>
-                              //     handleDeleteOrderStatusName(item._id)
-                              //   }
-                            >
-                              Delete
-                            </label>
-                          </div>
-                        </tr>
-                      ) : null;
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
           </div>
         </div>
       </div>
