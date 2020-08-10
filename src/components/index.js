@@ -39,6 +39,7 @@ import _ReviewsTable from "./reviewstable";
 import _FeedbackTable from "./feedbacktable";
 import _SiteinfoForm from "./siteinfoform";
 import _SocialNetworkForm from "./socialnetworkform";
+import _DetailedReviews from "./detailedreviews";
 
 export const OrderDetailsForn = _OrderDetailsForn;
 export const Header = _Header;
@@ -81,3 +82,4 @@ export const ReviewsTable = _ReviewsTable;
 export const FeedbackTable = _FeedbackTable;
 export const SiteinfoForm = _SiteinfoForm;
 export const SocialNetworkForm = _SocialNetworkForm;
+export const DetailedReviews = _DetailedReviews;
