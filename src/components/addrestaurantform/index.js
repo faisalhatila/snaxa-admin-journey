@@ -41,6 +41,7 @@ const AddRestaurantForm = (props) => {
   const [editRestaurantActiveTab, setEditRestaurantActiveTab] = useState(
     "Info"
   );
+  const [colourOptions1, setColourOptions1] = useState([]);
   const [
     editRestaurantItemsActiveTab,
     setEditRestaurantItemActiveTab,
@@ -164,7 +165,7 @@ const AddRestaurantForm = (props) => {
   //   { value: "slate", label: "Slate", color: "#253858" },
   //   { value: "silver", label: "Silver", color: "#666666" },
   // ];
-  const colourOptions1 = [];
+  // const colourOptions1 = [];
 
   useEffect(() => {
     // console.log("###################################################");
@@ -209,6 +210,14 @@ const AddRestaurantForm = (props) => {
           setMobile(responseData.existingRestaurantAdmin.mobilenumber);
           setWorkingDays(responseData.existingRestaurant.workinghours);
           setStoreWeb(responseData.existingRestaurantAdmin.socialmedia);
+          const temp = responseData.cuisines.map((i) => {
+            return { value: i._id, label: i.cuisine };
+            // return {
+            //   value: i.cuisine.toLowerCase(),
+            //   label: i.cuisine,
+            //   color: "#FFC400",
+            // };
+          });
         }
       } catch (err) {
         // console.log("err", err);
@@ -228,19 +237,17 @@ const AddRestaurantForm = (props) => {
         );
         console.log("responseData", responseData);
         const temp = responseData.cuisines.map((i) => {
-          // return { value: i._id, label: i.cuisine, isFixed: true };
-          return {
-            value: i.cuisine.toLowerCase(),
-            label: i.cuisine,
-            color: "#FFC400",
-          };
+          return { value: i._id, label: i.cuisine };
+          // return {
+          //   value: i.cuisine.toLowerCase(),
+          //   label: i.cuisine,
+          //   color: "#FFC400",
+          // };
         });
         setColourOptions(temp);
         cuisinesArr.push(temp);
-        colourOptions1.push(temp);
-        console.log("############################################");
-        console.log(colourOptions1);
-        console.log("############################################");
+        // colourOptions1.push(temp);
+        // setColourOptions1(temp);
       } catch (err) {
         // console.log("err", err);
       }
@@ -391,6 +398,20 @@ const AddRestaurantForm = (props) => {
                     value={categoryName}
                   />
                 </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">
+                    Restaurant Commision in %
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    class="form-control"
+                    placeholder="Enter Item Name"
+                    // onChange={handleChangecategoryName}
+                    // value={categoryName}
+                  />
+                </div>
                 <div className="row">
                   <div class="form-group col-6">
                     <label>Owner's First Name</label>
@@ -500,7 +521,7 @@ const AddRestaurantForm = (props) => {
                   </div>
                 </div> */}
                 {console.log(colourOptions1)}
-                {/* {colourOptions1 && (
+                {colourOptions1 && (
                   <div className="row">
                     <div class="form-group col-12 ">
                       <label for="exampleInputEmail1">Select Cuisines</label>
@@ -517,7 +538,7 @@ const AddRestaurantForm = (props) => {
                       />
                     </div>
                   </div>
-                )} */}
+                )}
                 <div class="custom-control custom-switch">
                   <input
                     type="checkbox"

@@ -14,6 +14,19 @@ const SiteinfoForm = (props) => {
   const handleChangeOrderStatusName = (e) => {
     setOrderStatusName(e.target.value);
   };
+  const handleSubMenuCheck = (subMenu) => {
+    console.log(subMenu);
+    // //   let temp = sitemapArray;
+    // //   temp = temp.map((i) => {
+
+    // //   })
+    // let temp = sitemapArray;
+    // const tempObj = sitemapArray[subMenu];
+    // tempObj.isChecked = !tempObj.isChecked;
+    // temp[subMenu] = tempObj;
+    // setSiteMapArray(temp);
+    // console.log(temp);
+  };
   const handleCompletedMarkCheck = (e) => {
     setIsCompletedStatus(e.target.checked);
     setIsCancelledStatus(false);
@@ -91,134 +104,7 @@ const SiteinfoForm = (props) => {
   function submit() {
     console.log("success");
   }
-  const [sitemapArray, setSiteMapArray] = useState([
-    {
-      id: 0,
-      menuId: "OB",
-      menuTitle: "Our Branches",
-      submenu: [],
-      name: "ourbranches",
-      isChecked: false,
-    },
-    {
-      id: 1,
-      menuId: "MA",
-      menuTitle: "Members Area",
-      submenu: [],
-      name: "membersarea",
-      isChecked: false,
-    },
-    {
-      id: 2,
-      menuId: "AB",
-      menuTitle: "About",
-      name: "aboutsnaxa",
-      isChecked: false,
-      submenu: [
-        {
-          id: 200,
-          subMenuId: "ATS",
-          subMenuTitle: "About The Site",
-          name: "aboutthesite",
-          isChecked: false,
-        },
-        {
-          id: 201,
-          subMenuId: "FR",
-          subMenuTitle: "For Restaurants",
-          name: "forrestaurant",
-          isChecked: false,
-        },
-        {
-          id: 202,
-          subMenuId: "SC",
-          subMenuTitle: "Stay Connected",
-          name: "stayconnected",
-          isChecked: false,
-        },
-        {
-          id: 203,
-          subMenuId: "SA",
-          subMenuTitle: "Snaxa Apps",
-          name: "snaxaapps",
-          isChecked: false,
-        },
-      ],
-    },
-    {
-      id: 3,
-      menuId: "Ar",
-      menuTitle: "Areas",
-      name: "areas",
-      isChecked: false,
-      submenu: [
-        {
-          id: 300,
-          subMenuId: "Du",
-          subMenuTitle: "Dubai",
-          name: "dubai",
-          isChecked: false,
-        },
-        {
-          id: 301,
-          subMenuId: "AD",
-          subMenuTitle: "Abu Dhabi",
-          name: "abudhabi",
-          isChecked: false,
-        },
-        {
-          id: 302,
-          subMenuId: "Sh",
-          subMenuTitle: "Sharjah",
-          name: "sharjah",
-          isChecked: false,
-        },
-        {
-          id: 303,
-          subMenuId: "Aj",
-          subMenuTitle: "Ajman",
-          name: "ajman",
-          isChecked: false,
-        },
-        {
-          id: 303,
-          subMenuId: "AA",
-          subMenuTitle: "Al Ain",
-          name: "alain",
-          isChecked: false,
-        },
-        {
-          id: 304,
-          subMenuId: "Fu",
-          subMenuTitle: "Fujairah",
-          name: "fujairah",
-          isChecked: false,
-        },
-        {
-          id: 305,
-          subMenuId: "RAK",
-          subMenuTitle: "Ras Al Khaima",
-          name: "rasalkhaima",
-          isChecked: false,
-        },
-        {
-          id: 306,
-          subMenuId: "UAQ",
-          subMenuTitle: "Umm Al-Quwain",
-          name: "ummalqueain",
-          isChecked: false,
-        },
-      ],
-    },
-    {
-      id: 4,
-      menuId: "Of",
-      menuTitle: "Offers",
-      name: "offers",
-      submenu: [],
-      isChecked: false,
-    },
-  ]);
+
   const [siteinfoArray, setSiteinfoArray] = useState([
     {
       id: 0,
@@ -226,6 +112,7 @@ const SiteinfoForm = (props) => {
       menuTitle: "Restaurant",
       isChecked: false,
       name: "restaurant",
+      submenu: [],
     },
     {
       id: 1,
@@ -233,13 +120,52 @@ const SiteinfoForm = (props) => {
       menuTitle: "Popular Cuisines",
       isChecked: false,
       name: "popularcuisines",
+      submenu: [],
     },
     {
-      id: 1,
+      id: 2,
       menuId: "PA",
       menuTitle: "Popular Areas",
       isChecked: false,
       name: "popularareas",
+      submenu: [],
+    },
+    {
+      id: 3,
+      menuId: "SN",
+      menuTitle: "Social Network",
+      isChecked: false,
+      name: "socialnetwork",
+      submenu: [
+        {
+          id: 300,
+          subMenuId: "FB",
+          subMenuTitle: "Facebook",
+          name: "facebook",
+          isChecked: false,
+        },
+        {
+          id: 301,
+          subMenuId: "TWI",
+          subMenuTitle: "Twitter",
+          name: "twitter",
+          isChecked: false,
+        },
+        {
+          id: 302,
+          subMenuId: "Ins",
+          subMenuTitle: "Instagram",
+          name: "instagram",
+          isChecked: false,
+        },
+        {
+          id: 303,
+          subMenuId: "PI",
+          subMenuTitle: "Pinterest",
+          name: "pinterest",
+          isChecked: false,
+        },
+      ],
     },
   ]);
   const handleMenuCheck = (menu) => {
@@ -326,6 +252,29 @@ const SiteinfoForm = (props) => {
                             {item.menuTitle}
                           </label>
                         </div>
+                        {item.submenu &&
+                          item.isChecked &&
+                          item.submenu.map((subMenu, i) => {
+                            return (
+                              <div class="form-check  ml-4">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="submenuRadios"
+                                  id={subMenu.name}
+                                  onChange={() =>
+                                    handleSubMenuCheck(subMenu.id)
+                                  }
+                                />
+                                <label
+                                  class="form-check-label"
+                                  for={subMenu.name}
+                                >
+                                  {subMenu.subMenuTitle}
+                                </label>
+                              </div>
+                            );
+                          })}
                       </div>
                     );
                   })}
@@ -338,7 +287,7 @@ const SiteinfoForm = (props) => {
                 <table class="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
-                      <th className="orderTableTH">Faq</th>
+                      <th className="orderTableTH">Siteinfo Label</th>
                       <th className="orderTableTH">Action</th>
                     </tr>
                   </thead>
