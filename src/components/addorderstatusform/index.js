@@ -16,6 +16,7 @@ const AddOrderStatusForm = (props) => {
   // const [orderStatusNameError, setOrderStatusNameError] = useState("");
   const [isCompletedStatus, setIsCompletedStatus] = useState(false);
   const [isCancelledStatus, setIsCancelledStatus] = useState(false);
+  const [forwardStatus, setForwardStatus] = useState();
   // const validate = () => {
   //   // const { orderStatusName } = state;
   //   // let { orderStatusNameError } = state;
@@ -194,6 +195,18 @@ const AddOrderStatusForm = (props) => {
                   />
                   <label class="form-check-label" for="exampleCheck2">
                     Will it mark an order as cancelled order
+                  </label>
+                </div>
+                <div class="form-check mt-4">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="exampleCheck2"
+                    onChange={setForwardStatus}
+                    checked={forwardStatus}
+                  />
+                  <label class="form-check-label" for="exampleCheck2">
+                    Will it mark an order as forward order to restaurant
                   </label>
                 </div>
               </div>

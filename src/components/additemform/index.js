@@ -24,6 +24,7 @@ const AddItemForm = (props) => {
   const [editing, setEditing] = useState(false);
   const [foodItemId, setFoodItemId] = useState(false);
   const [cateogryData, setCateogryData] = useState([]);
+  const [discountPrice, setDiscountPrice] = useState("0");
 
   useEffect(() => {
     const dashboard = async () => {
@@ -364,7 +365,7 @@ const AddItemForm = (props) => {
               </div>
             </div>
             <div className="row">
-              <div class="form-group col-12 col-md-6 col-lg-6">
+              <div class="form-group col-12">
                 <label for="exampleInputEmail1">Priority</label>
                 <input
                   type="text"
@@ -376,6 +377,8 @@ const AddItemForm = (props) => {
                   value={itemPriority}
                 />
               </div>
+            </div>
+            <div className="row">
               {!priceoOnSelect && (
                 <div class="form-group col-12 col-md-6 col-lg-6">
                   <label for="exampleInputPrice">Price</label>
@@ -390,7 +393,22 @@ const AddItemForm = (props) => {
                   />
                 </div>
               )}
+              {!priceoOnSelect && (
+                <div class="form-group col-12 col-md-6 col-lg-6">
+                  <label for="exampleInputPrice">Discount Price</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    // id="exampleInputPrice"
+                    // aria-describedby="emailHelp"
+                    placeholder="Price"
+                    onChange={setDiscountPrice}
+                    value={discountPrice}
+                  />
+                </div>
+              )}
             </div>
+
             <div class="custom-control custom-switch">
               <input
                 type="checkbox"

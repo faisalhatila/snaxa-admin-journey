@@ -30,6 +30,7 @@ const AddRestaurantForm = (props) => {
   const [city, setCity] = useState("");
   const [mobile, setMobile] = useState("");
   const [storeWeb, setStoreWeb] = useState("");
+  const [commission, setCommision] = useState(0);
   const [colourOptions, setColourOptions] = useState([]);
   // const [categoryNameError, setCategoryNameError] = useState("");
   // const [itemDescriptionError, setItemDescriptionError] = useState("");
@@ -408,8 +409,8 @@ const AddRestaurantForm = (props) => {
                     max="100"
                     class="form-control"
                     placeholder="Enter Item Name"
-                    // onChange={handleChangecategoryName}
-                    // value={categoryName}
+                    onChange={setCommision}
+                    value={commission}
                   />
                 </div>
                 <div className="row">
