@@ -160,7 +160,7 @@ const PrivacyForm = (props) => {
                 <table class="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
-                      <th className="orderTableTH">Term</th>
+                      <th className="orderTableTH">Privacy Term</th>
                       <th className="orderTableTH">Action</th>
                     </tr>
                   </thead>
@@ -169,20 +169,23 @@ const PrivacyForm = (props) => {
                       return item.active === false ? (
                         <tr>
                           <td className="orderTableTD">{item.orderstatus}</td>
-                          <div className="d-flex align-items-center justify-content-center">
-                            <i
-                              style={{ cursor: "pointer" }}
-                              class="far fa-edit mr-3 editButtonIcon"
-                            ></i>
-                            <label
-                              className="noMargin deleteOrderStatusButton"
-                              //   onClick={() =>
-                              //     handleDeleteOrderStatusName(item._id)
-                              //   }
-                            >
-                              Delete
-                            </label>
-                          </div>
+                          <td className="orderTableTD">
+                            {" "}
+                            <div className="d-flex align-items-center justify-content-center">
+                              <i
+                                style={{ cursor: "pointer" }}
+                                class="far fa-edit mr-3 editButtonIcon"
+                              ></i>
+                              <label
+                                className="noMargin deleteOrderStatusButton"
+                                //   onClick={() =>
+                                //     handleDeleteOrderStatusName(item._id)
+                                //   }
+                              >
+                                Delete
+                              </label>
+                            </div>
+                          </td>
                         </tr>
                       ) : null;
                     })}

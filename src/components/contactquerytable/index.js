@@ -121,11 +121,11 @@ const ContactQureyTable = (props) => {
         <td className="orderTableTD">admin@admin.com</td>
         <td className="orderTableTD">+92-307-123-4567</td>
         <td className="orderTableTD">I want to register with snaxa</td>
-        <td className="orderTableTD">
-          {/* <i style={{ cursor: "pointer" }} class="far fa-edit"></i> */}
+        {/* <td className="orderTableTD">
+          <i style={{ cursor: "pointer" }} class="far fa-edit"></i>
           <label className="reviewTableViewButton mr-2">View</label>
           <label className="reviewTableDeleteButton">Delete</label>
-        </td>
+        </td> */}
       </tr>
     );
   });
@@ -147,7 +147,7 @@ const ContactQureyTable = (props) => {
               <th className="orderTableTH">Email</th>
               <th className="orderTableTH">Contact No</th>
               <th className="orderTableTH">Comment</th>
-              <th className="orderTableTH">Action</th>
+              {/* <th className="orderTableTH">Action</th> */}
             </tr>
           </thead>
           <tbody>
