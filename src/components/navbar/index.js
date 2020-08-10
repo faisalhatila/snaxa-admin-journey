@@ -106,7 +106,7 @@ export default Navbar = (props) => {
                   <ul className="navbarItemSubmenu">
                     <li>
                       <Link to="/restaurant-management-table">
-                        Add Restaurants
+                        All Restaurants
                       </Link>
                     </li>
                     <li>

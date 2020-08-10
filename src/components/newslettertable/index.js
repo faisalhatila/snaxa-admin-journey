@@ -118,11 +118,6 @@ const NewsletterTable = (props) => {
     return (
       <tr>
         <td className="orderTableTD">admin@admin.com</td>
-        <td className="orderTableTD">
-          {/* <i style={{ cursor: "pointer" }} class="far fa-edit"></i> */}
-          <label className="reviewTableViewButton mr-2">View</label>
-          <label className="reviewTableDeleteButton">Delete</label>
-        </td>
       </tr>
     );
   });
@@ -141,7 +136,6 @@ const NewsletterTable = (props) => {
           <thead style={{ backgroundColor: "gray", color: "#fff" }}>
             <tr className="restaurantTableHeadiingRow">
               <th className="orderTableTH">Email</th>
-              <th className="orderTableTH">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -156,8 +150,6 @@ const NewsletterTable = (props) => {
                   value={searchByName}
                 />
               </td>
-
-              <td></td>
             </tr>
             {/* {data && data.length > 0 ? ( */}
             {content}
