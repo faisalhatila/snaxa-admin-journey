@@ -121,16 +121,6 @@ const FeedbackTable = (props) => {
         <td className="orderTableTD">5</td>
         <td className="orderTableTD">10</td>
         <td className="orderTableTD">Good work keep it up</td>
-        <td className="orderTableTD">
-          {/* <i style={{ cursor: "pointer" }} class="far fa-edit"></i> */}
-          <label
-            className="reviewTableViewButton mr-2"
-            onClick={props.handleReviewTableStatus}
-          >
-            View
-          </label>
-          <label className="reviewTableDeleteButton">Delete</label>
-        </td>
       </tr>
     );
   });
@@ -158,7 +148,7 @@ const FeedbackTable = (props) => {
               <th className="orderTableTH">Effort (max. 5)</th>
               <th className="orderTableTH">Recommend (max. 10)</th>
               <th className="orderTableTH">Suggestion</th>
-              <th className="orderTableTH">Action</th>
+              {/* <th className="orderTableTH">Action</th> */}
             </tr>
           </thead>
           <tbody>
