@@ -130,43 +130,6 @@ const SiteinfoForm = (props) => {
       name: "popularareas",
       submenu: [],
     },
-    {
-      id: 3,
-      menuId: "SN",
-      menuTitle: "Social Network",
-      isChecked: false,
-      name: "socialnetwork",
-      submenu: [
-        {
-          id: 300,
-          subMenuId: "FB",
-          subMenuTitle: "Facebook",
-          name: "facebook",
-          isChecked: false,
-        },
-        {
-          id: 301,
-          subMenuId: "TWI",
-          subMenuTitle: "Twitter",
-          name: "twitter",
-          isChecked: false,
-        },
-        {
-          id: 302,
-          subMenuId: "Ins",
-          subMenuTitle: "Instagram",
-          name: "instagram",
-          isChecked: false,
-        },
-        {
-          id: 303,
-          subMenuId: "PI",
-          subMenuTitle: "Pinterest",
-          name: "pinterest",
-          isChecked: false,
-        },
-      ],
-    },
   ]);
   const handleMenuCheck = (menu) => {
     let temp = siteinfoArray;

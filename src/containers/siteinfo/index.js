@@ -1,5 +1,5 @@
 import React from "react";
-import { SiteinfoForm } from "../../components";
+import { SiteinfoForm, SocialNetworkForm } from "../../components";
 // let OrderDetails;
 const SiteInfo = (props) => {
   return (
@@ -7,6 +7,7 @@ const SiteInfo = (props) => {
       <div className="row">
         <div className="col-12 mt-4">
           <SiteinfoForm />
+          <SocialNetworkForm />
         </div>
       </div>
     </div>

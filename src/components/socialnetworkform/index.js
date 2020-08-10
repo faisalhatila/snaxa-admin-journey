@@ -91,176 +91,25 @@ const SocialNetworkForm = (props) => {
   function submit() {
     console.log("success");
   }
-  const [sitemapArray, setSiteMapArray] = useState([
-    {
-      id: 0,
-      menuId: "OB",
-      menuTitle: "Our Branches",
-      submenu: [],
-      name: "ourbranches",
-      isChecked: false,
-    },
-    {
-      id: 1,
-      menuId: "MA",
-      menuTitle: "Members Area",
-      submenu: [],
-      name: "membersarea",
-      isChecked: false,
-    },
-    {
-      id: 2,
-      menuId: "AB",
-      menuTitle: "About",
-      name: "aboutsnaxa",
-      isChecked: false,
-      submenu: [
-        {
-          id: 200,
-          subMenuId: "ATS",
-          subMenuTitle: "About The Site",
-          name: "aboutthesite",
-          isChecked: false,
-        },
-        {
-          id: 201,
-          subMenuId: "FR",
-          subMenuTitle: "For Restaurants",
-          name: "forrestaurant",
-          isChecked: false,
-        },
-        {
-          id: 202,
-          subMenuId: "SC",
-          subMenuTitle: "Stay Connected",
-          name: "stayconnected",
-          isChecked: false,
-        },
-        {
-          id: 203,
-          subMenuId: "SA",
-          subMenuTitle: "Snaxa Apps",
-          name: "snaxaapps",
-          isChecked: false,
-        },
-      ],
-    },
-    {
-      id: 3,
-      menuId: "Ar",
-      menuTitle: "Areas",
-      name: "areas",
-      isChecked: false,
-      submenu: [
-        {
-          id: 300,
-          subMenuId: "Du",
-          subMenuTitle: "Dubai",
-          name: "dubai",
-          isChecked: false,
-        },
-        {
-          id: 301,
-          subMenuId: "AD",
-          subMenuTitle: "Abu Dhabi",
-          name: "abudhabi",
-          isChecked: false,
-        },
-        {
-          id: 302,
-          subMenuId: "Sh",
-          subMenuTitle: "Sharjah",
-          name: "sharjah",
-          isChecked: false,
-        },
-        {
-          id: 303,
-          subMenuId: "Aj",
-          subMenuTitle: "Ajman",
-          name: "ajman",
-          isChecked: false,
-        },
-        {
-          id: 303,
-          subMenuId: "AA",
-          subMenuTitle: "Al Ain",
-          name: "alain",
-          isChecked: false,
-        },
-        {
-          id: 304,
-          subMenuId: "Fu",
-          subMenuTitle: "Fujairah",
-          name: "fujairah",
-          isChecked: false,
-        },
-        {
-          id: 305,
-          subMenuId: "RAK",
-          subMenuTitle: "Ras Al Khaima",
-          name: "rasalkhaima",
-          isChecked: false,
-        },
-        {
-          id: 306,
-          subMenuId: "UAQ",
-          subMenuTitle: "Umm Al-Quwain",
-          name: "ummalqueain",
-          isChecked: false,
-        },
-      ],
-    },
-    {
-      id: 4,
-      menuId: "Of",
-      menuTitle: "Offers",
-      name: "offers",
-      submenu: [],
-      isChecked: false,
-    },
-  ]);
-  const [siteinfoArray, setSiteinfoArray] = useState([
-    {
-      id: 0,
-      menuId: "R",
-      menuTitle: "Restaurant",
-      isChecked: false,
-      name: "restaurant",
-    },
-    {
-      id: 1,
-      menuId: "PC",
-      menuTitle: "Popular Cuisines",
-      isChecked: false,
-      name: "popularcuisines",
-    },
-    {
-      id: 1,
-      menuId: "PA",
-      menuTitle: "Popular Areas",
-      isChecked: false,
-      name: "popularareas",
-    },
-  ]);
-  const handleMenuCheck = (menu) => {
-    let temp = siteinfoArray;
-    temp = temp.map((i) => {
-      if (i.isChecked) {
-        i.isChecked = !i.isChecked;
-        return i;
-      } else return i;
-    });
-    const tempObj = temp[menu];
-    tempObj.isChecked = !temp[menu].isChecked;
-    temp[menu] = tempObj;
-    setSiteinfoArray(temp);
-    console.log(temp);
-  };
+  // const handleMenuCheck = (menu) => {
+  //   let temp = siteinfoArray;
+  //   temp = temp.map((i) => {
+  //     if (i.isChecked) {
+  //       i.isChecked = !i.isChecked;
+  //       return i;
+  //     } else return i;
+  //   });
+  //   const tempObj = temp[menu];
+  //   tempObj.isChecked = !temp[menu].isChecked;
+  //   temp[menu] = tempObj;
+  //   setSiteinfoArray(temp);
+  //   console.log(temp);
+  // };
 
   let content;
   if (!isLoading)
     content = (
-      <div className="row">
+      <div className="row mt-4">
         <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
           Social Network
         </div>
