@@ -179,7 +179,7 @@ const AddCategoryForm = (props) => {
           <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
             <div className="row">
               <div class="form-group col-12">
-                <label for="exampleInputEmail1">Category Name</label>
+                <label>Category Name</label>
                 <input
                   type="text"
                   class="form-control"
@@ -190,7 +190,7 @@ const AddCategoryForm = (props) => {
               </div>
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Priority</label>
+              <label>Priority</label>
               <input
                 type="text"
                 class="form-control"
