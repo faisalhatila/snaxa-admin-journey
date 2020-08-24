@@ -95,8 +95,8 @@ const AddAddonCategoryForm = (props) => {
             addOnName: addOnCategoryName,
             requiredStatus: addOnIsRequired,
             multiSelection: addOnIsMultipleSelect,
-            howMany: addOnIsMultipleSelect ? 1 : addOnMinQuantity,
-            howManyMaximum: addOnIsMultipleSelect ? null : addOnMaxQuantity,
+            howMany: addOnIsMultipleSelect ? addOnMinQuantity : 1,
+            howManyMaximum: addOnIsMultipleSelect ? addOnMaxQuantity : null,
             addOnId,
           })
         );
@@ -125,9 +125,11 @@ const AddAddonCategoryForm = (props) => {
         JSON.stringify({
           userId,
           addOn: itemIndex,
+          restaurantId: props.restaurantId,
         })
       );
       handleRestaurantSelect(colourOptions[restaurant]);
+      setAddOnData(responseData.addOns);
     } catch (err) {
       // console.log("err", err);
     }
@@ -183,8 +185,7 @@ const AddAddonCategoryForm = (props) => {
 
   const handleRestaurantSelect = async (e) => {
     cancelEditing();
-    selectRestaurant(e.index);
-    setRestaurantID(e.value);
+    setRestaurantID(props.restaurantId);
     try {
       const responseData = await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/get-all-addons`,

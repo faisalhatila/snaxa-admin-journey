@@ -111,11 +111,43 @@ const SocialNetworkForm = (props) => {
     content = (
       <div className="row mt-4">
         <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
-          Social Network
+          Contact Info
         </div>
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <div className="row col-12">
             <form className="col-12 updateVendorForm">
+              <div className="row">
+                <div class="form-group col">
+                  <label>UAN Number</label>
+                  <div className="d-flex align-items-center">
+                    <input
+                      onChange={handleChange}
+                      value={values.orderStatusName}
+                      name="orderstatus"
+                      type="text"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="+111-000-000"
+                    />
+                  </div>
+                </div>
+                <div class="form-group col">
+                  <label>Email ID:</label>
+                  <div className="d-flex align-items-center">
+                    <input
+                      onChange={handleChange}
+                      value={values.orderStatusName}
+                      name="orderstatus"
+                      type="text"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="info@snaxa.com"
+                    />
+                  </div>
+                </div>
+              </div>
               <div className="row">
                 <div class="form-group col">
                   <label>Facebook</label>

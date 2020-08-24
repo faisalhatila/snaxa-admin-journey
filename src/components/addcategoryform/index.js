@@ -212,7 +212,7 @@ const AddCategoryForm = (props) => {
         JSON.stringify({
           userId,
           categoryId: id,
-          restaurantId: restaurant,
+          restaurantId: props.restaurantId,
         })
       );
       console.log("responseData", responseData);

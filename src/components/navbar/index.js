@@ -35,40 +35,40 @@ export default Navbar = (props) => {
   };
   const routeArr = [
     {
-      label: "Site Info",
+      label: "Edit Site Info",
       path: "/site-info",
     },
     {
-      label: "Newsletters",
+      label: "Newsletter Emails",
       path: "/news-letters",
     },
     {
-      label: "Feedback",
+      label: "Feedbacks From Customers",
       path: "/feedback",
     },
     {
-      label: "Terms & Conditions",
-      path: "/terms-and-conditions",
-    },
-    {
-      label: "FAQs",
-      path: "/faqs",
-    },
-    {
-      label: "Privacy",
-      path: "/privacy",
-    },
-    {
-      label: "Sitemap",
-      path: "/sitemap",
-    },
-    {
-      label: "Contact Us",
+      label: "Contact Us Forms From Customers",
       path: "/contact-queries",
     },
     {
-      label: "Reviews",
+      label: "Reviews From Customers",
       path: "/reviews",
+    },
+    {
+      label: "Edit T&Cs",
+      path: "/terms-and-conditions",
+    },
+    {
+      label: "Edit FAQs",
+      path: "/faqs",
+    },
+    {
+      label: "Edit Privacy",
+      path: "/privacy",
+    },
+    {
+      label: "Edit Sitemap",
+      path: "/sitemap",
     },
   ];
   return (

@@ -3,7 +3,7 @@ import { useAuth } from "../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 
 // let ReviewTableShort;
-const ReviewTableDetail = (props) => {
+const ReviewTableDetailRating = (props) => {
   const [data, setData] = useState();
 
   const { userId, token } = useAuth();
@@ -94,43 +94,38 @@ const ReviewTableDetail = (props) => {
   }, [searchByName, sendRequest, userId]);
 
   let content;
-  if (!isLoading && data)
-    // content = data.map((item) => {
-    //   return (
-    //     <tr>
-    //       <td className="orderTableTD">{item.name}</td>
-    //       <td className="orderTableTD">{item.email}</td>
-    //       <td className="orderTableTD">{item.addres}</td>
-    //       <td className="orderTableTD">
-    //         {item.approved ? "Approved" : "Not Approved"}
-    //       </td>
-    //       <td className="orderTableTD">
-    //         <i
-    //           onClick={() => props.editRestaurant(item._id)}
-    //           style={{ cursor: "pointer" }}
-    //           class="far fa-edit"
-    //         ></i>
-    //       </td>
-    //     </tr>
-    //   );
-    // });
-    content = [...Array(1)].map((item, i) => {
-      return (
-        <tr>
-          <td className="orderTableTD">Faisal</td>
-          <td className="orderTableTD">Alaska</td>
-          <td className="orderTableTD">Food Item</td>
-          <td className="orderTableTD">5 *</td>
-          <td className="orderTableTD">Superb Restaurant</td>
-          {/* <td className="orderTableTD">
-            <i style={{ cursor: "pointer" }} class="far fa-edit"></i>
-            <label className="reviewTableViewButton mr-2">View</label>
-            <label className="reviewTableDeleteButton">Delete</label>
-          </td> */}
-        </tr>
-      );
-    });
-  else content = <p>Loading...</p>;
+  //   if (!isLoading && data)
+  // content = data.map((item) => {
+  //   return (
+  //     <tr>
+  //       <td className="orderTableTD">{item.name}</td>
+  //       <td className="orderTableTD">{item.email}</td>
+  //       <td className="orderTableTD">{item.addres}</td>
+  //       <td className="orderTableTD">
+  //         {item.approved ? "Approved" : "Not Approved"}
+  //       </td>
+  //       <td className="orderTableTD">
+  //         <i
+  //           onClick={() => props.editRestaurant(item._id)}
+  //           style={{ cursor: "pointer" }}
+  //           class="far fa-edit"
+  //         ></i>
+  //       </td>
+  //     </tr>
+  //   );
+  // });
+  content = [...Array(1)].map((item, i) => {
+    return (
+      <tr>
+        <td className="orderTableTD">Biryani</td>
+        <td className="orderTableTD">5 *</td>
+        <td className="orderTableTD">5 *</td>
+        <td className="orderTableTD">5 *</td>
+        <td className="orderTableTD">5 *</td>
+      </tr>
+    );
+  });
+  //   else content = <p>Loading...</p>;
   return (
     <div className="restaurantmanagementtable mb-4">
       <div class="container">
@@ -139,7 +134,7 @@ const ReviewTableDetail = (props) => {
             data && data.length > 0 ? " maximumWidthRestaurant" : null
           }`}
         >
-          <h3>Customers Ratings</h3>
+          <h3>Customers Ratings Detailed</h3>
         </div>
         <table class="table table-hover">
           <thead style={{ backgroundColor: "gray", color: "#fff" }}>
@@ -150,12 +145,11 @@ const ReviewTableDetail = (props) => {
               <th className="orderTableTH">Address</th>
               <th className="orderTableTH">Status</th>
               <th className="orderTableTH">Action</th> */}
-              <th className="orderTableTH">Name</th>
-              <th className="orderTableTH">Name Restaurant</th>
               <th className="orderTableTH">Food Item</th>
-              <th className="orderTableTH">Rating</th>
-              <th className="orderTableTH">Message</th>
-              {/* <th className="orderTableTH">Action</th> */}
+              <th className="orderTableTH">Order Packaging</th>
+              <th className="orderTableTH">Value of money</th>
+              <th className="orderTableTH">Delivery Time</th>
+              <th className="orderTableTH">Quality of food</th>
             </tr>
           </thead>
           <tbody>
@@ -184,7 +178,7 @@ const ReviewTableDetail = (props) => {
               <td></td>
               <td></td>
             </tr> */}
-            {data && data.length > 0 ? (
+            {/* {data && data.length > 0 ? (
               content
             ) : (
               <div className="noNewOrderHeadingDiv mt-3">
@@ -192,11 +186,23 @@ const ReviewTableDetail = (props) => {
                   <h4>No New Restaurant Added</h4>
                 </tr>
               </div>
-            )}
+            )} */}
+            {content}
           </tbody>
         </table>
+        <label
+          style={{
+            backgroundColor: "green",
+            color: "#fff",
+            borderRadius: "5px",
+            padding: "5px 10px",
+          }}
+          onClick={props.back}
+        >
+          Back
+        </label>
       </div>
     </div>
   );
 };
-export default ReviewTableDetail;
+export default ReviewTableDetailRating;

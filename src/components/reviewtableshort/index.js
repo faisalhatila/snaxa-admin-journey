@@ -122,10 +122,7 @@ const ReviewTableShort = (props) => {
         <td className="orderTableTD">Superb Restaurant</td>
         <td className="orderTableTD">
           {/* <i style={{ cursor: "pointer" }} class="far fa-edit"></i> */}
-          <label
-            className="reviewTableViewButton mr-2"
-            onClick={props.handleReviewTableStatus}
-          >
+          <label className="reviewTableViewButton mr-2" onClick={props.next}>
             View
           </label>
           <label className="reviewTableDeleteButton">Delete</label>

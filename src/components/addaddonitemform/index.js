@@ -23,6 +23,8 @@ const AddAddonCategoryForm = (props) => {
   const [restaurant, selectRestaurant] = useState();
   const [restaurantID, setRestaurantID] = useState();
   const [categoryID, setCategoryID] = useState();
+  const [editing, setEditing] = useState(false);
+  const [addOnId, setAddOnId] = useState();
   // const validate = () => {
   // 	// const { cuisineName } = state;
   // 	// let { cuisineNameError } = state;
@@ -81,10 +83,13 @@ const AddAddonCategoryForm = (props) => {
   };
   const handleAddAddonItemName = async () => {
     // const isValid = validate();
+    let urlToAddAndEdit = "/add-addons-items";
+    if (editing) urlToAddAndEdit = "/edit-addon-item";
     if (true) {
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/add-addons-items`,
+          // `${process.env.REACT_APP_BACKEND_URL}/add-addons-items`,
+          `${process.env.REACT_APP_BACKEND_URL}${urlToAddAndEdit}`,
           "POST",
           {
             "Content-Type": "application/json",
@@ -95,9 +100,11 @@ const AddAddonCategoryForm = (props) => {
             addOn: categoryID,
             name: addOnItemName,
             price: addonPrice ? addonPrice : "",
+            addOnId,
           })
         );
         console.log("responseData", responseData);
+        cancelEditing();
         // setData(responseData);
       } catch (err) {
         // console.log("err", err);
@@ -108,7 +115,34 @@ const AddAddonCategoryForm = (props) => {
       handleCategorySelect(cateogryData[category]);
     }
   };
+  const handleEditViewAddonItem = async (id) => {
+    console.log("categoryID", categoryID);
+    setAddOnId(id);
+    setEditing(true);
+    try {
+      const responseData = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/edit-view-addon-item`,
+        "POST",
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        JSON.stringify({
+          userId,
+          addOn: categoryID,
+          addOnItem: id,
+        })
+      );
+      console.log("responseData", responseData);
+      setAddonPrice(responseData.editingAddOn.price);
+      setaddOnItemName(responseData.editingAddOn.name);
+      // handleRestaurantSelect(colourOptions[restaurant]);
+    } catch (err) {
+      console.log("err", err);
+    }
+  };
   const handleDeleteAddonItemName = async (itemIndex) => {
+    cancelEditing();
     try {
       const responseData = await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/delete-addons-items`,
@@ -214,6 +248,12 @@ const AddAddonCategoryForm = (props) => {
     if (token && userId) dashboard();
   }, [token, userId, sendRequest]);
 
+  const cancelEditing = () => {
+    setEditing(false);
+    setAddonPrice(0);
+    setaddOnItemName("");
+  };
+
   let content;
   if (!isLoading)
     content = (
@@ -272,8 +312,16 @@ const AddAddonCategoryForm = (props) => {
                     className="addOrderStatusButton"
                     onClick={handleAddAddonItemName}
                   >
-                    Add
+                    {editing ? "Edit" : "Add"}
                   </label>
+                  {editing && (
+                    <label
+                      className="addOrderStatusButton"
+                      onClick={cancelEditing}
+                    >
+                      Cancel
+                    </label>
+                  )}
                 </div>
                 {addOnItemNameError ? (
                   <div
@@ -331,9 +379,10 @@ const AddAddonCategoryForm = (props) => {
                           </td> */}
                           <div className="d-flex align-items-center justify-content-center">
                             <i
-                              //   onClick={() => props.editRestaurant(item._id)}
+                              // onClick={() => props.editRestaurant(item._id)}
                               style={{ cursor: "pointer" }}
                               class="far fa-edit mr-3 editButtonIcon"
+                              onClick={() => handleEditViewAddonItem(item._id)}
                             ></i>
                             <label
                               className="noMargin deleteOrderStatusButton"

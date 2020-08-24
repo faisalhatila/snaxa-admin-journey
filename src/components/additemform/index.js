@@ -19,12 +19,13 @@ const AddItemForm = (props) => {
   const [data, setData] = useState([]);
   const [dataAddCat, setDataAddCat] = useState([]);
   const [colourOptions, setColourOptions] = useState([]);
+  const [colourOptions2, setColourOptions2] = useState([]);
   const [priceoOnSelect, setPriceoOnSelect] = useState(false);
   const [items, setItems] = useState([]);
   const [editing, setEditing] = useState(false);
   const [foodItemId, setFoodItemId] = useState(false);
   const [cateogryData, setCateogryData] = useState([]);
-  const [discountPrice, setDiscountPrice] = useState("0");
+  const [discountPrice, setDiscountPrice] = useState(0);
 
   useEffect(() => {
     const dashboard = async () => {
@@ -52,7 +53,7 @@ const AddItemForm = (props) => {
         const temp = responseData.addons.map((i, index) => {
           return { index, value: i._id, label: i.addOnName };
         });
-        // setColourOptions(temp);
+        setColourOptions2(temp);
       } catch (err) {
         console.log("err", err);
       }
@@ -118,7 +119,7 @@ const AddItemForm = (props) => {
           },
           JSON.stringify({
             userId,
-            restaurantId: restaurant,
+            restaurantId: props.restaurantId,
             foodCategory: category,
             name: categoryName,
             description: itemDescription,
@@ -281,8 +282,8 @@ const AddItemForm = (props) => {
                 <input
                   type="text"
                   class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
+                  // id="exampleInputEmail1"
+                  // aria-describedby="emailHelp"
                   placeholder="Enter Item Name"
                   onChange={handleChangecategoryName}
                   value={categoryName}
@@ -339,12 +340,12 @@ const AddItemForm = (props) => {
             <div className="row">
               <div class="form-group col-12">
                 <label for="exampleInputEmail1">Select Add Ons</label>
-                <select
+                {/* <select
                   class="form-control"
                   id="exampleFormControlSelect1"
                   // onChange={handleSelectCategory}
                   onChange={(e) => setAddOnList(e)}
-                  value={category}
+                  value={addOnList}
                 >
                   <option disabled selected>
                     Select a Category
@@ -354,14 +355,14 @@ const AddItemForm = (props) => {
                     dataAddCat.addons.map((i) => (
                       <option value={i._id}>{i.addOnName}</option>
                     ))}
-                </select>
-                {/* <Select
+                </select> */}
+                <Select
                   closeMenuOnSelect={false}
                   components={animatedComponents}
                   isMulti
-                  options={colourOptions}
+                  options={colourOptions2}
                   onChange={(e) => setAddOnList(e)}
-                /> */}
+                />
               </div>
             </div>
             <div className="row">
@@ -402,8 +403,8 @@ const AddItemForm = (props) => {
                     // id="exampleInputPrice"
                     // aria-describedby="emailHelp"
                     placeholder="Price"
-                    onChange={setDiscountPrice}
-                    value={discountPrice}
+                    // onChange={setDiscountPrice}
+                    // value={discountPrice}
                   />
                 </div>
               )}
