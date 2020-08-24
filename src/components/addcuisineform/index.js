@@ -1,45 +1,20 @@
-// import { ImageUpload } from "..";
 import React, { useState, useEffect } from "react";
-// import { set } from "lodash";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import useForm from "./useform";
 import validate from "./validate";
-
-// let itemIndex = 0;
-// let AddCuisineForm;
 const AddCuisineForm = (props) => {
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [data, setData] = useState([]);
   const [cuisineName, setcuisineName] = useState("");
   const [cuisineNameError, setCuisineNameError] = useState("");
-  // const validate = () => {
-  //   // const { cuisineName } = state;
-  //   // let { cuisineNameError } = state;
-  //   // if (!cuisineName) {
-  //   //   cuisineNameError = "Please Enter Cuisine Name";
-  //   // } else {
-  //   //   cuisineNameError = "";
-  //   // }
-  //   // if (cuisineNameError) {
-  //   //   setState({
-  //   //     cuisineNameError,
-  //   //   });
-  //   //   return false;
-  //   // }
-  //   return true;
-  // };
   const handleChangeCuisineName = (e) => {
     setcuisineName(e.target.value);
-    // cuisineNameError: "",
   };
   const handleAddCuisineName = async (e) => {
-    // const isValid = validate();
     e.preventDefault();
     handleSubmit();
-    // if (true) {
-    // }
     try {
       const responseData = await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/add-cuisine`,
@@ -55,9 +30,7 @@ const AddCuisineForm = (props) => {
       );
       console.log("responseData", responseData);
       setData(responseData.cuisines);
-    } catch (err) {
-      // console.log("err", err);
-    }
+    } catch (err) {}
     setcuisineName("");
     setCuisineNameError(false);
   };
@@ -76,9 +49,7 @@ const AddCuisineForm = (props) => {
         })
       );
       setData(responseData.cuisines);
-    } catch (err) {
-      // console.log("err", err);
-    }
+    } catch (err) {}
   };
   useEffect(() => {
     const dashboard = async () => {
@@ -97,9 +68,7 @@ const AddCuisineForm = (props) => {
         );
         console.log("responseData", responseData);
         setData(responseData.cuisines);
-      } catch (err) {
-        // console.log("err", err);
-      }
+      } catch (err) {}
     };
     if (token && userId) dashboard();
   }, [token, userId, sendRequest]);
@@ -128,8 +97,6 @@ const AddCuisineForm = (props) => {
                     type="text"
                     name="cuisinename"
                     class="form-control mr-4"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
                     placeholder="Enter Cuisine Name"
                     onChange={handleChange}
                     value={values.cuisineName}
@@ -153,33 +120,12 @@ const AddCuisineForm = (props) => {
                   </div>
                 ) : null}
               </div>
-              {/* <button type="submit" class="btn btn-primary mt-3">
-                Add Item
-              </button> */}
             </form>
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
                 <label for="exampleInputEmail1">
                   <strong>Cuisines</strong>
                 </label>
-                {/* <ul>
-									{data.map((item, index) => {
-										return (
-											<li key={item._id} className='mb-2'>
-												<div className='d-flex align-items-center'>
-													<label className='mr-4 noMargin'>
-														{item.cuisine}
-													</label>
-													<label
-														className='noMargin deleteOrderStatusButton'
-														onClick={() => handleDeletecuisineName(item._id)}>
-														Delete
-													</label>
-												</div>
-											</li>
-										);
-									})}
-								</ul> */}
                 <table class="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
@@ -192,17 +138,8 @@ const AddCuisineForm = (props) => {
                       return (
                         <tr>
                           <td className="orderTableTD">{item.cuisine}</td>
-                          {/* <td className="orderTableTD">
-                            <label
-                              className="noMargin deleteOrderStatusButton"
-                              onClick={() => handleDeletecuisineName(item._id)}
-                            >
-                              Delete
-                            </label>
-                          </td> */}
                           <div className="d-flex align-items-center justify-content-center">
                             <i
-                              //   onClick={() => props.editRestaurant(item._id)}
                               style={{ cursor: "pointer" }}
                               class="far fa-edit mr-3 editButtonIcon"
                             ></i>
