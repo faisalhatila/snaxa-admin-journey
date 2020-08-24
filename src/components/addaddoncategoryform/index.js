@@ -1,22 +1,12 @@
-// import { ImageUpload } from "..";
 import React, { useState, useEffect } from "react";
-// import { set } from "lodash";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import Select from "react-select";
-// import makeAnimated from "react-select/animated";
-// const animatedComponents = makeAnimated();
-
-// let itemIndex = 0;
-// let AddAddonCategoryForm;
 const AddAddonCategoryForm = (props) => {
-  // const [addOnName, setAddOnName] = useState("");
   const [addOnIsRequired, setAddOnIsRequired] = useState(false);
   const [addOnIsMultipleSelect, setAddOnIsMultipleSelect] = useState(false);
-  // const [addOnQuantity, setAddOnQuantity] = useState(1);
   const [addOnMinQuantity, setAddOnMinQuantity] = useState(1);
   const [addOnMaxQuantity, setAddOnMaxQuantity] = useState(null);
-
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [restaurant, selectRestaurant] = useState();
@@ -25,7 +15,6 @@ const AddAddonCategoryForm = (props) => {
   const [addOnData, setAddOnData] = useState([]);
   const [colourOptions, setColourOptions] = useState([]);
   const [addOnCategoryName, setaddOnCategoryName] = useState("");
-  // const [addOnCategoryNameError, setaddOnCategoryNameError] = useState("");
   const [editing, setEditing] = useState(false);
   const [addOnId, setAddOnId] = useState();
   useEffect(() => {
@@ -43,41 +32,19 @@ const AddAddonCategoryForm = (props) => {
           },
           JSON.stringify({
             userId,
-            // restaurant: e.value,
             restaurant: props.restaurantId,
           })
         );
         console.log("responseData", responseData.addOns);
         setAddOnData(responseData.addOns);
-      } catch (err) {
-        // console.log("err", err);
-      }
+      } catch (err) {}
     };
     if (token && userId) dashboard();
   }, [token, userId, sendRequest]);
-
-  // const validate = () => {
-  // 	// const { cuisineName } = state;
-  // 	// let { cuisineNameError } = state;
-  // 	// if (!cuisineName) {
-  // 	//   cuisineNameError = "Please Enter Cuisine Name";
-  // 	// } else {
-  // 	//   cuisineNameError = "";
-  // 	// }
-  // 	// if (cuisineNameError) {
-  // 	//   setState({
-  // 	//     cuisineNameError,
-  // 	//   });
-  // 	//   return false;
-  // 	// }
-  // 	return true;
-  // };
   const handleChangeAddonCategoryName = (e) => {
     setaddOnCategoryName(e.target.value);
-    // cuisineNameError: "",
   };
   const handleAddAddonCategoryName = async () => {
-    // const isValid = validate();
     let urlToAddAndEdit = "/add-addon-category";
     if (editing) urlToAddAndEdit = "/edit-addon-category";
     if (true) {
@@ -107,9 +74,7 @@ const AddAddonCategoryForm = (props) => {
         setAddOnMaxQuantity(null);
         cancelEditing();
         setAddOnData(responseData.addOns);
-      } catch (err) {
-        // console.log("err", err);
-      }
+      } catch (err) {}
     }
   };
   const handleDeleteAddonCategoryName = async (itemIndex) => {
@@ -130,9 +95,7 @@ const AddAddonCategoryForm = (props) => {
       );
       handleRestaurantSelect(colourOptions[restaurant]);
       setAddOnData(responseData.addOns);
-    } catch (err) {
-      // console.log("err", err);
-    }
+    } catch (err) {}
   };
 
   const cancelEditing = () => {
@@ -160,7 +123,6 @@ const AddAddonCategoryForm = (props) => {
           addOn: id,
         })
       );
-      // handleRestaurantSelect(colourOptions[restaurant]);
       setaddOnCategoryName(responseData.existingAddOn.addOnName);
       setAddOnMinQuantity(responseData.existingAddOn.howMany);
       setAddOnIsRequired(responseData.existingAddOn.requiredStatus);
@@ -170,9 +132,7 @@ const AddAddonCategoryForm = (props) => {
           : null
       );
       setAddOnIsMultipleSelect(responseData.existingAddOn.multiSelection);
-    } catch (err) {
-      // console.log("err", err);
-    }
+    } catch (err) {}
   };
   console.log(addOnIsMultipleSelect);
 
@@ -201,9 +161,7 @@ const AddAddonCategoryForm = (props) => {
       );
       console.log("responseData", responseData.addOns);
       setAddOnData(responseData.addOns);
-    } catch (err) {
-      // console.log("err", err);
-    }
+    } catch (err) {}
   };
 
   console.log(addOnIsMultipleSelect);
@@ -228,9 +186,7 @@ const AddAddonCategoryForm = (props) => {
           return { index, value: i.restaurant, label: i.name };
         });
         setColourOptions(temp);
-      } catch (err) {
-        // console.log("err", err);
-      }
+      } catch (err) {}
     };
     if (token && userId) dashboard();
   }, [token, userId, sendRequest]);
@@ -239,29 +195,15 @@ const AddAddonCategoryForm = (props) => {
   if (!isLoading && data)
     content = (
       <div className="row">
-        {/* <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
-          Add Addon Category
-        </div> */}
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <div className="row col-12">
             <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
-              {/* <div class="form-group">
-                <label for="exampleInputEmail1">Select Restaurant</label>
-                <Select
-                  defaultValue={colourOptions[restaurant]}
-                  options={colourOptions}
-                  formatGroupLabel={formatGroupLabel}
-                  onChange={handleRestaurantSelect}
-                />
-              </div> */}
-              <div class="form-group">
+              <div className="form-group">
                 <label for="exampleInputEmail1">Add On Category</label>
                 <div className="d-flex align-items-center">
                   <input
                     type="text"
-                    class="form-control mr-4"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
+                    className="form-control mr-4"
                     placeholder="Enter Addon Category Name"
                     onChange={handleChangeAddonCategoryName}
                     value={addOnCategoryName}
@@ -281,71 +223,70 @@ const AddAddonCategoryForm = (props) => {
                     </label>
                   )}
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Required</label>
+                <div className="form-group">
+                  <label>Required</label>
                   <div className="d-flex">
-                    <div class="form-check mr-3">
+                    <div className="form-check mr-3">
                       <input
-                        class="form-check-input"
+                        className="form-check-input"
                         type="radio"
                         name="exampleRadios"
-                        id="exampleRadios1"
+                        id="yesRequired"
                         checked={addOnIsRequired}
                         onChange={(e) => setAddOnIsRequired(true)}
-                        // value={true}
                       />
-                      <label class="form-check-label" for="exampleRadios1">
+                      <label className="form-check-label" for="yesRequired">
                         Yes
                       </label>
                     </div>
-                    <div class="form-check mr-3">
+                    <div className="form-check mr-3">
                       <input
-                        class="form-check-input"
+                        className="form-check-input"
                         checked={!addOnIsRequired}
                         type="radio"
                         name="exampleRadios"
-                        id="exampleRadios2"
-                        // value={false}
+                        id="notRequired"
                         onChange={(e) => setAddOnIsRequired(false)}
                       />
-                      <label class="form-check-label" for="exampleRadios2">
+                      <label className="form-check-label" for="notRequired">
                         No
                       </label>
                     </div>
                   </div>
                 </div>
                 <div className="d-flex">
-                  <div class="form-group mr-5">
+                  <div className="form-group mr-5">
                     <label for="exampleInputEmail1">Is Multiple Select</label>
                     <div className="d-flex">
-                      <div class="form-check mr-3">
+                      <div className="form-check mr-3">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="radio"
                           name="addOnIsMultipleSelect"
-                          // value={true}
                           checked={addOnIsMultipleSelect}
                           onChange={(e) => setAddOnIsMultipleSelect(true)}
+                          id="yesMultipleSelect"
                         />
                         <label
-                          class="form-check-label"
-                          for="addOnIsMultipleSelect"
+                          className="form-check-label"
+                          for="yesMultipleSelect"
                         >
                           Yes
                         </label>
                       </div>
-                      <div class="form-check mr-3">
+                      <div className="form-check mr-3">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="radio"
                           // value={false}
                           checked={!addOnIsMultipleSelect}
                           name="addOnIsMultipleSelect"
                           onChange={(e) => setAddOnIsMultipleSelect(false)}
+                          id="noMultipleSelect"
                         />
                         <label
-                          class="form-check-label"
-                          for="addOnIsMultipleSelect"
+                          className="form-check-label"
+                          for="noMultipleSelect"
                         >
                           No
                         </label>
@@ -353,13 +294,11 @@ const AddAddonCategoryForm = (props) => {
                     </div>
                   </div>
                   {addOnIsMultipleSelect === true ? (
-                    <div class="form-group mr-3">
+                    <div className="form-group mr-3">
                       <label for="exampleInputEmail1">Min Quantity</label>
                       <input
                         type="number"
-                        class="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
+                        className="form-control"
                         onChange={handleAddOnMinQuantityChange}
                         value={addOnMinQuantity}
                         style={{ maxWidth: "70px" }}
@@ -367,13 +306,11 @@ const AddAddonCategoryForm = (props) => {
                     </div>
                   ) : null}
                   {addOnIsMultipleSelect === true ? (
-                    <div class="form-group">
+                    <div className="form-group">
                       <label for="exampleInputEmail1">Max Quantity</label>
                       <input
                         type="number"
-                        class="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
+                        className="form-control"
                         onChange={handleAddOnMaxQuantityChange}
                         value={addOnMaxQuantity}
                         style={{ maxWidth: "70px" }}
@@ -381,32 +318,18 @@ const AddAddonCategoryForm = (props) => {
                     </div>
                   ) : null}
                 </div>
-                {/* {addOnCategoryNameError ? (
-									<div
-										style={{
-											textAlign: "center",
-											color: "red",
-											fontWeight: "bold",
-										}}>
-										{addOnCategoryNameError}
-									</div>
-								) : null} */}
               </div>
-              {/* <button type='submit' class='btn btn-primary mt-3'>
-								Add Item
-							</button> */}
             </form>
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
-              <div class="form-group">
+              <div className="form-group">
                 <label for="exampleInputEmail1">
                   <strong>Addon Categories</strong>
                 </label>
 
-                <table class="table table-hover">
+                <table className="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
                       <th className="orderTableTH">Addon Category Name</th>
-                      {/* <th className="orderTableTH">Restaurant Name</th> */}
                       <th className="orderTableTH">Action</th>
                     </tr>
                   </thead>
@@ -414,25 +337,12 @@ const AddAddonCategoryForm = (props) => {
                     {addOnData.map((item) => {
                       return (
                         <tr>
-                          {/* {console.log(colourOptions)} */}
                           <td className="orderTableTD">{item.addOnName}</td>
-                          {/* <td className="orderTableTD">
-                            {colourOptions[restaurant].label}
-                          </td> */}
-                          {/* <td className='orderTableTD'>
-														<label
-															className='noMargin deleteOrderStatusButton'
-															onClick={() =>
-																handleDeleteAddonCategoryName(item._id)
-															}>
-															Delete
-														</label>
-													</td> */}
+
                           <div className="d-flex align-items-center justify-content-center">
                             <i
-                              //   onClick={() => props.editRestaurant(item._id)}
                               style={{ cursor: "pointer" }}
-                              class="far fa-edit mr-3 editButtonIcon"
+                              className="far fa-edit mr-3 editButtonIcon"
                               onClick={() => handleEditViewCategory(item._id)}
                             ></i>
                             <label
@@ -482,16 +392,5 @@ const groupBadgeStyles = {
   padding: "0.16666666666667em 0.5em",
   textAlign: "center",
 };
-// const colourOptions = [
-// 	{ value: "ocean", label: "Ocean", color: "#00B8D9", isFixed: true },
-// 	{ value: "blue", label: "Blue", color: "#0052CC", isDisabled: true },
-// 	{ value: "purple", label: "Purple", color: "#5243AA" },
-// 	{ value: "red", label: "Red", color: "#FF5630", isFixed: true },
-// 	{ value: "orange", label: "Orange", color: "#FF8B00" },
-// 	{ value: "yellow", label: "Yellow", color: "#FFC400" },
-// 	{ value: "green", label: "Green", color: "#36B37E" },
-// 	{ value: "forest", label: "Forest", color: "#00875A" },
-// 	{ value: "slate", label: "Slate", color: "#253858" },
-// 	{ value: "silver", label: "Silver", color: "#666666" },
-// ];
+
 export default AddAddonCategoryForm;
