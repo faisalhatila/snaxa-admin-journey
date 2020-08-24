@@ -1,18 +1,10 @@
-// import { ImageUpload } from "..";
 import React, { useState, useEffect } from "react";
-// import { set } from "lodash";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import Select from "react-select";
-// import makeAnimated from "react-select/animated";
-// const animatedComponents = makeAnimated();
-
-// let itemIndex = 0;
-// let AddAddonCategoryForm;
 const AddAddonCategoryForm = (props) => {
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  // const [data, setData] = useState([]);
   const [addOnItemName, setaddOnItemName] = useState("");
   const [addonPrice, setAddonPrice] = useState();
   const [addOnItemNameError, setaddOnItemNameError] = useState("");
@@ -25,22 +17,6 @@ const AddAddonCategoryForm = (props) => {
   const [categoryID, setCategoryID] = useState();
   const [editing, setEditing] = useState(false);
   const [addOnId, setAddOnId] = useState();
-  // const validate = () => {
-  // 	// const { cuisineName } = state;
-  // 	// let { cuisineNameError } = state;
-  // 	// if (!cuisineName) {
-  // 	//   cuisineNameError = "Please Enter Cuisine Name";
-  // 	// } else {
-  // 	//   cuisineNameError = "";
-  // 	// }
-  // 	// if (cuisineNameError) {
-  // 	//   setState({
-  // 	//     cuisineNameError,
-  // 	//   });
-  // 	//   return false;
-  // 	// }
-  // 	return true;
-  // };
   useEffect(() => {
     const dashboard = async () => {
       selectRestaurant(props.restaurantId);
@@ -65,30 +41,23 @@ const AddAddonCategoryForm = (props) => {
         });
         console.log("Temp", temp);
         setCateogryData(temp);
-        // selectCategory(cateogryData[responseData.addOns[0].]);
-      } catch (err) {
-        // console.log("err", err);
-      }
+      } catch (err) {}
     };
     if (token && userId) dashboard();
   }, [token, userId, sendRequest]);
 
   const handleChangeAddonItemName = (e) => {
     setaddOnItemName(e.target.value);
-    // cuisineNameError: "",
   };
   const handleChangeAddonPrice = (e) => {
     setAddonPrice(e.target.value);
-    // cuisineNameError: "",
   };
   const handleAddAddonItemName = async () => {
-    // const isValid = validate();
     let urlToAddAndEdit = "/add-addons-items";
     if (editing) urlToAddAndEdit = "/edit-addon-item";
     if (true) {
       try {
         const responseData = await sendRequest(
-          // `${process.env.REACT_APP_BACKEND_URL}/add-addons-items`,
           `${process.env.REACT_APP_BACKEND_URL}${urlToAddAndEdit}`,
           "POST",
           {
@@ -105,10 +74,7 @@ const AddAddonCategoryForm = (props) => {
         );
         console.log("responseData", responseData);
         cancelEditing();
-        // setData(responseData);
-      } catch (err) {
-        // console.log("err", err);
-      }
+      } catch (err) {}
       setAddonPrice("");
       setaddOnItemName("");
       setaddOnItemNameError(false);
@@ -136,7 +102,6 @@ const AddAddonCategoryForm = (props) => {
       console.log("responseData", responseData);
       setAddonPrice(responseData.editingAddOn.price);
       setaddOnItemName(responseData.editingAddOn.name);
-      // handleRestaurantSelect(colourOptions[restaurant]);
     } catch (err) {
       console.log("err", err);
     }
@@ -158,9 +123,7 @@ const AddAddonCategoryForm = (props) => {
         })
       );
       handleCategorySelect(cateogryData[category]);
-    } catch (err) {
-      // console.log("err", err);
-    }
+    } catch (err) {}
   };
 
   const handleRestaurantSelect = async (e) => {
@@ -186,10 +149,7 @@ const AddAddonCategoryForm = (props) => {
       });
       console.log("Temp", temp);
       setCateogryData(temp);
-      // selectCategory(cateogryData[responseData.addOns[0].]);
-    } catch (err) {
-      // console.log("err", err);
-    }
+    } catch (err) {}
   };
 
   const handleCategorySelect = async (e) => {
@@ -208,16 +168,9 @@ const AddAddonCategoryForm = (props) => {
           addOn: e.value,
         })
       );
-      // console.log("responseData", responseData.addOns);
-      // const temp = responseData.addOns.map((i, index) => {
-      // 	return { index, value: i._id, label: i.addOnName };
-      // });
-      // setCateogryData(temp);
       console.log("responseData", responseData);
       setAddOnData(responseData.existingAddOn.items);
-    } catch (err) {
-      // console.log("err", err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {
@@ -236,14 +189,11 @@ const AddAddonCategoryForm = (props) => {
           })
         );
         console.log("responseData", responseData);
-        // setData(responseData.allRestaurants);
         const temp = responseData.allRestaurants.map((i, index) => {
           return { index, value: i.restaurant, label: i.name };
         });
         setColourOptions(temp);
-      } catch (err) {
-        // console.log("err", err);
-      }
+      } catch (err) {}
     };
     if (token && userId) dashboard();
   }, [token, userId, sendRequest]);
@@ -258,22 +208,10 @@ const AddAddonCategoryForm = (props) => {
   if (!isLoading)
     content = (
       <div className="row">
-        {/* <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
-          Add Addon Item
-        </div> */}
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <div className="row col-12">
             <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div className="row">
-                {/* <div class="form-group col">
-                  <label for="exampleInputEmail1">Select Restaurant</label>
-                  <Select
-                    defaultValue={colourOptions[restaurant]}
-                    options={colourOptions}
-                    formatGroupLabel={formatGroupLabel}
-                    onChange={handleRestaurantSelect}
-                  />
-                </div> */}
                 <div class="form-group col">
                   <label for="exampleInputEmail1">Select Addon Category</label>
                   <Select
@@ -289,8 +227,6 @@ const AddAddonCategoryForm = (props) => {
                 <input
                   type="number"
                   class="form-control mr-4"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
                   placeholder="Enter Addon Price"
                   onChange={handleChangeAddonPrice}
                   value={addonPrice}
@@ -302,8 +238,6 @@ const AddAddonCategoryForm = (props) => {
                   <input
                     type="text"
                     class="form-control mr-4"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
                     placeholder="Enter Addon Item Name"
                     onChange={handleChangeAddonItemName}
                     value={addOnItemName}
@@ -335,9 +269,6 @@ const AddAddonCategoryForm = (props) => {
                   </div>
                 ) : null}
               </div>
-              {/* <button type="submit" class="btn btn-primary mt-3">
-                Add Item
-              </button> */}
             </form>
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
@@ -348,7 +279,6 @@ const AddAddonCategoryForm = (props) => {
                 <table class="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
-                      {/* <th className="orderTableTH">Restaurant</th> */}
                       <th className="orderTableTH">Addon Category</th>
                       <th className="orderTableTH">Addon Item Name</th>
                       <th className="orderTableTH">Addon Price</th>
@@ -359,27 +289,13 @@ const AddAddonCategoryForm = (props) => {
                     {addOnData.map((item) => {
                       return (
                         <tr>
-                          {/* <td className="orderTableTD">
-                            {colourOptions[restaurant].label}
-                          </td> */}
                           <td className="orderTableTD">
                             {cateogryData[category].label}
                           </td>
                           <td className="orderTableTD">{item.name}</td>
                           <td className="orderTableTD">{item.price}</td>
-                          {/* <td className="orderTableTD">
-                            <label
-                              className="noMargin deleteOrderStatusButton"
-                              onClick={() =>
-                                handleDeleteAddonItemName(item._id)
-                              }
-                            >
-                              Delete
-                            </label>
-                          </td> */}
                           <div className="d-flex align-items-center justify-content-center">
                             <i
-                              // onClick={() => props.editRestaurant(item._id)}
                               style={{ cursor: "pointer" }}
                               class="far fa-edit mr-3 editButtonIcon"
                               onClick={() => handleEditViewAddonItem(item._id)}
