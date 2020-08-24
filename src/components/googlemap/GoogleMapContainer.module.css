@@ -1,0 +1,35 @@
+/* .GoogleMapContainer{
+    width: 10px;
+    height: 10px;
+} */
+
+.DeliverButton {
+  background-color: #b40008;
+  width: 90%;
+  border-radius: 5px;
+  font-size: 110%;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  padding: 0.6rem 0;
+  cursor: pointer;
+  margin: 0 auto;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+.DeliverButton:hover {
+  background-color: #702a2e;
+}
+
+.ModalContainer {
+  height: 540px;
+  width: 650px;
+  position: relative;
+}
+
+@media (max-width: 660px) {
+  .ModalContainer {
+    height: 100%;
+    width: 100%;
+  }
+}
