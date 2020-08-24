@@ -1,42 +1,19 @@
-// import { ImageUpload } from "..";
 import React, { useState, useEffect } from "react";
-// import { set } from "lodash";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import useForm from "./useform";
 import validate from "./validate";
-
-// let itemIndex = 0;
-// let AddOrderStatusForm;
 const AddOrderStatusForm = (props) => {
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [data, setData] = useState([]);
   const [orderStatusName, setOrderStatusName] = useState("");
-  // const [orderStatusNameError, setOrderStatusNameError] = useState("");
   const [isCompletedStatus, setIsCompletedStatus] = useState(false);
   const [isCancelledStatus, setIsCancelledStatus] = useState(false);
   const [forwardStatus, setForwardStatus] = useState();
-  // const validate = () => {
-  //   // const { orderStatusName } = state;
-  //   // let { orderStatusNameError } = state;
-  //   // if (!orderStatusName) {
-  //   // 	orderStatusNameError = "Please Enter Order Status Name";
-  //   // } else {
-  //   // 	orderStatusNameError = "";
-  //   // }
-  //   // if (orderStatusNameError) {
-  //   // 	setState({
-  //   // 		orderStatusNameError,
-  //   // 	});
-  //   // 	return false;
-  //   // }
-  //   return true;
-  // };
 
   const handleChangeOrderStatusName = (e) => {
     setOrderStatusName(e.target.value);
-    // orderStatusNameError: "",
   };
   const handleCompletedMarkCheck = (e) => {
     setIsCompletedStatus(e.target.checked);
@@ -65,9 +42,7 @@ const AddOrderStatusForm = (props) => {
       );
       console.log("responseData", responseData);
       setData(responseData.orderStatuses);
-    } catch (err) {
-      // console.log("err", err);
-    }
+    } catch (err) {}
     setOrderStatusName("");
     setIsCompletedStatus(false);
   };
@@ -87,9 +62,7 @@ const AddOrderStatusForm = (props) => {
       );
       console.log("responseData", responseData);
       setData(responseData.orderStatuses);
-    } catch (err) {
-      // console.log("err", err);
-    }
+    } catch (err) {}
   };
   useEffect(() => {
     const dashboard = async () => {
@@ -108,9 +81,7 @@ const AddOrderStatusForm = (props) => {
         );
         console.log("responseData", responseData);
         setData(responseData.orderStatuses);
-      } catch (err) {
-        // console.log("err", err);
-      }
+      } catch (err) {}
     };
     if (token && userId) dashboard();
   }, [token, userId, sendRequest]);
@@ -162,17 +133,6 @@ const AddOrderStatusForm = (props) => {
                     {errors.orderStatusNameError}
                   </div>
                 ) : null}
-                {/* {orderStatusNameError ? (
-                  <div
-                    style={{
-                      textAlign: "center",
-                      color: "red",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {orderStatusNameError}
-                  </div>
-                ) : null} */}
                 <div class="form-check mt-4">
                   <input
                     type="checkbox"
@@ -210,39 +170,12 @@ const AddOrderStatusForm = (props) => {
                   </label>
                 </div>
               </div>
-              {/* <button
-                type="submit"
-                class="btn btn-primary mt-3"
-                // onClick={handleSubmit}
-              >
-                Add Item
-              </button> */}
             </form>
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
                 <label for="exampleInputEmail1">
                   <strong>Active Order Status</strong>
                 </label>
-                {/* <ul>
-									{data.map((item, index) => {
-										return item.active === false ? (
-											<li key={index} className='mb-2'>
-												<div className='d-flex align-items-center'>
-													<label className='mr-4 noMargin'>
-														{item.orderstatus}
-													</label>
-													<label
-														className='noMargin deleteOrderStatusButton'
-														onClick={() =>
-															handleDeleteOrderStatusName(item._id)
-														}>
-														Delete
-													</label>
-												</div>
-											</li>
-										) : null;
-									})}
-								</ul> */}
                 <table class="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
@@ -257,7 +190,6 @@ const AddOrderStatusForm = (props) => {
                           <td className="orderTableTD">{item.orderstatus}</td>
                           <div className="d-flex align-items-center justify-content-center">
                             <i
-                              //   onClick={() => props.editRestaurant(item._id)}
                               style={{ cursor: "pointer" }}
                               class="far fa-edit mr-3 editButtonIcon"
                             ></i>
@@ -280,27 +212,6 @@ const AddOrderStatusForm = (props) => {
                 <label for="exampleInputEmail1">
                   <strong>Completed Order Status</strong>
                 </label>
-                {/* <ul>
-                  {data.map((item, index) => {
-                    return item.active === true ? (
-                      <li key={item._id} className="mb-2">
-                        <div className="d-flex align-items-center">
-                          <label className="mr-4 noMargin">
-                            {item.orderstatus}
-                          </label>
-                          <label
-                            className="noMargin deleteOrderStatusButton"
-                            onClick={() =>
-                              handleDeleteOrderStatusName(item._id)
-                            }
-                          >
-                            Delete
-                          </label>
-                        </div>
-                      </li>
-                    ) : null;
-                  })}
-                </ul> */}
                 <table class="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
@@ -315,11 +226,7 @@ const AddOrderStatusForm = (props) => {
                           <td className="orderTableTD">{item.orderstatus}</td>
                           <td className="orderTableTD">
                             <div className="d-flex align-items-center justify-content-center">
-                              <i
-                                //   onClick={() => props.editRestaurant(item._id)}
-                                style={{ cursor: "pointer" }}
-                                class="far fa-edit mr-3 editButtonIcon"
-                              ></i>
+                              <i class="far fa-edit mr-3 editButtonIcon"></i>
                               <label
                                 className="noMargin deleteOrderStatusButton"
                                 onClick={() =>
@@ -340,27 +247,6 @@ const AddOrderStatusForm = (props) => {
                 <label for="exampleInputEmail1">
                   <strong>Cancelled Order Status</strong>
                 </label>
-                {/* <ul>
-                  {data.map((item, index) => {
-                    return item.active === true ? (
-                      <li key={item._id} className="mb-2">
-                        <div className="d-flex align-items-center">
-                          <label className="mr-4 noMargin">
-                            {item.orderstatus}
-                          </label>
-                          <label
-                            className="noMargin deleteOrderStatusButton"
-                            onClick={() =>
-                              handleDeleteOrderStatusName(item._id)
-                            }
-                          >
-                            Delete
-                          </label>
-                        </div>
-                      </li>
-                    ) : null;
-                  })}
-                </ul> */}
                 <table class="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
@@ -376,7 +262,6 @@ const AddOrderStatusForm = (props) => {
                           <td className="orderTableTD">
                             <div className="d-flex align-items-center justify-content-center">
                               <i
-                                //   onClick={() => props.editRestaurant(item._id)}
                                 style={{ cursor: "pointer" }}
                                 class="far fa-edit mr-3 editButtonIcon"
                               ></i>
