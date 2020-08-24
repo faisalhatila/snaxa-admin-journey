@@ -1,9 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useReducer } from "react";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import Input from "../../UI/Input";
+// import { useDispatch } from "react-redux";
 const animatedComponents = makeAnimated();
+const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
+const formReducer = (state, action) => {
+  if (action.type === FORM_INPUT_UPDATE) {
+    const updatedValues = {
+      ...state.inputValues,
+      [action.input]: action.value,
+    };
+    const updateValidities = {
+      ...state.inputValidities,
+      [action.input]: action.isValid,
+    };
+    let updatedFormIsValid = true;
+    for (const key in updateValidities) {
+      updatedFormIsValid = updatedFormIsValid && updateValidities[key];
+    }
+    return {
+      formIsValid: updatedFormIsValid,
+      inputValidities: updateValidities,
+      inputValues: updatedValues,
+    };
+  }
+  return state;
+};
 const AddCategoryForm = (props) => {
   const [categoryName, setCategoryName] = useState("");
   const [restaurant, setRestaurant] = useState("");
@@ -17,7 +42,32 @@ const AddCategoryForm = (props) => {
   const [editing, setEditing] = useState(false);
   const [colourOptions, setColourOptions] = useState([]);
   const [restaurantID, setRestaurantID] = useState();
+  // const dispatch = useDispatch();
+  const [formState, dispatchFormState] = useReducer(formReducer, {
+    inputValues: {
+      categoryName: "",
+      priority: "",
+    },
+    inputValidities: {
+      categoryName: false,
+      priority: false,
+    },
+    formIsValid: false,
+  });
 
+  // const { categoryName, priority } = formState.inputValues;
+
+  const inputChangeHandler = useCallback(
+    (inputIdentifier, inputValue, inputValidity) => {
+      dispatchFormState({
+        type: FORM_INPUT_UPDATE,
+        value: inputValue,
+        isValid: inputValidity,
+        input: inputIdentifier,
+      });
+    },
+    [dispatchFormState]
+  );
   useEffect(() => {
     const dashboard = async () => {
       setEditing(false);
@@ -177,8 +227,7 @@ const AddCategoryForm = (props) => {
       <div className="row">
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
-            <div className="row">
-              <div class="form-group col-12">
+            {/* <div class="form-group col-12">
                 <label>Category Name</label>
                 <input
                   type="text"
@@ -187,9 +236,19 @@ const AddCategoryForm = (props) => {
                   onChange={handleChangecategoryName}
                   value={categoryName}
                 />
-              </div>
-            </div>
-            <div class="form-group">
+              </div> */}
+            <Input
+              id="categoryName"
+              label="Category Name"
+              type="text"
+              className="form-control"
+              placeholder="Enter Category Name"
+              errorText="Please enter a category name!"
+              onInputChange={inputChangeHandler}
+              initialValue=""
+              required
+            />
+            {/* <div class="form-group">
               <label>Priority</label>
               <input
                 type="text"
@@ -198,7 +257,18 @@ const AddCategoryForm = (props) => {
                 onChange={handleChangeItemPriority}
                 value={itemPriority}
               />
-            </div>
+            </div> */}
+            <Input
+              id="priority"
+              label="Priority"
+              type="text"
+              className="form-control"
+              placeholder="Enter Priority"
+              errorText="Please enter a priority!"
+              onInputChange={inputChangeHandler}
+              initialValue=""
+              required
+            />
             <div class="custom-control custom-switch">
               <input
                 type="checkbox"
