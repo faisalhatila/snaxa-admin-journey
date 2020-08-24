@@ -1,4 +1,3 @@
-// import { ImageUpload } from "..";
 import React, { useState, useEffect } from "react";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
@@ -14,13 +13,11 @@ import {
   RestaurantContactTable,
 } from "..";
 const animatedComponents = makeAnimated();
-// let AddRestaurantForm;
 const AddRestaurantForm = (props) => {
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [categoryName, setCategoryName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
-  // const [itemPriority, setItemPriority] = useState("");
   const [itemStatus, setItemStatus] = useState(false);
   const [approveStatus, setApproveStatus] = useState(false);
   const [fName, setFName] = useState("");
@@ -32,9 +29,6 @@ const AddRestaurantForm = (props) => {
   const [storeWeb, setStoreWeb] = useState("");
   const [commission, setCommision] = useState(0);
   const [colourOptions, setColourOptions] = useState([]);
-  // const [categoryNameError, setCategoryNameError] = useState("");
-  // const [itemDescriptionError, setItemDescriptionError] = useState("");
-  // const [itemPriorityError, setItemPriorityError] = useState("");
   const [data, setData] = useState();
   const [inputs, setInputs] = useState({});
   const [cuisines, setCuisines] = useState([]);
@@ -392,8 +386,6 @@ const AddRestaurantForm = (props) => {
                   <input
                     type="text"
                     class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
                     placeholder="Enter Item Name"
                     onChange={handleChangecategoryName}
                     value={categoryName}
@@ -497,7 +489,6 @@ const AddRestaurantForm = (props) => {
                   </label>
                   <textarea
                     class="form-control"
-                    id="exampleFormControlTextarea1"
                     rows="3"
                     placeholder="Enter Item Description"
                     value={itemDescription}
@@ -544,7 +535,6 @@ const AddRestaurantForm = (props) => {
                   <input
                     type="checkbox"
                     class="custom-control-input"
-                    id="customSwitch2"
                     onChange={handleChangeItemApproveStatus}
                     checked={approveStatus}
                   />
@@ -556,7 +546,6 @@ const AddRestaurantForm = (props) => {
                   <input
                     type="checkbox"
                     class="custom-control-input"
-                    id="customSwitch1"
                     onChange={handleChangeItemStatus}
                     checked={itemStatus}
                   />
@@ -594,7 +583,6 @@ const AddRestaurantForm = (props) => {
                             <input
                               // disabled={!days.isChecked}
                               type="time"
-                              // id="appt"
                               value={days.startTime}
                               // placeholder='20:20'
                               onChange={(e) => startTimeHandler(days.id, e)}
@@ -603,7 +591,6 @@ const AddRestaurantForm = (props) => {
                           <td>
                             <input
                               type="time"
-                              // id="appt2"
                               value={days.endTime}
                               onChange={(e) => endTimeHandler(days.id, e)}
                             />
