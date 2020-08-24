@@ -10,7 +10,8 @@ const AddOrderStatusForm = (props) => {
   const [orderStatusName, setOrderStatusName] = useState("");
   const [isCompletedStatus, setIsCompletedStatus] = useState(false);
   const [isCancelledStatus, setIsCancelledStatus] = useState(false);
-  const [forwardStatus, setForwardStatus] = useState();
+  const [forwardStatus, setForwardStatus] = useState(false);
+  const [dispatchedStatus, setDispatchedStatus] = useState(false);
 
   const handleChangeOrderStatusName = (e) => {
     setOrderStatusName(e.target.value);
@@ -18,10 +19,26 @@ const AddOrderStatusForm = (props) => {
   const handleCompletedMarkCheck = (e) => {
     setIsCompletedStatus(e.target.checked);
     setIsCancelledStatus(false);
+    setForwardStatus(false);
+    setDispatchedStatus(false);
   };
   const handleCencelledMarkCheck = (e) => {
     setIsCompletedStatus(false);
     setIsCancelledStatus(e.target.checked);
+    setForwardStatus(false);
+    setDispatchedStatus(false);
+  };
+  const handleForwardMarkCheck = (e) => {
+    setIsCompletedStatus(false);
+    setIsCancelledStatus(false);
+    setForwardStatus(e.target.checked);
+    setDispatchedStatus(false);
+  };
+  const handleDispatchedMarkCheck = (e) => {
+    setIsCompletedStatus(false);
+    setIsCancelledStatus(false);
+    setForwardStatus(false);
+    setDispatchedStatus(e.target.checked);
   };
   const handleAddOrderStatusName = async (e) => {
     e.preventDefault();
@@ -111,8 +128,6 @@ const AddOrderStatusForm = (props) => {
                     name="orderstatus"
                     type="text"
                     class="form-control mr-4"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
                     placeholder="Enter Order Status Name"
                   />
                   <button
@@ -137,11 +152,11 @@ const AddOrderStatusForm = (props) => {
                   <input
                     type="checkbox"
                     class="form-check-input"
-                    id="exampleCheck1"
+                    id="completedOrder"
                     onChange={handleCompletedMarkCheck}
                     checked={isCompletedStatus}
                   />
-                  <label class="form-check-label" for="exampleCheck1">
+                  <label class="form-check-label" for="completedOrder">
                     Will it mark an order as completed order
                   </label>
                 </div>
@@ -149,11 +164,11 @@ const AddOrderStatusForm = (props) => {
                   <input
                     type="checkbox"
                     class="form-check-input"
-                    id="exampleCheck2"
+                    id="cancelledOrderStatus"
                     onChange={handleCencelledMarkCheck}
                     checked={isCancelledStatus}
                   />
-                  <label class="form-check-label" for="exampleCheck2">
+                  <label class="form-check-label" for="cancelledOrderStatus">
                     Will it mark an order as cancelled order
                   </label>
                 </div>
@@ -161,12 +176,24 @@ const AddOrderStatusForm = (props) => {
                   <input
                     type="checkbox"
                     class="form-check-input"
-                    id="exampleCheck2"
-                    onChange={setForwardStatus}
+                    id="forwardOrderStatus"
+                    onChange={handleForwardMarkCheck}
                     checked={forwardStatus}
                   />
-                  <label class="form-check-label" for="exampleCheck2">
+                  <label class="form-check-label" for="forwardOrderStatus">
                     Will it mark an order as forward order to restaurant
+                  </label>
+                </div>
+                <div class="form-check mt-4">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="dispatchedOrderStatus"
+                    onChange={handleDispatchedMarkCheck}
+                    checked={dispatchedStatus}
+                  />
+                  <label class="form-check-label" for="dispatchedOrderStatus">
+                    Will it mark an order as dispatched order
                   </label>
                 </div>
               </div>
