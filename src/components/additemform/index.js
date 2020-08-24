@@ -29,9 +29,6 @@ const AddItemForm = (props) => {
 
   useEffect(() => {
     const dashboard = async () => {
-      // console.log(event);
-      // setRestaurant(event.index);
-      // setItems([]);
       setCategory();
       handleCancelEdit();
       setEditing(false);
@@ -148,38 +145,7 @@ const AddItemForm = (props) => {
   const handleChangePriceSelectStatus = async (event) => {
     setPriceoOnSelect(event.target.checked);
   };
-  // const handleSelectRestaurant = async (event) => {
-  //   // console.log("################################################");
-  //   // console.log(event);
-  //   // console.log("################################################");
-  //   setRestaurant(event.index);
-  //   // setItems([]);
-  //   setCategory();
-  //   handleCancelEdit();
-  //   setEditing(false);
-  //   try {
-  //     const responseData = await sendRequest(
-  //       `${process.env.REACT_APP_BACKEND_URL}/get-addons-categories`,
-  //       "POST",
-  //       {
-  //         "Content-Type": "application/json",
-  //         Authorization: "Bearer " + token,
-  //       },
-  //       JSON.stringify({
-  //         userId,
-  //         restaurantId: event.value,
-  //       })
-  //     );
-  //     console.log("responseData", responseData);
-  //     setDataAddCat(responseData);
-  //     const temp = responseData.addons.map((i, index) => {
-  //       return { index, value: i._id, label: i.addOnName };
-  //     });
-  //     // setColourOptions(temp);
-  //   } catch (err) {
-  //     console.log("err", err);
-  //   }
-  // };
+
   const handleSelectCategory = async (event) => {
     setCategory(event.target.value);
     handleCancelEdit();
@@ -271,9 +237,6 @@ const AddItemForm = (props) => {
   if (!isLoading && data)
     content = (
       <div className="row">
-        {/* <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
-          Item Details
-        </div> */}
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
             <div className="row">
@@ -282,22 +245,11 @@ const AddItemForm = (props) => {
                 <input
                   type="text"
                   class="form-control"
-                  // id="exampleInputEmail1"
-                  // aria-describedby="emailHelp"
                   placeholder="Enter Item Name"
                   onChange={handleChangecategoryName}
                   value={categoryName}
                 />
               </div>
-              {/* <div class="form-group col-12 col-md-6 col-lg-6">
-                <label for="exampleFormControlSelect1">Select Restaurant</label>
-                <Select
-                  defaultValue={colourOptions[restaurant]}
-                  options={colourOptions}
-                  formatGroupLabel={formatGroupLabel}
-                  onChange={handleSelectRestaurant}
-                />
-              </div> */}
             </div>
             <div className="row">
               <div class="form-group col-12 col-md-6 col-lg-6">
@@ -317,20 +269,12 @@ const AddItemForm = (props) => {
                       <option value={i._id}>{i.categoryName}</option>
                     ))}
                 </select>
-                {/* <Select
-                  defaultValue={dataAddCat && dataAddCat[category]}
-                  options={cateogryData}
-                  formatGroupLabel={formatGroupLabel}
-                  onChange={handleSelectCategory}
-                /> */}
               </div>
               <div class="form-group col-12 col-md-6 col-lg-6">
                 <label for="exampleInputEmail1">Description</label>
                 <input
                   type="text"
                   class="form-control"
-                  // id="exampleInputEmail1"
-                  // aria-describedby="emailHelp"
                   placeholder="Enter Item Name"
                   onChange={handleChangeItemDescription}
                   value={itemDescription}
@@ -340,22 +284,6 @@ const AddItemForm = (props) => {
             <div className="row">
               <div class="form-group col-12">
                 <label for="exampleInputEmail1">Select Add Ons</label>
-                {/* <select
-                  class="form-control"
-                  id="exampleFormControlSelect1"
-                  // onChange={handleSelectCategory}
-                  onChange={(e) => setAddOnList(e)}
-                  value={addOnList}
-                >
-                  <option disabled selected>
-                    Select a Category
-                  </option>
-                  {dataAddCat &&
-                    dataAddCat.addons &&
-                    dataAddCat.addons.map((i) => (
-                      <option value={i._id}>{i.addOnName}</option>
-                    ))}
-                </select> */}
                 <Select
                   closeMenuOnSelect={false}
                   components={animatedComponents}
@@ -397,15 +325,7 @@ const AddItemForm = (props) => {
               {!priceoOnSelect && (
                 <div class="form-group col-12 col-md-6 col-lg-6">
                   <label for="exampleInputPrice">Discount Price</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    // id="exampleInputPrice"
-                    // aria-describedby="emailHelp"
-                    placeholder="Price"
-                    // onChange={setDiscountPrice}
-                    // value={discountPrice}
-                  />
+                  <input type="text" class="form-control" placeholder="Price" />
                 </div>
               )}
             </div>
