@@ -3,6 +3,7 @@ import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import GoogleMapContainer from "../googlemap";
 import {
   AddCategoryForm,
   AddItemFrom,
@@ -556,7 +557,7 @@ const AddRestaurantForm = (props) => {
               </div>
               <div
                 className="col-12 col-md-6 col-lg-6"
-                style={{ overflowX: "auto" }}
+                // style={{ overflowX: "auto" }}
               >
                 <table class="table table-hover">
                   <thead>
@@ -600,6 +601,9 @@ const AddRestaurantForm = (props) => {
                     })}
                   </tbody>
                 </table>
+                <div className="googleMap">
+                  <GoogleMapContainer />
+                </div>
               </div>
             </div>
 
