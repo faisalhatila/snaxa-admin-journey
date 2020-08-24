@@ -618,7 +618,7 @@ const AddRestaurantForm = (props) => {
               type="button"
               class="btn btn-primary mt-3 mr-4"
               onClick={props.goBack}
-              style={{ backgroundColor: "green", border: "green" }}
+              style={{ backgroundColor: "#ed1b24", border: "#ed1b24" }}
             >
               Back
             </button>
@@ -626,6 +626,7 @@ const AddRestaurantForm = (props) => {
               type="submit"
               class="btn btn-primary mt-3"
               onClick={handleSubmit}
+              style={{ backgroundColor: "#b40008", border: "none" }}
             >
               Submit
             </button>

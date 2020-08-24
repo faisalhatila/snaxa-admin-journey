@@ -286,6 +286,7 @@ const AddCategoryForm = (props) => {
               type="submit"
               class="btn btn-primary mt-3"
               onClick={handleSubmit}
+              style={{ backgroundColor: "#b40008", border: "none" }}
             >
               {editing ? "Edit Item" : "Add Item"}
             </button>
