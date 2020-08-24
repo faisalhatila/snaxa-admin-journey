@@ -4,6 +4,7 @@ import { useHttpClient } from "./../../shared/hooks/http-hook";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import GoogleMapContainer from "../googlemap";
+import AutoComplete from "../googlemap/autocomplete";
 import {
   AddCategoryForm,
   AddItemFrom,
@@ -602,6 +603,12 @@ const AddRestaurantForm = (props) => {
                   </tbody>
                 </table>
                 <div className="googleMap">
+                  <AutoComplete
+                    placeholder="Search for area, street name, landmark..."
+                    onClick={() => {}}
+                    setLatLng={() => {}}
+                    map
+                  />
                   <GoogleMapContainer />
                 </div>
               </div>

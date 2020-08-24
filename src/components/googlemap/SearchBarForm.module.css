@@ -1,0 +1,116 @@
+.formContainer {
+  max-width: 490px;
+  margin: 0.5rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.inputContainer {
+  background-color: white;
+  /* width: 75%; */
+  width: 400px;
+  margin: 0 0.5rem;
+  /* margin: 0 auto; */
+  padding: 0.45rem 0.1rem;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: space-between;
+}
+.inputContainer.active {
+  border: 1px solid #ccc;
+}
+
+.inputContainer input {
+  width: 80%;
+  border: 0;
+  height: 100%;
+  color: black;
+  margin-left: 0.3rem;
+  font-weight: bold;
+}
+
+.inputContainer input::placeholder {
+  color: black;
+  font-weight: bold;
+  opacity: 1;
+}
+
+.inputContainer img {
+  width: 6%;
+  margin: 0 0.3rem;
+  cursor: pointer;
+}
+
+.arrowUp {
+  width: 0;
+  margin: 0 2rem;
+  margin-top: 10px;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #b40008;
+}
+
+.autocompleteDropdownContainer {
+  color: black;
+  position: absolute;
+  width: 400px;
+  margin: 0 0.5rem;
+  border-radius: 40px;
+  margin-top: 2px;
+  z-index: 100;
+}
+
+@media (max-width: 600px) {
+  .inputContainer {
+    width: 70%;
+    margin: 0 0.5rem;
+  }
+
+  .inputContainer input {
+    width: 70%;
+  }
+}
+
+@media (max-width: 500px) {
+  .inputContainer {
+    width: 70%;
+    margin: 0 0.3rem;
+  }
+
+  .inputContainer input {
+    width: 70%;
+  }
+}
+
+@media (max-width: 450px) {
+  .formContainer {
+    flex-flow: column;
+  }
+
+  .searchButton {
+    /* display: none; */
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+
+  .inputContainer {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .inputContainer input {
+    width: 90%;
+  }
+  .autocompleteDropdownContainer {
+    width: 90%;
+    margin: 2px 1rem 0;
+  }
+}

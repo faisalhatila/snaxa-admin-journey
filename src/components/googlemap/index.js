@@ -8,10 +8,7 @@ import React, {
 } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import Geocode from "react-geocode";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from "react-places-autocomplete";
+
 const MapContainer = (props) => {
   const [coords, setCoords] = useState({
     lat: 0,
@@ -176,9 +173,9 @@ const MapContainer = (props) => {
         />
       </div>
 
-      <InfoWindow onClose={props.onInfoWindowClose}>
-        <div>{/* <h1>{this.state.selectedPlace.name}</h1> */}</div>
-      </InfoWindow>
+      {/* <InfoWindow onClose={props.onInfoWindowClose}>
+        <div><h1>{this.state.selectedPlace.name}</h1></div>
+      </InfoWindow> */}
     </Map>
   );
 };
