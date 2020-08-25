@@ -3,6 +3,7 @@ import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import useForm from "./useform";
 import validate from "./validate";
+import Colors from "../../UI/constants/Colors";
 const AddOrderStatusForm = (props) => {
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -204,7 +205,9 @@ const AddOrderStatusForm = (props) => {
                   <strong>Active Order Status</strong>
                 </label>
                 <table class="table table-hover">
-                  <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+                  <thead
+                    style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
+                  >
                     <tr>
                       <th className="orderTableTH">Item Name</th>
                       <th className="orderTableTH">Action</th>
@@ -240,7 +243,9 @@ const AddOrderStatusForm = (props) => {
                   <strong>Completed Order Status</strong>
                 </label>
                 <table class="table table-hover">
-                  <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+                  <thead
+                    style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
+                  >
                     <tr>
                       <th className="orderTableTH">Item Name</th>
                       <th className="orderTableTH">Action</th>
@@ -275,7 +280,9 @@ const AddOrderStatusForm = (props) => {
                   <strong>Cancelled Order Status</strong>
                 </label>
                 <table class="table table-hover">
-                  <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+                  <thead
+                    style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
+                  >
                     <tr>
                       <th className="orderTableTH">Item Name</th>
                       <th className="orderTableTH">Action</th>

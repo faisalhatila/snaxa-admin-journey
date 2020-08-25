@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
+import Colors from "../../UI/constants/Colors";
 
 // let ReviewTableShort;
 const ReviewTableShort = (props) => {
@@ -122,7 +123,11 @@ const ReviewTableShort = (props) => {
         <td className="orderTableTD">Superb Restaurant</td>
         <td className="orderTableTD">
           {/* <i style={{ cursor: "pointer" }} class="far fa-edit"></i> */}
-          <label className="reviewTableViewButton mr-2" onClick={props.next}>
+          <label
+            className="reviewTableViewButton mr-2"
+            style={{ background: Colors.tableHead }}
+            onClick={props.next}
+          >
             View
           </label>
           <label className="reviewTableDeleteButton">Delete</label>
@@ -142,7 +147,7 @@ const ReviewTableShort = (props) => {
           <h3>Customers Reviews</h3>
         </div>
         <table class="table table-hover">
-          <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+          <thead style={{ backgroundColor: Colors.tableHead, color: "#fff" }}>
             <tr className="restaurantTableHeadiingRow">
               {/* <th className='orderTableTH'>ID</th> */}
               {/* <th className="orderTableTH">Restaurant Name</th>

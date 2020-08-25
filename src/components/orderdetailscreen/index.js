@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import { Link } from "react-router-dom";
+import Colors from "../../UI/constants/Colors";
 
 const OrderDetails = (props) => {
   // console.log(props.orderStatus);
@@ -132,7 +133,11 @@ const OrderDetails = (props) => {
                   <p>{singleOrder.city}</p>
                 </div>
               </div>
-              <label className="noMargin mt-5 goBackBtn" onClick={props.goBack}>
+              <label
+                style={{ backgroundColor: Colors.tableHead }}
+                className="noMargin mt-5 goBackBtn"
+                onClick={props.goBack}
+              >
                 Back
               </label>
               <Link to="/punched-orders">

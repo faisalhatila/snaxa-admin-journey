@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
+import Colors from "../../UI/constants/Colors";
 
 // let NewsletterTable;
 const NewsletterTable = (props) => {
@@ -133,7 +134,7 @@ const NewsletterTable = (props) => {
           <h3>Newsletters</h3>
         </div>
         <table class="table table-hover">
-          <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+          <thead style={{ backgroundColor: Colors.tableHead, color: "#fff" }}>
             <tr className="restaurantTableHeadiingRow">
               <th className="orderTableTH">Email</th>
             </tr>

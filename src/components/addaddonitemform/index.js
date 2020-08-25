@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import Select from "react-select";
+import Colors from "../../UI/constants/Colors";
 const AddAddonCategoryForm = (props) => {
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -277,7 +278,9 @@ const AddAddonCategoryForm = (props) => {
                 </label>
 
                 <table class="table table-hover">
-                  <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+                  <thead
+                    style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
+                  >
                     <tr>
                       <th className="orderTableTH">Addon Category</th>
                       <th className="orderTableTH">Addon Item Name</th>

@@ -1,5 +1,6 @@
 import React from "react";
 import { ReviewTableDetailRating, ReviewTableDetail } from "..";
+import Colors from "../../UI/constants/Colors";
 
 const ReviewsDetailed = (props) => {
   return (
@@ -8,7 +9,7 @@ const ReviewsDetailed = (props) => {
       <ReviewTableDetail />
       <label
         style={{
-          backgroundColor: "green",
+          backgroundColor: Colors.tableHead,
           color: "#fff",
           borderRadius: "5px",
           padding: "5px 10px",

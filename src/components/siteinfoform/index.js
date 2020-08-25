@@ -3,6 +3,7 @@ import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import useForm from "./useform";
 import validate from "./validate";
+import Colors from "../../UI/constants/Colors";
 
 const SiteinfoForm = (props) => {
   const { userId, token } = useAuth();
@@ -248,7 +249,9 @@ const SiteinfoForm = (props) => {
                   <strong>Siteinfo Table</strong>
                 </label>
                 <table class="table table-hover">
-                  <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+                  <thead
+                    style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
+                  >
                     <tr>
                       <th className="orderTableTH">Siteinfo Label</th>
                       <th className="orderTableTH">Action</th>
@@ -259,7 +262,8 @@ const SiteinfoForm = (props) => {
                       return item.active === false ? (
                         <tr>
                           <td className="orderTableTD">{item.orderstatus}</td>
-                          <div className="d-flex align-items-center justify-content-center">
+                          {/* <div className="d-flex align-items-center justify-content-center"> */}
+                          <td className="orderTableTD">
                             <i
                               style={{ cursor: "pointer" }}
                               class="far fa-edit mr-3 editButtonIcon"
@@ -272,7 +276,8 @@ const SiteinfoForm = (props) => {
                             >
                               Delete
                             </label>
-                          </div>
+                          </td>
+                          {/* </div> */}
                         </tr>
                       ) : null;
                     })}

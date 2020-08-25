@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 // import styled from "@emotion/styled";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
+import Colors from "../../UI/constants/Colors";
 // import Select from "react-select";
 // import makeAnimated from "react-select/animated";
 // const animatedComponents = makeAnimated();
@@ -291,11 +292,12 @@ const CustomerForm = (props) => {
               type="button"
               class="btn btn-primary mt-3 mr-4"
               onClick={props.goBack}
-              style={{ backgroundColor: "green", border: "green" }}
+              style={{ backgroundColor: Colors.tableHead, border: "green" }}
             >
               Back
             </button>
             <button
+              style={{ backgroundColor: Colors.accentColor, border: "green" }}
               type="submit"
               class="btn btn-primary mt-3"
               onClick={handleSubmit}

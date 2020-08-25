@@ -3,6 +3,7 @@ import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import useForm from "./useform";
 import validate from "./validate";
+import Colors from "../../UI/constants/Colors";
 const AddCuisineForm = (props) => {
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -127,7 +128,9 @@ const AddCuisineForm = (props) => {
                   <strong>Cuisines</strong>
                 </label>
                 <table class="table table-hover">
-                  <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+                  <thead
+                    style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
+                  >
                     <tr>
                       <th className="orderTableTH">Cuisine Name</th>
                       <th className="orderTableTH">Action</th>

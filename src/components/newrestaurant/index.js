@@ -126,7 +126,7 @@ const NewRestaurant = (props) => {
           <h3>New Restaurants</h3>
         </div>
         <table class="table table-hover">
-          <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+          <thead style={{ backgroundColor: "#3b3b3b", color: "#fff" }}>
             <tr className="restaurantTableHeadiingRow">
               {/* <th className='orderTableTH'>ID</th> */}
               <th className="orderTableTH">Restaurant Name</th>

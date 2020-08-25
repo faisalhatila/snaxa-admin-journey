@@ -130,7 +130,7 @@ const CustomerTable = (props) => {
           <h3>All Customers</h3>
         </div>
         <table class="table table-hover mt-3">
-          <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+          <thead style={{ backgroundColor: "#3b3b3b", color: "#fff" }}>
             <tr className="customerTableHeaderRow">
               {/* <th className="orderTableTH">ID</th> */}
               <th className="orderTableTH">First Name</th>

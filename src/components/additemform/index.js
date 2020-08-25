@@ -3,6 +3,7 @@ import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import Colors from "../../UI/constants/Colors";
 const animatedComponents = makeAnimated();
 
 const AddItemForm = (props) => {
@@ -373,9 +374,10 @@ const AddItemForm = (props) => {
             )}
           </form>
           <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
-            {" "}
             <table class="table table-hover">
-              <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+              <thead
+                style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
+              >
                 <tr>
                   <th className="orderTableTH">Item</th>
                   <th className="orderTableTH">Price</th>

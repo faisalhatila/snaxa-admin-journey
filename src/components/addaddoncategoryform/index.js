@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import Select from "react-select";
+import Colors from "../../UI/constants/Colors";
 const AddAddonCategoryForm = (props) => {
   const [addOnIsRequired, setAddOnIsRequired] = useState(false);
   const [addOnIsMultipleSelect, setAddOnIsMultipleSelect] = useState(false);
@@ -327,7 +328,9 @@ const AddAddonCategoryForm = (props) => {
                 </label>
 
                 <table className="table table-hover">
-                  <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+                  <thead
+                    style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
+                  >
                     <tr>
                       <th className="orderTableTH">Addon Category Name</th>
                       <th className="orderTableTH">Action</th>

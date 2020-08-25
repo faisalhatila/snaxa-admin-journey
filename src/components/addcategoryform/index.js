@@ -4,6 +4,7 @@ import { useHttpClient } from "./../../shared/hooks/http-hook";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import Input from "../../UI/Input";
+import Colors from "../../UI/constants/Colors";
 // import { useDispatch } from "react-redux";
 const animatedComponents = makeAnimated();
 const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
@@ -302,7 +303,9 @@ const AddCategoryForm = (props) => {
           </form>
           <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
             <table class="table table-hover">
-              <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+              <thead
+                style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
+              >
                 <tr>
                   <th className="orderTableTH">Category</th>
                   <th className="orderTableTH">Status</th>

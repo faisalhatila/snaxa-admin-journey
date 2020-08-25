@@ -3,6 +3,7 @@ import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import useForm from "./useform";
 import validate from "./validate";
+import Colors from "../../UI/constants/Colors";
 
 const PrivacyForm = (props) => {
   const { userId, token } = useAuth();
@@ -158,7 +159,9 @@ const PrivacyForm = (props) => {
                   <strong>Privacy Table</strong>
                 </label>
                 <table class="table table-hover">
-                  <thead style={{ backgroundColor: "gray", color: "#fff" }}>
+                  <thead
+                    style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
+                  >
                     <tr>
                       <th className="orderTableTH">Privacy Term</th>
                       <th className="orderTableTH">Action</th>
