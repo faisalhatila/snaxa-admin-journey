@@ -477,7 +477,7 @@ const SitemapForm = (props) => {
                     style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
                   >
                     <tr>
-                      <th className="orderTableTH">FAQ</th>
+                      <th className="orderTableTH">Sitemap</th>
                       <th className="orderTableTH">Priority</th>
                       <th className="orderTableTH">Action</th>
                     </tr>

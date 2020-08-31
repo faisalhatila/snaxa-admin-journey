@@ -257,7 +257,7 @@ const Termsandconditionsform = (props) => {
                 <table class="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
-                      <th className="orderTableTH">FAQ</th>
+                      <th className="orderTableTH">Term</th>
                       <th className="orderTableTH">Priority</th>
                       <th className="orderTableTH">Action</th>
                     </tr>

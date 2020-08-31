@@ -418,7 +418,7 @@ const SiteinfoForm = (props) => {
                     style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
                   >
                     <tr>
-                      <th className="orderTableTH">FAQ</th>
+                      <th className="orderTableTH">Site info</th>
                       <th className="orderTableTH">Priority</th>
                       <th className="orderTableTH">Action</th>
                     </tr>

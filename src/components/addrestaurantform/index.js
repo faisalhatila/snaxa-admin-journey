@@ -132,10 +132,13 @@ const AddRestaurantForm = (props) => {
     setWorkingDays((prevState) => {
       const tempObject = prevState[b];
       tempObject.isChecked = !tempObject.isChecked;
+      console.log("#######################################");
+      console.log(tempObject);
+      console.log("#######################################");
       prevState[b] = tempObject;
       return prevState;
     });
-    console.log("prevState", workingDays);
+    // console.log("prevState", workingDays);
   };
   const cuisinesArr = [];
   // const colourOptions1 = [
