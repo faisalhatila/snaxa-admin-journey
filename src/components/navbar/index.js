@@ -151,7 +151,10 @@ export default Navbar = (props) => {
                   ></i>
                   <ul
                     className="navbarItemSubmenu"
-                    style={{ boxShadow: "0px 0px 5px 2px grey" }}
+                    style={{
+                      boxShadow: "0px 0px 5px 2px grey",
+                      transform: "translate(-150px, -10px)",
+                    }}
                   >
                     {/* <li>
                       <Link to="/faqs">Faqs</Link>

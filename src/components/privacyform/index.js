@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
-import useForm from "./useform";
-import validate from "./validate";
-import Colors from "../../UI/constants/Colors";
+// import useForm from "./useform";
+// import validate from "./validate";
 
 const PrivacyForm = (props) => {
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [data, setData] = useState([]);
-  const [orderStatusName, setOrderStatusName] = useState("");
-  const [isCompletedStatus, setIsCompletedStatus] = useState(false);
-  const [isCancelledStatus, setIsCancelledStatus] = useState(false);
-  const handleChangeOrderStatusName = (e) => {
-    setOrderStatusName(e.target.value);
+  const [heading, setHeading] = useState("");
+  const [para, setPara] = useState("");
+  const [priority, setPriority] = useState();
+  const [editing, setEditing] = useState(false);
+  const [ftpDataId, setFtpDataId] = useState("");
+
+  // const [isCompletedStatus, setIsCompletedStatus] = useState(false);
+  // const [isCancelledStatus, setIsCancelledStatus] = useState(false);
+  const headingChangeHandler = (event) => {
+    setHeading(event.target.value);
   };
-  const handleCompletedMarkCheck = (e) => {
-    setIsCompletedStatus(e.target.checked);
-    setIsCancelledStatus(false);
+  const paraChangeHandler = (event) => {
+    setPara(event.target.value);
   };
-  const handleCencelledMarkCheck = (e) => {
-    setIsCompletedStatus(false);
-    setIsCancelledStatus(e.target.checked);
+  const priorityChangeHandler = (event) => {
+    const prty = parseInt(event.target.value);
+    setPriority(prty);
   };
-  const handleAddOrderStatusName = async (e) => {
+  const handleAddPrivacy = async (e) => {
     e.preventDefault();
-    handleSubmit();
     try {
       const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/add-order-status`,
+        `${process.env.REACT_APP_BACKEND_URL}/add-ftp`,
         "POST",
         {
           "Content-Type": "application/json",
@@ -36,20 +38,23 @@ const PrivacyForm = (props) => {
         },
         JSON.stringify({
           userId,
-          orderStatus: orderStatusName,
-          active: isCompletedStatus,
+          heading: heading,
+          para: para,
+          type: "p",
+          priority: priority,
         })
       );
       console.log("responseData", responseData);
-      setData(responseData.orderStatuses);
+      // setData(responseData.existingFtps);
+      fetchPrivacy();
     } catch (err) {}
-    setOrderStatusName("");
-    setIsCompletedStatus(false);
+    // setIsCompletedStatus(false);
   };
-  const handleDeleteOrderStatusName = async (itemIndex) => {
+  const handleViewEditPrivacy = async (id) => {
+    setEditing(true);
     try {
       const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/delete-order-status`,
+        `${process.env.REACT_APP_BACKEND_URL}/view-edit-ftp`,
         "POST",
         {
           "Content-Type": "application/json",
@@ -57,11 +62,92 @@ const PrivacyForm = (props) => {
         },
         JSON.stringify({
           userId,
-          orderStatus: itemIndex,
+          ftpId: id,
         })
       );
       console.log("responseData", responseData);
-      setData(responseData.orderStatuses);
+      // setCategoryName(responseData.existingCategories.categoryName);
+      // setItemPriority(responseData.existingCategories.priority);
+      // setItemStatus(responseData.existingCategories.status);
+      // setCategoryId(responseData.existingCategories._id);
+      setHeading(responseData.editInfo.heading);
+      setPara(responseData.editInfo.para);
+      setPriority(responseData.editInfo.priority);
+      setFtpDataId(responseData.editInfo._id);
+    } catch (err) {}
+  };
+  const handleEditPrivacy = async (e) => {
+    e.preventDefault();
+    try {
+      const responseData = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/edit-ftp`,
+        "POST",
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        JSON.stringify({
+          userId,
+          ftpId: ftpDataId,
+          heading: heading,
+          para: para,
+          type: "p",
+          priority: priority,
+        })
+      );
+      console.log("responseData", responseData);
+      // setData(responseData.existingFtps);
+      fetchPrivacy();
+    } catch (err) {}
+    // setIsCompletedStatus(false);
+  };
+  const handleCancelEdit = () => {
+    setHeading("");
+    setPriority("");
+    setPara(true);
+    setFtpDataId("");
+    setEditing(false);
+    fetchPrivacy();
+  };
+  const handleDeletePrivacy = async (itemIndex) => {
+    try {
+      const responseData = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/delete-ftp`,
+        "POST",
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        JSON.stringify({
+          ftpId: itemIndex,
+          userId,
+          // orderStatus: itemIndex,
+        })
+      );
+      console.log("responseData", responseData);
+      // setData(responseData.orderStatuses);
+      fetchPrivacy();
+    } catch (err) {}
+  };
+  const fetchPrivacy = async () => {
+    console.log("Dashboard");
+    try {
+      const responseData = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/view-ftps`,
+        "POST",
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        JSON.stringify({
+          userId,
+          type: "p",
+        })
+      );
+      console.log("#########################################");
+      console.log("responseData", responseData.existingFtps);
+      console.log("#########################################");
+      setData(responseData.existingFtps);
     } catch (err) {}
   };
   useEffect(() => {
@@ -69,7 +155,7 @@ const PrivacyForm = (props) => {
       console.log("Dashboard");
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/get-order-status`,
+          `${process.env.REACT_APP_BACKEND_URL}/view-ftps`,
           "POST",
           {
             "Content-Type": "application/json",
@@ -77,21 +163,22 @@ const PrivacyForm = (props) => {
           },
           JSON.stringify({
             userId,
+            type: "p",
           })
         );
         console.log("responseData", responseData);
-        setData(responseData.orderStatuses);
+        setData(responseData.existingFtps);
       } catch (err) {}
     };
     if (token && userId) dashboard();
   }, [token, userId, sendRequest]);
-  const { handleChange, handleSubmit, values, errors } = useForm(
-    submit,
-    validate
-  );
-  function submit() {
-    console.log("success");
-  }
+  //   const { handleChange, handleSubmit, values, errors } = useForm(
+  //     submit,
+  //     validate
+  //   );
+  //   function submit() {
+  //     console.log("success");
+  //   }
   let content;
   if (!isLoading)
     content = (
@@ -101,96 +188,108 @@ const PrivacyForm = (props) => {
         </div>
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <div className="row col-12">
-            <form className="col-12  col-md-6 col-lg-6 updateVendorForm">
+            <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
-                <label for="exampleInputEmail1">Privacy Title</label>
+                <label for="exampleInputEmail1">Heading</label>
                 <div className="d-flex align-items-center">
                   <input
-                    onChange={handleChange}
-                    value={values.orderStatusName}
+                    value={heading}
+                    onChange={headingChangeHandler}
                     name="orderstatus"
                     type="text"
                     class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter Privacy Term"
+                    placeholder="Enter Question"
                   />
-                  {/* <button
-                    type="submit"
-                    className="addOrderStatusButton"
-                    onClick={handleAddOrderStatusName}
-                  >
-                    Add
-                  </button> */}
                 </div>
-                {/* {errors.orderStatusNameError ? (
-                  <div
-                    style={{
-                      color: "red",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {errors.orderStatusNameError}
-                  </div>
-                ) : null} */}
               </div>
               <div class="form-group">
-                <label for="exampleFormControlTextarea1">
-                  Privacy Description
-                </label>
+                <label for="exampleFormControlTextarea1">Answer</label>
                 <textarea
                   class="form-control"
-                  id="exampleFormControlTextarea1"
                   rows="5"
+                  value={para}
+                  onChange={paraChangeHandler}
                   // style={{ resize: "none" }}
                 ></textarea>
               </div>
-              <button
-                type="submit"
-                className="addOrderStatusButton"
-                onClick={handleAddOrderStatusName}
-              >
-                Add
-              </button>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Priority</label>
+                <div className="d-flex align-items-center">
+                  <input
+                    value={priority}
+                    onChange={priorityChangeHandler}
+                    name="orderstatus"
+                    type="text"
+                    class="form-control"
+                    placeholder="Priority"
+                  />
+                </div>
+              </div>
+              {!editing && (
+                <button
+                  type="submit"
+                  className="addOrderStatusButton"
+                  onClick={handleAddPrivacy}
+                >
+                  Add
+                </button>
+              )}
+              {editing && (
+                <div className="d-flex align-items-center">
+                  <button
+                    type="submit"
+                    className="addOrderStatusButton mr-3"
+                    onClick={handleEditPrivacy}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="submit"
+                    class="addOrderStatusButton"
+                    onClick={handleCancelEdit}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              )}
             </form>
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
                 <label for="exampleInputEmail1">
-                  <strong>Privacy Table</strong>
+                  <strong>Privacy table</strong>
                 </label>
                 <table class="table table-hover">
-                  <thead
-                    style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
-                  >
+                  <thead style={{ backgroundColor: "gray", color: "#fff" }}>
                     <tr>
-                      <th className="orderTableTH">Privacy Term</th>
+                      <th className="orderTableTH">FAQ</th>
+                      <th className="orderTableTH">Priority</th>
                       <th className="orderTableTH">Action</th>
                     </tr>
                   </thead>
                   <tbody>
+                    {console.log(data)}
                     {data.map((item, index) => {
-                      return item.active === false ? (
+                      return (
                         <tr>
-                          <td className="orderTableTD">{item.orderstatus}</td>
+                          <td className="orderTableTD">{item.heading}</td>
+                          <td className="orderTableTD">{item.priority}</td>
                           <td className="orderTableTD">
-                            {" "}
                             <div className="d-flex align-items-center justify-content-center">
                               <i
                                 style={{ cursor: "pointer" }}
                                 class="far fa-edit mr-3 editButtonIcon"
+                                onClick={() => handleViewEditPrivacy(item._id)}
                               ></i>
                               <label
                                 className="noMargin deleteOrderStatusButton"
-                                //   onClick={() =>
-                                //     handleDeleteOrderStatusName(item._id)
-                                //   }
+                                onClick={() => handleDeletePrivacy(item._id)}
                               >
                                 Delete
                               </label>
                             </div>
                           </td>
                         </tr>
-                      ) : null;
+                      );
                     })}
                   </tbody>
                 </table>

@@ -12,23 +12,28 @@ const SitemapForm = (props) => {
   const [orderStatusName, setOrderStatusName] = useState("");
   const [isCompletedStatus, setIsCompletedStatus] = useState(false);
   const [isCancelledStatus, setIsCancelledStatus] = useState(false);
-  const handleChangeOrderStatusName = (e) => {
-    setOrderStatusName(e.target.value);
+  const [isAdctiveMenu, setIsActiveMenu] = useState("");
+  const [isActiveSubMenu, setIsSubActiveMenu] = useState("");
+  const [heading, setHeading] = useState("");
+  const [para, setPara] = useState("");
+  const [priority, setPriority] = useState();
+  const [editing, setEditing] = useState(false);
+  const [ftpDataId, setFtpDataId] = useState("");
+  const headingChangeHandler = (event) => {
+    setHeading(event.target.value);
   };
-  const handleCompletedMarkCheck = (e) => {
-    setIsCompletedStatus(e.target.checked);
-    setIsCancelledStatus(false);
+  const paraChangeHandler = (event) => {
+    setPara(event.target.value);
   };
-  const handleCencelledMarkCheck = (e) => {
-    setIsCompletedStatus(false);
-    setIsCancelledStatus(e.target.checked);
+  const priorityChangeHandler = (event) => {
+    const prty = parseInt(event.target.value);
+    setPriority(prty);
   };
-  const handleAddOrderStatusName = async (e) => {
+  const handleAddSiteMap = async (e) => {
     e.preventDefault();
-    handleSubmit();
     try {
       const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/add-order-status`,
+        `${process.env.REACT_APP_BACKEND_URL}/add-ftp`,
         "POST",
         {
           "Content-Type": "application/json",
@@ -36,20 +41,23 @@ const SitemapForm = (props) => {
         },
         JSON.stringify({
           userId,
-          orderStatus: orderStatusName,
-          active: isCompletedStatus,
+          heading: heading,
+          para: para,
+          type: isAdctiveMenu,
+          priority: priority,
         })
       );
       console.log("responseData", responseData);
-      setData(responseData.orderStatuses);
+      // setData(responseData.existingFtps);
+      fetchSitemap();
     } catch (err) {}
-    setOrderStatusName("");
-    setIsCompletedStatus(false);
+    // setIsCompletedStatus(false);
   };
-  const handleDeleteOrderStatusName = async (itemIndex) => {
+  const handleViewEditSitemap = async (id) => {
+    setEditing(true);
     try {
       const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/delete-order-status`,
+        `${process.env.REACT_APP_BACKEND_URL}/view-edit-ftp`,
         "POST",
         {
           "Content-Type": "application/json",
@@ -57,19 +65,102 @@ const SitemapForm = (props) => {
         },
         JSON.stringify({
           userId,
-          orderStatus: itemIndex,
+          ftpId: id,
         })
       );
       console.log("responseData", responseData);
-      setData(responseData.orderStatuses);
+      // setCategoryName(responseData.existingCategories.categoryName);
+      // setItemPriority(responseData.existingCategories.priority);
+      // setItemStatus(responseData.existingCategories.status);
+      // setCategoryId(responseData.existingCategories._id);
+      setHeading(responseData.editInfo.heading);
+      setPara(responseData.editInfo.para);
+      setPriority(responseData.editInfo.priority);
+      setFtpDataId(responseData.editInfo._id);
+    } catch (err) {}
+  };
+  const handleEditSitemap = async (e) => {
+    e.preventDefault();
+    try {
+      const responseData = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/edit-ftp`,
+        "POST",
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        JSON.stringify({
+          userId,
+          ftpId: ftpDataId,
+          heading: heading,
+          para: para,
+          type: isAdctiveMenu,
+          priority: priority,
+        })
+      );
+      console.log("responseData", responseData);
+      // setData(responseData.existingFtps);
+      setEditing(false);
+      fetchSitemap();
+    } catch (err) {}
+    // setIsCompletedStatus(false);
+  };
+  const handleCancelEdit = () => {
+    setHeading("");
+    setPriority("");
+    setPara("");
+    setFtpDataId("");
+    setEditing(false);
+    fetchSitemap();
+  };
+  const handleDeleteSitemap = async (itemIndex) => {
+    try {
+      const responseData = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/delete-ftp`,
+        "POST",
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        JSON.stringify({
+          ftpId: itemIndex,
+          userId,
+          // orderStatus: itemIndex,
+        })
+      );
+      console.log("responseData", responseData);
+      // setData(responseData.orderStatuses);
+      fetchSitemap();
+    } catch (err) {}
+  };
+  const fetchSitemap = async () => {
+    console.log("Dashboard");
+    try {
+      const responseData = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/view-ftps`,
+        "POST",
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        JSON.stringify({
+          userId,
+          type: isAdctiveMenu,
+        })
+      );
+      console.log("#########################################");
+      console.log("responseData", responseData.existingFtps);
+      console.log("#########################################");
+      setData(responseData.existingSiteMap);
     } catch (err) {}
   };
   useEffect(() => {
+    if (!isAdctiveMenu) setIsActiveMenu("sob");
     const dashboard = async () => {
       console.log("Dashboard");
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/get-order-status`,
+          `${process.env.REACT_APP_BACKEND_URL}/view-ftps`,
           "POST",
           {
             "Content-Type": "application/json",
@@ -77,14 +168,16 @@ const SitemapForm = (props) => {
           },
           JSON.stringify({
             userId,
+            type: isActiveSubMenu || isAdctiveMenu,
           })
         );
         console.log("responseData", responseData);
-        setData(responseData.orderStatuses);
+        setData(responseData.existingSiteMap);
       } catch (err) {}
     };
     if (token && userId) dashboard();
-  }, [token, userId, sendRequest]);
+  }, [token, userId, sendRequest, isAdctiveMenu, setIsSubActiveMenu]);
+
   const { handleChange, handleSubmit, values, errors } = useForm(
     submit,
     validate
@@ -95,7 +188,7 @@ const SitemapForm = (props) => {
   const [sitemapArray, setSiteMapArray] = useState([
     {
       id: 0,
-      menuId: "OB",
+      menuId: "sob",
       menuTitle: "Our Branches",
       submenu: [],
       name: "ourbranches",
@@ -103,7 +196,7 @@ const SitemapForm = (props) => {
     },
     {
       id: 1,
-      menuId: "MA",
+      menuId: "soma",
       menuTitle: "Members Area",
       submenu: [],
       name: "membersarea",
@@ -111,35 +204,35 @@ const SitemapForm = (props) => {
     },
     {
       id: 2,
-      menuId: "AB",
+      menuId: "sats",
       menuTitle: "About",
       name: "aboutsnaxa",
       isChecked: false,
       submenu: [
         {
           id: 200,
-          subMenuId: "ATS",
+          subMenuId: "sats",
           subMenuTitle: "About The Site",
           name: "aboutthesite",
           isChecked: false,
         },
         {
           id: 201,
-          subMenuId: "FR",
+          subMenuId: "sfr",
           subMenuTitle: "For Restaurants",
           name: "forrestaurant",
           isChecked: false,
         },
         {
           id: 202,
-          subMenuId: "SC",
+          subMenuId: "ssc",
           subMenuTitle: "Stay Connected",
           name: "stayconnected",
           isChecked: false,
         },
         {
           id: 203,
-          subMenuId: "SA",
+          subMenuId: "ssa",
           subMenuTitle: "Snaxa Apps",
           name: "snaxaapps",
           isChecked: false,
@@ -148,63 +241,63 @@ const SitemapForm = (props) => {
     },
     {
       id: 3,
-      menuId: "Ar",
+      menuId: "cd",
       menuTitle: "Areas",
       name: "areas",
       isChecked: false,
       submenu: [
         {
           id: 300,
-          subMenuId: "Du",
+          subMenuId: "cd",
           subMenuTitle: "Dubai",
           name: "dubai",
           isChecked: false,
         },
         {
           id: 301,
-          subMenuId: "AD",
+          subMenuId: "cad",
           subMenuTitle: "Abu Dhabi",
           name: "abudhabi",
           isChecked: false,
         },
         {
           id: 302,
-          subMenuId: "Sh",
+          subMenuId: "cs",
           subMenuTitle: "Sharjah",
           name: "sharjah",
           isChecked: false,
         },
         {
           id: 303,
-          subMenuId: "Aj",
+          subMenuId: "ca",
           subMenuTitle: "Ajman",
           name: "ajman",
           isChecked: false,
         },
         {
           id: 303,
-          subMenuId: "AA",
+          subMenuId: "caa",
           subMenuTitle: "Al Ain",
           name: "alain",
           isChecked: false,
         },
         {
           id: 304,
-          subMenuId: "Fu",
+          subMenuId: "cf",
           subMenuTitle: "Fujairah",
           name: "fujairah",
           isChecked: false,
         },
         {
           id: 305,
-          subMenuId: "RAK",
+          subMenuId: "crak",
           subMenuTitle: "Ras Al Khaima",
           name: "rasalkhaima",
           isChecked: false,
         },
         {
           id: 306,
-          subMenuId: "UAQ",
+          subMenuId: "cuaq",
           subMenuTitle: "Umm Al-Quwain",
           name: "ummalqueain",
           isChecked: false,
@@ -213,45 +306,38 @@ const SitemapForm = (props) => {
     },
     {
       id: 4,
-      menuId: "Of",
+      menuId: "so",
       menuTitle: "Offers",
       name: "offers",
       submenu: [],
       isChecked: false,
     },
   ]);
-  const handleMenuCheck = (menu) => {
-    let temp = sitemapArray;
-    temp = temp.map((i) => {
-      if (i.isChecked) {
-        i.isChecked = !i.isChecked;
-        // i.submenu.map((j) => {
-        //   if (j.isChecked) {
-        //     j.isChecked = !j.isChecked;
-        //     return j;
-        //   } else return j;
-        // });
-        return i;
-      } else return i;
-    });
-    const tempObj = temp[menu];
-    tempObj.isChecked = !temp[menu].isChecked;
-    temp[menu] = tempObj;
-    setSiteMapArray(temp);
-    console.log(temp);
+  const handleMenuCheck = (item) => {
+    if (item.submenu.length === 0) {
+      setIsActiveMenu(item.menuId);
+      setIsSubActiveMenu("");
+    }
+    // setIsActiveMenu(menu.menuId);
+    else {
+      setIsActiveMenu(item.menuId);
+      const menu = item.id;
+      let temp = sitemapArray;
+      temp = temp.map((i) => {
+        if (i.isChecked) {
+          i.isChecked = !i.isChecked;
+          return i;
+        } else return i;
+      });
+      const tempObj = temp[menu];
+      tempObj.isChecked = !temp[menu].isChecked;
+      temp[menu] = tempObj;
+      setSiteMapArray(temp);
+      console.log(temp);
+    }
   };
   const handleSubMenuCheck = (subMenu) => {
-    console.log(subMenu);
-    // //   let temp = sitemapArray;
-    // //   temp = temp.map((i) => {
-
-    // //   })
-    // let temp = sitemapArray;
-    // const tempObj = sitemapArray[subMenu];
-    // tempObj.isChecked = !tempObj.isChecked;
-    // temp[subMenu] = tempObj;
-    // setSiteMapArray(temp);
-    // console.log(temp);
+    setIsActiveMenu(subMenu.subMenuId);
   };
   let content;
   if (!isLoading)
@@ -264,42 +350,74 @@ const SitemapForm = (props) => {
           <div className="row col-12">
             <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
-                <label>Title</label>
+                <label for="exampleInputEmail1">Heading</label>
                 <div className="d-flex align-items-center">
                   <input
-                    onChange={handleChange}
-                    value={values.orderStatusName}
+                    value={heading}
+                    onChange={headingChangeHandler}
                     name="orderstatus"
                     type="text"
                     class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
                     placeholder="Enter Question"
                   />
                 </div>
               </div>
               <div class="form-group">
-                <label>URL</label>
+                <label for="exampleFormControlTextarea1">Answer</label>
+                <textarea
+                  class="form-control"
+                  rows="5"
+                  value={para}
+                  onChange={paraChangeHandler}
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Priority</label>
                 <div className="d-flex align-items-center">
                   <input
-                    onChange={handleChange}
-                    value={values.orderStatusName}
+                    value={priority}
+                    onChange={priorityChangeHandler}
                     name="orderstatus"
                     type="text"
                     class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter Url"
+                    placeholder="Priority"
                   />
                 </div>
               </div>
-              <button
+              {!editing && (
+                <button
+                  type="submit"
+                  className="addOrderStatusButton"
+                  onClick={handleAddSiteMap}
+                >
+                  Add
+                </button>
+              )}
+              {editing && (
+                <div className="d-flex align-items-center">
+                  <button
+                    type="submit"
+                    className="addOrderStatusButton mr-3"
+                    onClick={handleEditSitemap}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="submit"
+                    class="addOrderStatusButton"
+                    onClick={handleCancelEdit}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              )}{" "}
+              {/* <button
                 type="submit"
                 className="addOrderStatusButton"
                 onClick={handleAddOrderStatusName}
               >
                 Add
-              </button>
+              </button> */}
             </form>
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
@@ -316,7 +434,8 @@ const SitemapForm = (props) => {
                             type="radio"
                             name="menuRadios"
                             id={item.name}
-                            onChange={() => handleMenuCheck(item.id)}
+                            onChange={() => handleMenuCheck(item)}
+                            checked={item.menuId === isAdctiveMenu}
                           />
                           <label class="form-check-label" for={item.name}>
                             {item.menuTitle}
@@ -332,9 +451,8 @@ const SitemapForm = (props) => {
                                   type="radio"
                                   name="submenuRadios"
                                   id={subMenu.name}
-                                  onChange={() =>
-                                    handleSubMenuCheck(subMenu.id)
-                                  }
+                                  onChange={() => handleSubMenuCheck(subMenu)}
+                                  checked={subMenu.subMenuId === isAdctiveMenu}
                                 />
                                 <label
                                   class="form-check-label"
@@ -359,33 +477,34 @@ const SitemapForm = (props) => {
                     style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
                   >
                     <tr>
-                      <th className="orderTableTH">Sitemap</th>
+                      <th className="orderTableTH">FAQ</th>
+                      <th className="orderTableTH">Priority</th>
                       <th className="orderTableTH">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {data.map((item, index) => {
-                      return item.active === false ? (
+                      return (
                         <tr>
-                          <td className="orderTableTD">{item.orderstatus}</td>
+                          <td className="orderTableTD">{item.heading}</td>
+                          <td className="orderTableTD">{item.priority}</td>
                           <td className="orderTableTD">
                             <div className="d-flex align-items-center justify-content-center">
                               <i
                                 style={{ cursor: "pointer" }}
                                 class="far fa-edit mr-3 editButtonIcon"
+                                onClick={() => handleViewEditSitemap(item._id)}
                               ></i>
                               <label
                                 className="noMargin deleteOrderStatusButton"
-                                //   onClick={() =>
-                                //     handleDeleteOrderStatusName(item._id)
-                                //   }
+                                onClick={() => handleDeleteSitemap(item._id)}
                               >
                                 Delete
                               </label>
                             </div>
                           </td>
                         </tr>
-                      ) : null;
+                      );
                     })}
                   </tbody>
                 </table>

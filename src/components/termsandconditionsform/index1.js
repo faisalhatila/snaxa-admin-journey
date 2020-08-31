@@ -11,9 +11,6 @@ const Termsandconditionsform = (props) => {
   const [heading, setHeading] = useState("");
   const [para, setPara] = useState("");
   const [priority, setPriority] = useState();
-  const [editing, setEditing] = useState(false);
-  const [ftpDataId, setFtpDataId] = useState("");
-
   // const [isCompletedStatus, setIsCompletedStatus] = useState(false);
   // const [isCancelledStatus, setIsCancelledStatus] = useState(false);
   const headingChangeHandler = (event) => {
@@ -26,7 +23,7 @@ const Termsandconditionsform = (props) => {
     const prty = parseInt(event.target.value);
     setPriority(prty);
   };
-  const handleAddTerms = async (e) => {
+  const handleAddFAQs = async (e) => {
     e.preventDefault();
     try {
       const responseData = await sendRequest(
@@ -40,7 +37,7 @@ const Termsandconditionsform = (props) => {
           userId,
           heading: heading,
           para: para,
-          type: "t",
+          type: "f",
           priority: priority,
         })
       );
@@ -50,63 +47,7 @@ const Termsandconditionsform = (props) => {
     } catch (err) {}
     // setIsCompletedStatus(false);
   };
-  const handleViewEditTerms = async (id) => {
-    setEditing(true);
-    try {
-      const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/view-edit-ftp`,
-        "POST",
-        {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-        JSON.stringify({
-          userId,
-          ftpId: id,
-        })
-      );
-      console.log("responseData", responseData);
-      setHeading(responseData.editInfo.heading);
-      setPara(responseData.editInfo.para);
-      setPriority(responseData.editInfo.priority);
-      setFtpDataId(responseData.editInfo._id);
-    } catch (err) {}
-  };
-  const handleEditTerms = async (e) => {
-    e.preventDefault();
-    try {
-      const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/edit-ftp`,
-        "POST",
-        {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-        JSON.stringify({
-          userId,
-          ftpId: ftpDataId,
-          heading: heading,
-          para: para,
-          type: "t",
-          priority: priority,
-        })
-      );
-      console.log("responseData", responseData);
-      // setData(responseData.existingFtps);
-      fetchTerms();
-    } catch (err) {}
-    // setIsCompletedStatus(false);
-  };
-  const handleCancelEdit = () => {
-    setHeading("");
-    setPriority("");
-    setPara(true);
-    setEditing(false);
-    setFtpDataId("");
-    fetchTerms();
-  };
-
-  const handleDeleteTerms = async (itemIndex) => {
+  const handleDeleteFAQs = async (itemIndex) => {
     try {
       const responseData = await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/delete-ftp`,
@@ -116,7 +57,7 @@ const Termsandconditionsform = (props) => {
           Authorization: "Bearer " + token,
         },
         JSON.stringify({
-          ftpId: itemIndex,
+          _id: itemIndex,
           userId,
           // orderStatus: itemIndex,
         })
@@ -126,7 +67,6 @@ const Termsandconditionsform = (props) => {
       fetchTerms();
     } catch (err) {}
   };
-
   const fetchTerms = async () => {
     console.log("Dashboard");
     try {
@@ -180,7 +120,7 @@ const Termsandconditionsform = (props) => {
     content = (
       <div className="row">
         <div className="col-4 col-lg-3 col-md-3 updateVendorFormTitle">
-          Terms And Conditions
+          FAQs
         </div>
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <div className="row col-12">
@@ -221,38 +161,18 @@ const Termsandconditionsform = (props) => {
                   />
                 </div>
               </div>
-              {!editing && (
-                <button
-                  type="submit"
-                  className="addOrderStatusButton"
-                  onClick={handleAddTerms}
-                >
-                  Add
-                </button>
-              )}
-              {editing && (
-                <div className="d-flex align-items-center">
-                  <button
-                    type="submit"
-                    className="addOrderStatusButton mr-3"
-                    onClick={handleEditTerms}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    type="submit"
-                    class="addOrderStatusButton"
-                    onClick={handleCancelEdit}
-                  >
-                    Cancel
-                  </button>
-                </div>
-              )}
+              <button
+                type="submit"
+                className="addOrderStatusButton"
+                onClick={handleAddFAQs}
+              >
+                Add
+              </button>
             </form>
             <div className="col-12 col-md-6 col-lg-6 updateVendorForm">
               <div class="form-group">
                 <label for="exampleInputEmail1">
-                  <strong>Terms and conditions table</strong>
+                  <strong>FAQs Table</strong>
                 </label>
                 <table class="table table-hover">
                   <thead style={{ backgroundColor: "gray", color: "#fff" }}>
@@ -274,11 +194,10 @@ const Termsandconditionsform = (props) => {
                               <i
                                 style={{ cursor: "pointer" }}
                                 class="far fa-edit mr-3 editButtonIcon"
-                                onClick={() => handleViewEditTerms(item._id)}
                               ></i>
                               <label
                                 className="noMargin deleteOrderStatusButton"
-                                onClick={() => handleDeleteTerms(item._id)}
+                                onClick={() => handleDeleteFAQs(item._id)}
                               >
                                 Delete
                               </label>
