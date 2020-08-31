@@ -603,6 +603,18 @@ thead > tr > th {
 .googleMap > * > * > * {
   outline: none;
 }
+.googleMap > div > input {
+  min-width: 100%;
+  border: solid 1px #888;
+  border-radius: 5px;
+  padding: 5px 10px;
+  transform: translateX(-3px);
+  margin-bottom: 10px;
+}
+.autocomplete-dropdown-container {
+  position: absolute !important;
+  z-index: 10 !important;
+}
 /**************************************************Google Map End**************************************************/
 /**************************************************Toggle Button Start**************************************************/
 .custom-control-input:checked ~ .custom-control-label::before {
