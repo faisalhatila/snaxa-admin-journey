@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import Colors from "../../UI/constants/Colors";
+import { Loader } from "..";
 
 // let RestaurantTable;
 
 const RestaurantTable = (props) => {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -96,7 +97,32 @@ const RestaurantTable = (props) => {
   }, [searchByName, sendRequest, userId]);
 
   let content;
-  if (!isLoading && data)
+
+  if (isLoading) {
+    content = (
+      <tr>
+        <td className="orderTableTH"></td>
+        <td className="orderTableTH">
+          <Loader />
+        </td>
+        <td className="orderTableTH"></td>
+        <td className="orderTableTH"></td>
+        <td className="orderTableTH"></td>
+      </tr>
+    );
+  } else if (!isLoading && data.length === 0) {
+    content = (
+      <tr>
+        <td className="orderTableTH"></td>
+        <td className="orderTableTH">
+          <p>Nothing</p>
+        </td>
+        <td className="orderTableTH"></td>
+        <td className="orderTableTH"></td>
+        <td className="orderTableTH"></td>
+      </tr>
+    );
+  } else {
     content = data.map((item) => {
       return (
         <tr>
@@ -116,7 +142,8 @@ const RestaurantTable = (props) => {
         </tr>
       );
     });
-  else content = <p>Loading...</p>;
+  }
+
   return (
     <div className="restaurantmanagementtable mb-4">
       <div class="container">
@@ -164,15 +191,20 @@ const RestaurantTable = (props) => {
               <td></td>
               <td></td>
             </tr>
-            {data && data.length > 0 ? (
+            {/* {data.length > 0 ? (
               content
             ) : (
-              <div className="noNewOrderHeadingDiv mt-3">
-                <tr>
-                  <h4>No Restaurants Found</h4>
-                </tr>
-              </div>
-            )}
+              <tr>
+                <td className="orderTableTH"></td>
+                <td className="orderTableTH">
+                  <p>Nothing</p>
+                </td>
+                <td className="orderTableTH"></td>
+                <td className="orderTableTH"></td>
+                <td className="orderTableTH"></td>
+              </tr>
+            )} */}
+            {content}
           </tbody>
         </table>
       </div>

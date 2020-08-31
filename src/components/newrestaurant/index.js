@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
+import { Loader } from "..";
 
 // let NewRestaurant;
 const NewRestaurant = (props) => {
@@ -114,7 +115,7 @@ const NewRestaurant = (props) => {
         </tr>
       );
     });
-  else content = <p>Loading...</p>;
+  else content = <Loader />;
   return (
     <div className="restaurantmanagementtable mb-4">
       <div class="container">
@@ -128,7 +129,6 @@ const NewRestaurant = (props) => {
         <table class="table table-hover">
           <thead style={{ backgroundColor: "#3b3b3b", color: "#fff" }}>
             <tr className="restaurantTableHeadiingRow">
-              {/* <th className='orderTableTH'>ID</th> */}
               <th className="orderTableTH">Restaurant Name</th>
               <th className="orderTableTH">Email</th>
               <th className="orderTableTH">Address</th>
