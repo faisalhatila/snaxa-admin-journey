@@ -5,7 +5,7 @@ const DataCounter = (props) => {
   return (
     <div className="">
       <div className="row dataCounterRow">
-        <div className="col-6 col-lg-3 col-md-3">
+        <div className="col-6 col-lg col-md">
           <div className="counterRowDataCols">
             <img
               alt="Total Sales"
@@ -18,7 +18,20 @@ const DataCounter = (props) => {
             <p className="counterRowDataType totalSales">Total Sales</p>
           </div>
         </div>
-        <div className="col-6 col-lg-3 col-md-3">
+        <div className="col-6 col-lg col-md">
+          <div className="counterRowDataCols">
+            <img
+              alt="Total Sales"
+              src="assets/img/icons/dataCounter/totalSales.svg"
+            />
+            {/* <i class="fas fa-hand-holding-usd counterRowDataIcons"></i> */}
+            <p className="counterRowDataValues totalSales">
+              AED {parseFloat(`${props.data.totalSales}`).toFixed(2)}
+            </p>
+            <p className="counterRowDataType totalSales">Amounts To Clear</p>
+          </div>
+        </div>
+        <div className="col-6 col-lg col-md">
           <div className="counterRowDataCols">
             {/* <i class="fas fa-hand-holding-usd counterRowDataIcons"></i> */}
             <img
@@ -31,7 +44,7 @@ const DataCounter = (props) => {
             <p className="counterRowDataType totalCustomers">Total Customers</p>
           </div>
         </div>
-        <div className="col-6 col-lg-3 col-md-3">
+        <div className="col-6 col-lg col-md">
           <div className="counterRowDataCols">
             {/* <i class="fas fa-hand-holding-usd counterRowDataIcons"></i> */}
             <img
@@ -44,7 +57,7 @@ const DataCounter = (props) => {
             <p className="counterRowDataType totalOrders">Total Orders</p>
           </div>
         </div>
-        <div className="col-6 col-lg-3 col-md-3">
+        <div className="col-6 col-lg col-md">
           <div className="counterRowDataCols">
             {/* <i class="fas fa-hand-holding-usd counterRowDataIcons"></i> */}
             <img

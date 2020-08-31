@@ -35,6 +35,14 @@ export default Navbar = (props) => {
   };
   const routeArr = [
     {
+      label: "Add Order Status",
+      path: "/add-order-status",
+    },
+    {
+      label: "Add Cuisine",
+      path: "/add-cuisine",
+    },
+    {
       label: "Edit Site Info",
       path: "/site-info",
     },
@@ -96,14 +104,12 @@ export default Navbar = (props) => {
                   </Link>
                 </li>
                 <li className="navbarItems">
-                  <Link to="restaurant-management-table">
-                    Restaurant Management
-                  </Link>
-                  <i
+                  <Link to="restaurant-management-table">View Restaurants</Link>
+                  {/* <i
                     class="fas fa-chevron-down"
                     style={{ transform: "translateY(2px)" }}
-                  ></i>
-                  <ul className="navbarItemSubmenu">
+                  ></i> */}
+                  {/* <ul className="navbarItemSubmenu">
                     <li>
                       <Link to="/restaurant-management-table">
                         All Restaurants
@@ -115,7 +121,7 @@ export default Navbar = (props) => {
                     <li>
                       <Link to="/add-cuisine">Add Cuisine</Link>
                     </li>
-                  </ul>
+                  </ul> */}
                 </li>
                 <li className="navbarItems">
                   <Link to="/order-management-table">Order Management</Link>

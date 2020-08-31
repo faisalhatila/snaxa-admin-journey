@@ -12,7 +12,7 @@ const AddOrderStatusForm = (props) => {
   const [isCompletedStatus, setIsCompletedStatus] = useState(false);
   const [isCancelledStatus, setIsCancelledStatus] = useState(false);
   const [forwardStatus, setForwardStatus] = useState(false);
-  const [dispatchedStatus, setDispatchedStatus] = useState(false);
+  const [refundStatus, setRefundStatus] = useState(false);
 
   const handleChangeOrderStatusName = (e) => {
     setOrderStatusName(e.target.value);
@@ -21,25 +21,25 @@ const AddOrderStatusForm = (props) => {
     setIsCompletedStatus(e.target.checked);
     setIsCancelledStatus(false);
     setForwardStatus(false);
-    setDispatchedStatus(false);
+    setRefundStatus(false);
   };
   const handleCencelledMarkCheck = (e) => {
     setIsCompletedStatus(false);
     setIsCancelledStatus(e.target.checked);
     setForwardStatus(false);
-    setDispatchedStatus(false);
+    setRefundStatus(false);
   };
   const handleForwardMarkCheck = (e) => {
     setIsCompletedStatus(false);
     setIsCancelledStatus(false);
     setForwardStatus(e.target.checked);
-    setDispatchedStatus(false);
+    setRefundStatus(false);
   };
   const handleDispatchedMarkCheck = (e) => {
     setIsCompletedStatus(false);
     setIsCancelledStatus(false);
     setForwardStatus(false);
-    setDispatchedStatus(e.target.checked);
+    setRefundStatus(e.target.checked);
   };
   const handleAddOrderStatusName = async (e) => {
     e.preventDefault();
@@ -191,10 +191,10 @@ const AddOrderStatusForm = (props) => {
                     class="form-check-input"
                     id="dispatchedOrderStatus"
                     onChange={handleDispatchedMarkCheck}
-                    checked={dispatchedStatus}
+                    checked={refundStatus}
                   />
                   <label class="form-check-label" for="dispatchedOrderStatus">
-                    Will it mark an order as dispatched order
+                    Will it mark an order as refund order
                   </label>
                 </div>
               </div>
