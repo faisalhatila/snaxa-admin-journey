@@ -3,7 +3,7 @@ import React from "react";
 const DataCounter = (props) => {
   // Object { Object { totalSales: 259.35, totalOrders: 3, totalCustomers: 1, existingRestaurants: 9 }
   return (
-    <div className="">
+    <div className="col">
       <div className="row dataCounterRow">
         <div className="col-6 col-lg col-md">
           <div className="counterRowDataCols">
