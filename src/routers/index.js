@@ -30,6 +30,7 @@ import {
   Feedback,
   Siteinfo,
   SocialNetwork,
+  ViewSalesContainer,
 } from "../containers";
 const Router = (props) => {
   const { userId, token } = useAuth();
@@ -69,6 +70,7 @@ const Router = (props) => {
           path="/terms-and-conditions"
           component={Termsandconditions}
         />
+        <Route exact path="/view-sales" component={ViewSalesContainer} />
         <Route exact path="/news-letters" component={Newsletters} />
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/contact-queries" component={ContactQueries} />
