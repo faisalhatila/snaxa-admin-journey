@@ -315,6 +315,86 @@ const AddOrderStatusForm = (props) => {
                   </tbody>
                 </table>
               </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">
+                  <strong>Forward Order Status</strong>
+                </label>
+                <table class="table table-hover">
+                  <thead
+                    style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
+                  >
+                    <tr>
+                      <th className="orderTableTH">Item Name</th>
+                      <th className="orderTableTH">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.map((item, index) => {
+                      return item.active === true ? (
+                        <tr>
+                          <td className="orderTableTD">{item.orderstatus}</td>
+                          <td className="orderTableTD">
+                            <div className="d-flex align-items-center justify-content-center">
+                              <i
+                                style={{ cursor: "pointer" }}
+                                class="far fa-edit mr-3 editButtonIcon"
+                              ></i>
+                              <label
+                                className="noMargin deleteOrderStatusButton"
+                                onClick={() =>
+                                  handleDeleteOrderStatusName(item._id)
+                                }
+                              >
+                                Delete
+                              </label>
+                            </div>
+                          </td>
+                        </tr>
+                      ) : null;
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">
+                  <strong>Refund Order Status</strong>
+                </label>
+                <table class="table table-hover">
+                  <thead
+                    style={{ backgroundColor: Colors.tableHead, color: "#fff" }}
+                  >
+                    <tr>
+                      <th className="orderTableTH">Item Name</th>
+                      <th className="orderTableTH">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.map((item, index) => {
+                      return item.active === true ? (
+                        <tr>
+                          <td className="orderTableTD">{item.orderstatus}</td>
+                          <td className="orderTableTD">
+                            <div className="d-flex align-items-center justify-content-center">
+                              <i
+                                style={{ cursor: "pointer" }}
+                                class="far fa-edit mr-3 editButtonIcon"
+                              ></i>
+                              <label
+                                className="noMargin deleteOrderStatusButton"
+                                onClick={() =>
+                                  handleDeleteOrderStatusName(item._id)
+                                }
+                              >
+                                Delete
+                              </label>
+                            </div>
+                          </td>
+                        </tr>
+                      ) : null;
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
