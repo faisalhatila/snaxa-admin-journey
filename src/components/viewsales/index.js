@@ -14,44 +14,61 @@ const ViewSales = (props) => {
 
   // console.log(userId, token);
   // const auth = useContext(AuthContext);
-  useEffect(() => {
-    const dashboard = async () => {
-      try {
-        const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/contact-us-forms `,
-          "POST",
-          {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-          JSON.stringify({
-            userId,
-          })
-        );
-        console.log("#########################################");
-        console.log("responseData", responseData);
-        console.log("#########################################");
-        setData(responseData.contactForms);
-      } catch (err) {
-        // console.log("err", err);
-      }
-    };
-    if (token && userId) dashboard();
-  }, [token, userId, sendRequest]);
+  //   useEffect(() => {
+  //     const dashboard = async () => {
+  //       try {
+  //         const responseData = await sendRequest(
+  //           `${process.env.REACT_APP_BACKEND_URL}/contact-us-forms `,
+  //           "POST",
+  //           {
+  //             "Content-Type": "application/json",
+  //             Authorization: "Bearer " + token,
+  //           },
+  //           JSON.stringify({
+  //             userId,
+  //           })
+  //         );
+  //         console.log("#########################################");
+  //         console.log("responseData", responseData);
+  //         console.log("#########################################");
+  //         setData(responseData.contactForms);
+  //       } catch (err) {
+  //         // console.log("err", err);
+  //       }
+  //     };
+  //     if (token && userId) dashboard();
+  //   }, [token, userId, sendRequest]);
 
-  let content;
-  if (!isLoading && data)
-    content = data.map((item, i) => {
-      return (
-        <tr key={i}>
-          <td className="orderTableTD">{item.name}</td>
-          <td className="orderTableTD">{item.email}</td>
-          <td className="orderTableTD">{item.number}</td>
-          <td className="orderTableTD">{item.comment}</td>
-        </tr>
-      );
-    });
-  else content = <p>Loading...</p>;
+  //   let content;
+  //   if (!isLoading && data)
+  //     content = data.map((item, i) => {
+  //       return (
+  //         <tr key={i}>
+  //           <td className="orderTableTD">{item.name}</td>
+  //           <td className="orderTableTD">{item.email}</td>
+  //           <td className="orderTableTD">{item.number}</td>
+  //           <td className="orderTableTD">{item.comment}</td>
+  //         </tr>
+  //       );
+  //     });
+  //   else content = <p>Loading...</p>;
+  content = (
+    <tr>
+      {[
+        ...Array(5).map((i) => {
+          return (
+            <tr key={i}>
+              <th className="orderTableTH">0100101</th>
+              <th className="orderTableTH">KFC</th>
+              <th className="orderTableTH">200</th>
+              <th className="orderTableTH">1000</th>
+              <th className="orderTableTH">Paid</th>
+            </tr>
+          );
+        }),
+      ]}
+    </tr>
+  );
   return (
     <div className="restaurantmanagementtable mb-4">
       <div class="container">
@@ -65,10 +82,11 @@ const ViewSales = (props) => {
         <table class="table table-hover">
           <thead style={{ backgroundColor: Colors.tableHead, color: "#fff" }}>
             <tr className="restaurantTableHeadiingRow">
-              <th className="orderTableTH">Name</th>
-              <th className="orderTableTH">Email</th>
-              <th className="orderTableTH">Contact No</th>
-              <th className="orderTableTH">Comment</th>
+              <th className="orderTableTH">Order Id</th>
+              <th className="orderTableTH">Restaurant Name</th>
+              <th className="orderTableTH">Commision Amount</th>
+              <th className="orderTableTH">Total Amount</th>
+              <th className="orderTableTH">Status</th>
               {/* <th className="orderTableTH">Action</th> */}
             </tr>
           </thead>
