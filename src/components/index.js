@@ -41,6 +41,7 @@ import _SiteinfoForm from "./siteinfoform";
 import _SocialNetworkForm from "./socialnetworkform";
 import _DetailedReviews from "./detailedreviews";
 import _Loader from "./loader";
+import _ViewSales from "./viewsales";
 
 export const OrderDetailsForn = _OrderDetailsForn;
 export const Header = _Header;
@@ -85,3 +86,4 @@ export const SiteinfoForm = _SiteinfoForm;
 export const SocialNetworkForm = _SocialNetworkForm;
 export const DetailedReviews = _DetailedReviews;
 export const Loader = _Loader;
+export const ViewSales = _ViewSales;
