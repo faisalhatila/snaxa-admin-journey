@@ -39,7 +39,7 @@ const ViewSales = (props) => {
   //     if (token && userId) dashboard();
   //   }, [token, userId, sendRequest]);
 
-  //   let content;
+  let content;
   //   if (!isLoading && data)
   //     content = data.map((item, i) => {
   //       return (
