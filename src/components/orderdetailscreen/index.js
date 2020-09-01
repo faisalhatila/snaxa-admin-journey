@@ -3,7 +3,8 @@ import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import { Link } from "react-router-dom";
 import Colors from "../../UI/constants/Colors";
-
+import AutoComplete from "../googlemap/autocomplete";
+import GoogleMapContainer from "../googlemap";
 const OrderDetails = (props) => {
   // console.log(props.orderStatus);
   const [singleOrder, setSingleOrder] = useState({});
@@ -133,18 +134,6 @@ const OrderDetails = (props) => {
                   <p>{singleOrder.city}</p>
                 </div>
               </div>
-              <label
-                style={{ backgroundColor: Colors.tableHead }}
-                className="noMargin mt-5 goBackBtn"
-                onClick={props.goBack}
-              >
-                Back
-              </label>
-              <Link to="/punched-orders">
-                <label className="ml-2 receiptButton receiptPrintButton">
-                  <i class="fas fa-print pr-2"></i>Print View
-                </label>
-              </Link>
             </div>
             <div className="col-12 col-lg-4 col-md-4">
               <div className="orderDetailsRow2Col1">
@@ -203,6 +192,31 @@ const OrderDetails = (props) => {
                   <p className="bold">Payment</p>
                   <p>COD</p>
                 </div>
+              </div>
+            </div>
+            <div className="col-12">
+              <div className="googleMapOrder">
+                <AutoComplete
+                  placeholder="Search for area, street name, landmark..."
+                  onClick={() => {}}
+                  setLatLng={() => {}}
+                  map
+                />
+                <GoogleMapContainer />
+              </div>
+              <div style={{ position: "absolute", bottom: "-110px" }}>
+                <label
+                  style={{ backgroundColor: Colors.tableHead }}
+                  className="noMargin mt-5 goBackBtn"
+                  onClick={props.goBack}
+                >
+                  Back
+                </label>
+                <Link to="/punched-orders">
+                  <label className="ml-2 receiptButton receiptPrintButton">
+                    <i class="fas fa-print pr-2"></i>Print View
+                  </label>
+                </Link>
               </div>
             </div>
           </div>
