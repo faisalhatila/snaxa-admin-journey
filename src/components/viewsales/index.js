@@ -52,46 +52,55 @@ const ViewSales = (props) => {
   //       );
   //     });
   //   else content = <p>Loading...</p>;
-  content = (
-    <tr>
-      {[
-        ...Array(5).map((i) => {
-          return (
-            <tr key={i}>
-              <th className="orderTableTH">0100101</th>
-              <th className="orderTableTH">KFC</th>
-              <th className="orderTableTH">200</th>
-              <th className="orderTableTH">1000</th>
-              <th className="orderTableTH">Paid</th>
-            </tr>
-          );
-        }),
-      ]}
-    </tr>
-  );
+  content = [...Array(5)].map((i) => {
+    return (
+      <tr key={i}>
+        <td className="orderTableTD">0100101</td>
+        <td className="orderTableTD">09/01/2020</td>
+        <td className="orderTableTD">KFC</td>
+        <td className="orderTableTD">200</td>
+        <td className="orderTableTD">1000</td>
+        <td className="orderTableTD">Paid</td>
+      </tr>
+    );
+  });
   return (
-    <div className="restaurantmanagementtable mb-4">
-      <div class="container">
-        <div
-          className={`newOrderTableHeading ${
-            data && data.length > 0 ? " maximumWidthRestaurant" : null
-          }`}
-        >
-          <h3>Contact Queries</h3>
+    <div>
+      <div className="row">
+        <div class="form-group col-3 offset-9">
+          <label for="exampleFormControlSelect1">Search for</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>Today</option>
+            <option>Yesterday</option>
+            <option>Last 7 Days</option>
+            <option>Last 14 Days</option>
+            <option>Last 28 Days</option>
+          </select>
         </div>
-        <table class="table table-hover">
-          <thead style={{ backgroundColor: Colors.tableHead, color: "#fff" }}>
-            <tr className="restaurantTableHeadiingRow">
-              <th className="orderTableTH">Order Id</th>
-              <th className="orderTableTH">Restaurant Name</th>
-              <th className="orderTableTH">Commision Amount</th>
-              <th className="orderTableTH">Total Amount</th>
-              <th className="orderTableTH">Status</th>
-              {/* <th className="orderTableTH">Action</th> */}
-            </tr>
-          </thead>
-          <tbody>
-            {/* <tr>
+      </div>
+      <div className="restaurantmanagementtable mb-4">
+        <div class="container">
+          <div
+            className={`newOrderTableHeading ${
+              data && data.length > 0 ? " maximumWidthRestaurant" : null
+            }`}
+          >
+            <h3>Sales Report</h3>
+          </div>
+          <table class="table table-hover">
+            <thead style={{ backgroundColor: Colors.tableHead, color: "#fff" }}>
+              <tr className="restaurantTableHeadiingRow">
+                <th className="orderTableTH">Order Id</th>
+                <th className="orderTableTH">Date</th>
+                <th className="orderTableTH">Restaurant Name</th>
+                <th className="orderTableTH">Commision Amount</th>
+                <th className="orderTableTH">Total Amount</th>
+                <th className="orderTableTH">Status</th>
+                {/* <th className="orderTableTH">Action</th> */}
+              </tr>
+            </thead>
+            <tbody>
+              {/* <tr>
               <td>
                 <input
                   ref={nameRef}
@@ -116,17 +125,18 @@ const ViewSales = (props) => {
               <td></td>
               <td></td>
             </tr> */}
-            {/* {data && data.length > 0 ? ( */}
-            {content}
-            {/* ) : (
+              {/* {data && data.length > 0 ? ( */}
+              {content}
+              {/* ) : (
               <div className="noNewOrderHeadingDiv mt-3">
                 <tr>
                   <h4>No New Restaurant Added</h4>
                 </tr>
               </div>
             )} */}
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
