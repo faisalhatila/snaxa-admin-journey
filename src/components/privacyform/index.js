@@ -46,6 +46,11 @@ const PrivacyForm = (props) => {
       );
       console.log("responseData", responseData);
       // setData(responseData.existingFtps);
+      setHeading("");
+      setPara("");
+      setFtpDataId("");
+      setHeading("");
+      setPriority("");
       fetchPrivacy();
     } catch (err) {}
     // setIsCompletedStatus(false);
@@ -132,6 +137,11 @@ const PrivacyForm = (props) => {
       );
       console.log("responseData", responseData);
       // setData(responseData.orderStatuses);
+      setHeading("");
+      setPara("");
+      setFtpDataId("");
+      setHeading("");
+      setPriority("");
       fetchPrivacy();
     } catch (err) {}
   };

@@ -46,6 +46,11 @@ const Termsandconditionsform = (props) => {
       );
       console.log("responseData", responseData);
       // setData(responseData.existingFtps);
+      setHeading("");
+      setPara("");
+      setFtpDataId("");
+      setHeading("");
+      setPriority("");
       fetchTerms();
     } catch (err) {}
     // setIsCompletedStatus(false);
@@ -129,6 +134,11 @@ const Termsandconditionsform = (props) => {
       );
       console.log("responseData", responseData);
       // setData(responseData.orderStatuses);
+      setHeading("");
+      setPara("");
+      setFtpDataId("");
+      setHeading("");
+      setPriority("");
       fetchTerms();
     } catch (err) {}
   };

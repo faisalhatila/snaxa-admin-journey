@@ -49,6 +49,11 @@ const SitemapForm = (props) => {
       );
       console.log("responseData", responseData);
       // setData(responseData.existingFtps);
+      setHeading("");
+      setPara("");
+      setFtpDataId("");
+      setHeading("");
+      setPriority("");
       fetchSitemap();
     } catch (err) {}
     // setIsCompletedStatus(false);
@@ -135,6 +140,11 @@ const SitemapForm = (props) => {
       );
       console.log("responseData", responseData);
       // setData(responseData.orderStatuses);
+      setHeading("");
+      setPara("");
+      setFtpDataId("");
+      setHeading("");
+      setPriority("");
       fetchSitemap();
     } catch (err) {}
   };
