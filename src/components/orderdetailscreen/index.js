@@ -204,7 +204,7 @@ const OrderDetails = (props) => {
                 />
                 <GoogleMapContainer />
               </div>
-              <div style={{ position: "absolute", bottom: "-110px" }}>
+              <div style={{ position: "absolute", bottom: "-150px" }}>
                 <label
                   style={{ backgroundColor: Colors.tableHead }}
                   className="noMargin mt-5 goBackBtn"

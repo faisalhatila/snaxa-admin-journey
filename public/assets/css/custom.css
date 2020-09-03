@@ -594,11 +594,15 @@ thead > tr > th {
 }
 /**************************************************Review Table Screen End**************************************************/
 /**************************************************Google Map Start**************************************************/
+.googleMapOrder > div:nth-child(2) {
+  min-height: 350px;
+}
 .googleMap > div > div {
   height: 45% !important;
   width: 95% !important;
   box-shadow: 0px 0px 5px 2px #ccc;
   border: none;
+  min-height: 300px !important;
 }
 .googleMap > * > * > * {
   outline: none;
@@ -611,10 +615,29 @@ thead > tr > th {
   transform: translateX(-3px);
   margin-bottom: 10px;
 }
-.autocomplete-dropdown-container {
+.googleMapOrder > div > div {
+  /* height: 45% !important; */
+  width: 98% !important;
+  box-shadow: 0px 0px 5px 2px #ccc;
+  border: none;
+}
+.googleMapOrder > * > * > * {
+  outline: none;
+}
+.googleMapOrder > div > input {
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+  min-width: 100%;
+  border: solid 1px #888;
+  border-radius: 5px;
+  padding: 5px 10px;
+  transform: translateX(-3px);
+  margin-bottom: 10px;
+}
+/* .autocomplete-dropdown-container {
   position: absolute !important;
   z-index: 10 !important;
-}
+} */
 /**************************************************Google Map End**************************************************/
 /**************************************************Toggle Button Start**************************************************/
 .custom-control-input:checked ~ .custom-control-label::before {
@@ -661,3 +684,20 @@ thead > tr > th {
 }
 
 /**************************************************Loading Spinner End**************************************************/
+.financialSheetViewButtonDiv {
+  min-width: 100%;
+}
+.financialSheetViewButton {
+  margin: 0;
+  padding: 5px 0px 5px 0;
+  color: #b40008;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+  font-weight: 700;
+  /* background-color: red; */
+  text-align: center;
+  min-width: 154px;
+  transform: translate(-15px, 0px);
+  border-radius: 4px;
+}
