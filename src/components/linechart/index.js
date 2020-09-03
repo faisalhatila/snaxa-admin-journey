@@ -5,26 +5,18 @@ export default class Chart extends Component {
   state = {
     chartData: {
       labels: [
-        "Karachi",
-        "Lahore",
-        "Quetta",
-        "Peshawar",
-        "Islamabad",
-        "Multan",
-        "Hyderabad",
+        "Foods In",
+        "KFC",
+        "McDonalds",
+        "Mandi House",
+        "Al Sajjad",
+        "Al Baik",
+        "My Kolachi",
       ],
       datasets: [
         {
-          label: "Population",
-          data: [
-            25000000,
-            15000000,
-            1000000,
-            4200000,
-            1000000,
-            1800000,
-            1700000,
-          ],
+          label: "Sales",
+          data: [15000, 18000, 5000, 17000, 13000, 1800, 170],
           backgroundColor: [
             "rgba(255, 99, 132, 0.6)",
             "rgba(54, 162, 235, 0.6)",
@@ -39,26 +31,18 @@ export default class Chart extends Component {
     },
     chartData2: {
       labels: [
-        "Karachi",
-        "Lahore",
-        "Quetta",
-        "Peshawar",
-        "Islamabad",
-        "Multan",
-        "Hyderabad",
+        "Foods In",
+        "KFC",
+        "McDonalds",
+        "Mandi House",
+        "Al Sajjad",
+        "Al Baik",
+        "My Kolachi",
       ],
       datasets: [
         {
-          label: "Population",
-          data: [
-            35000000,
-            25000000,
-            2000000,
-            5200000,
-            2000000,
-            2800000,
-            2700000,
-          ],
+          label: "Sales",
+          data: [15000, 18000, 5000, 17000, 13000, 1800, 170],
           backgroundColor: [
             "rgba(255, 99, 132, 0.6)",
             "rgba(54, 162, 235, 0.6)",
