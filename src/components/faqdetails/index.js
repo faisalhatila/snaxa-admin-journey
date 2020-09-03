@@ -97,6 +97,12 @@ const Faqdetails = (props) => {
       );
       console.log("responseData", responseData);
       // setData(responseData.existingFtps);
+      setHeading("");
+      setPara("");
+      setFtpDataId("");
+      setHeading("");
+      setPriority("");
+      setEditing(false);
       fetchFAQs();
     } catch (err) {}
     // setIsCompletedStatus(false);

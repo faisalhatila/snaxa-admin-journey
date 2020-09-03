@@ -93,6 +93,12 @@ const Termsandconditionsform = (props) => {
       );
       console.log("responseData", responseData);
       // setData(responseData.existingFtps);
+      setHeading("");
+      setPara("");
+      setFtpDataId("");
+      setHeading("");
+      setPriority("");
+      setEditing(false);
       fetchTerms();
     } catch (err) {}
     // setIsCompletedStatus(false);
@@ -191,7 +197,7 @@ const Termsandconditionsform = (props) => {
                   <input
                     value={heading}
                     onChange={headingChangeHandler}
-                    name="orderstatus"
+                    // name="orderstatus"
                     type="text"
                     class="form-control"
                     placeholder="Enter Question"
@@ -214,8 +220,8 @@ const Termsandconditionsform = (props) => {
                   <input
                     value={priority}
                     onChange={priorityChangeHandler}
-                    name="orderstatus"
-                    type="text"
+                    // name="orderstatus"
+                    type="number"
                     class="form-control"
                     placeholder="Priority"
                   />

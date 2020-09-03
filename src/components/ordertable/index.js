@@ -107,7 +107,7 @@ const NewOrder = (props) => {
             list && list.length > 0 ? " maximumWidth" : null
           }`}
         >
-          <h3>New Orders</h3>
+          <h3>Active Orders</h3>
         </div>
         <table class="table table-hover">
           <thead style={{ backgroundColor: "#3b3b3b", color: "#fff" }}>

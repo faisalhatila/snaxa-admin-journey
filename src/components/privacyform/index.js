@@ -97,6 +97,12 @@ const PrivacyForm = (props) => {
       );
       console.log("responseData", responseData);
       // setData(responseData.existingFtps);
+      setHeading("");
+      setPara("");
+      setFtpDataId("");
+      setHeading("");
+      setPriority("");
+      setEditing(false);
       fetchPrivacy();
     } catch (err) {}
     // setIsCompletedStatus(false);
