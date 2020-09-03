@@ -34,6 +34,7 @@ const AddRestaurantForm = (props) => {
   const [data, setData] = useState();
   const [inputs, setInputs] = useState({});
   const [cuisines, setCuisines] = useState([]);
+  const [alreadyCuisines, setALreadyCuisines] = useState();
   const [currentStep, setCurrentStep] = useState(1);
   const [editRestaurantActiveTab, setEditRestaurantActiveTab] = useState(
     "Info"
@@ -130,11 +131,12 @@ const AddRestaurantForm = (props) => {
   };
   const workingDayHandler = (b) => {
     setWorkingDays((prevState) => {
+      console.log("#######################################");
+      console.log(prevState);
+      console.log("#######################################");
+
       const tempObject = prevState[b];
       tempObject.isChecked = !tempObject.isChecked;
-      console.log("#######################################");
-      console.log(tempObject);
-      console.log("#######################################");
       prevState[b] = tempObject;
       return prevState;
     });
@@ -210,6 +212,10 @@ const AddRestaurantForm = (props) => {
           setMobile(responseData.existingRestaurantAdmin.mobilenumber);
           setWorkingDays(responseData.existingRestaurant.workinghours);
           setStoreWeb(responseData.existingRestaurantAdmin.socialmedia);
+          setALreadyCuisines(responseData.existingRestaurant.cuisines);
+          // console.log("########################################");
+          // console.log(responseData.existingRestaurant.cuisines);
+          // console.log("########################################");
           const temp = responseData.cuisines.map((i) => {
             return { value: i._id, label: i.cuisine };
             // return {
@@ -517,7 +523,7 @@ const AddRestaurantForm = (props) => {
                     />
                   </div>
                 </div> */}
-                {console.log(colourOptions1)}
+                {console.log(alreadyCuisines)}
                 {colourOptions1 && (
                   <div className="row">
                     <div class="form-group col-12 ">
@@ -528,7 +534,7 @@ const AddRestaurantForm = (props) => {
                         // defaultValue={[colourOptions[0], colourOptions[1]]}
                         // defaultValue={[cuisinesArr[0], cuisinesArr[1]]}
                         // defaultValue={[colourOptions1[2], colourOptions1[3]]}
-                        defaultValue={colourOptions1.map((item, i) => item)}
+                        defaultValue={alreadyCuisines}
                         isMulti
                         options={colourOptions}
                         onChange={(e) => setCuisines(e)}

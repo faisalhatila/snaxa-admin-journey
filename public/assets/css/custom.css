@@ -597,7 +597,7 @@ thead > tr > th {
 .googleMapOrder > div:nth-child(2) {
   min-height: 350px;
 }
-.googleMap > div > div {
+.googleMap > div:nth-child(2) > div {
   height: 45% !important;
   width: 95% !important;
   box-shadow: 0px 0px 5px 2px #ccc;
