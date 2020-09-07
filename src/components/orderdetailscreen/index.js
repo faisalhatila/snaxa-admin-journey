@@ -82,6 +82,20 @@ const OrderDetails = (props) => {
   if (!isLoading && Object.keys(singleOrder).length > 0)
     content2 = (
       <div class="container">
+        <div>
+          <label
+            style={{ backgroundColor: Colors.tableHead }}
+            className="noMargin goBackBtn"
+            onClick={props.goBack}
+          >
+            Back
+          </label>
+          <Link to="/punched-orders">
+            <label className="ml-2 receiptButton receiptPrintButton">
+              <i class="fas fa-print pr-2"></i>Print View
+            </label>
+          </Link>
+        </div>
         <div className="orderDetailsRow1">
           <div className="col-12 statusHeadingDiv">
             <div className="statusHeadingDiv">
@@ -92,7 +106,7 @@ const OrderDetails = (props) => {
             <div className="col-12 col-lg-3 col-md-3">
               <div class="form-group orderStatusDropdownDiv">
                 <label for="exampleFormControlSelect1" className="bold">
-                  Example select
+                  Select Order Status
                 </label>
                 <select
                   class="form-control"
@@ -100,6 +114,9 @@ const OrderDetails = (props) => {
                   onChange={orderStatusHandler}
                   value={orderStatus}
                 >
+                  <option disabled selected>
+                    Select
+                  </option>
                   {orderStatuses &&
                     orderStatuses.map((i) => {
                       return <option value={i._id}>{i.orderstatus}</option>;
@@ -203,20 +220,6 @@ const OrderDetails = (props) => {
                   map
                 />
                 <GoogleMapContainer />
-              </div>
-              <div style={{ position: "absolute", bottom: "-150px" }}>
-                <label
-                  style={{ backgroundColor: Colors.tableHead }}
-                  className="noMargin mt-5 goBackBtn"
-                  onClick={props.goBack}
-                >
-                  Back
-                </label>
-                <Link to="/punched-orders">
-                  <label className="ml-2 receiptButton receiptPrintButton">
-                    <i class="fas fa-print pr-2"></i>Print View
-                  </label>
-                </Link>
               </div>
             </div>
           </div>

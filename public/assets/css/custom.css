@@ -701,3 +701,6 @@ thead > tr > th {
   transform: translate(-15px, 0px);
   border-radius: 4px;
 }
+.orderStatusTdMaxWidth {
+  width: 355px !important;
+}

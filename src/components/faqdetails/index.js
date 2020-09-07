@@ -115,7 +115,7 @@ const Faqdetails = (props) => {
   const handleCancelEdit = () => {
     setHeading("");
     setPriority("");
-    setPara(true);
+    setPara("");
     setFtpDataId("");
     setEditing(false);
     fetchFAQs();

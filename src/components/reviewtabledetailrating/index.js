@@ -5,6 +5,9 @@ import Colors from "../../UI/constants/Colors";
 
 // let ReviewTableShort;
 const ReviewTableDetailRating = (props) => {
+  // console.log("###################################");
+  // console.log("dataReview", props.currentReview);
+  // console.log("###################################");
   const [data, setData] = useState();
 
   const { userId, token } = useAuth();
@@ -95,37 +98,39 @@ const ReviewTableDetailRating = (props) => {
   }, [searchByName, sendRequest, userId]);
 
   let content;
-  // if (!isLoading && data)
-  // content = data.map((item) => {
+  const currentReview = props.currentReview;
+  if (!isLoading && currentReview)
+    content = (
+      <tr>
+        <td className="orderTableTD">{currentReview.restaurantName}</td>
+        <td className="orderTableTD">{currentReview.restaurantRatings[0]}</td>
+        <td className="orderTableTD">{currentReview.restaurantRatings[1]}</td>
+        <td className="orderTableTD">{currentReview.restaurantRatings[2]}</td>
+        <td className="orderTableTD">{currentReview.restaurantRatings[3]}</td>
+        {/* <td className="orderTableTD">{item.addres}</td>
+      <td className="orderTableTD">
+        {item.approved ? "Approved" : "Not Approved"}
+      </td>
+      <td className="orderTableTD">
+        <i
+          onClick={() => props.editRestaurant(item._id)}
+          style={{ cursor: "pointer" }}
+          class="far fa-edit"
+        ></i>
+      </td> */}
+      </tr>
+    );
+  // content = [...Array(1)].map((item, i) => {
   //   return (
   //     <tr>
-  //       <td className="orderTableTD">{item.name}</td>
-  //       <td className="orderTableTD">{item.email}</td>
-  //       <td className="orderTableTD">{item.addres}</td>
-  //       <td className="orderTableTD">
-  //         {item.approved ? "Approved" : "Not Approved"}
-  //       </td>
-  //       <td className="orderTableTD">
-  //         <i
-  //           onClick={() => props.editRestaurant(item._id)}
-  //           style={{ cursor: "pointer" }}
-  //           class="far fa-edit"
-  //         ></i>
-  //       </td>
+  //       <td className="orderTableTD">Biryani</td>
+  //       <td className="orderTableTD">5 *</td>
+  //       <td className="orderTableTD">5 *</td>
+  //       <td className="orderTableTD">5 *</td>
+  //       <td className="orderTableTD">5 *</td>
   //     </tr>
   //   );
   // });
-  content = [...Array(1)].map((item, i) => {
-    return (
-      <tr>
-        <td className="orderTableTD">Biryani</td>
-        <td className="orderTableTD">5 *</td>
-        <td className="orderTableTD">5 *</td>
-        <td className="orderTableTD">5 *</td>
-        <td className="orderTableTD">5 *</td>
-      </tr>
-    );
-  });
   // else content = <p>Loading...</p>;
   return (
     <div className="restaurantmanagementtable mb-4">
@@ -135,18 +140,12 @@ const ReviewTableDetailRating = (props) => {
             data && data.length > 0 ? " maximumWidthRestaurant" : null
           }`}
         >
-          <h3>Customers Ratings Detailed</h3>
+          <h3>Restaurant Ratings</h3>
         </div>
         <table class="table table-hover">
           <thead style={{ backgroundColor: Colors.tableHead, color: "#fff" }}>
             <tr className="restaurantTableHeadiingRow">
-              {/* <th className='orderTableTH'>ID</th> */}
-              {/* <th className="orderTableTH">Restaurant Name</th>
-              <th className="orderTableTH">Email</th>
-              <th className="orderTableTH">Address</th>
-              <th className="orderTableTH">Status</th>
-              <th className="orderTableTH">Action</th> */}
-              <th className="orderTableTH">Food Item</th>
+              <th className="orderTableTH">Restaurant Name</th>
               <th className="orderTableTH">Order Packaging</th>
               <th className="orderTableTH">Value of money</th>
               <th className="orderTableTH">Delivery Time</th>

@@ -1,49 +1,58 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "./../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
-import useForm from "./useform";
-import validate from "./validate";
+// import useForm from "./useform";
+// import validate from "./validate";
 import Colors from "../../UI/constants/Colors";
 const AddOrderStatusForm = (props) => {
   const { userId, token } = useAuth();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [data, setData] = useState([]);
   const [orderStatusName, setOrderStatusName] = useState("");
+  const [activeOrderId, setActiveOrderId] = useState("");
+  const [isActiveStatus, setIsActiveStatus] = useState(true);
   const [isCompletedStatus, setIsCompletedStatus] = useState(false);
   const [isCancelledStatus, setIsCancelledStatus] = useState(false);
   const [forwardStatus, setForwardStatus] = useState(false);
   const [refundStatus, setRefundStatus] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleChangeOrderStatusName = (e) => {
     setOrderStatusName(e.target.value);
   };
   const handleCompletedMarkCheck = (e) => {
     setIsCompletedStatus(e.target.checked);
+    setIsActiveStatus(false);
     setIsCancelledStatus(false);
     setForwardStatus(false);
     setRefundStatus(false);
   };
   const handleCencelledMarkCheck = (e) => {
+    setIsActiveStatus(false);
     setIsCompletedStatus(false);
     setIsCancelledStatus(e.target.checked);
     setForwardStatus(false);
     setRefundStatus(false);
   };
   const handleForwardMarkCheck = (e) => {
+    setIsActiveStatus(true);
     setIsCompletedStatus(false);
+
     setIsCancelledStatus(false);
     setForwardStatus(e.target.checked);
     setRefundStatus(false);
   };
-  const handleDispatchedMarkCheck = (e) => {
+  const handleRefundMarkCheck = (e) => {
+    setIsActiveStatus(false);
     setIsCompletedStatus(false);
+
     setIsCancelledStatus(false);
     setForwardStatus(false);
     setRefundStatus(e.target.checked);
   };
   const handleAddOrderStatusName = async (e) => {
     e.preventDefault();
-    handleSubmit();
+    // handleSubmit();
     try {
       const responseData = await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/add-order-status`,
@@ -55,7 +64,10 @@ const AddOrderStatusForm = (props) => {
         JSON.stringify({
           userId,
           orderStatus: orderStatusName,
-          active: isCompletedStatus,
+          active: isActiveStatus,
+          cancelstatus: isCancelledStatus,
+          forwardtorestaurant: forwardStatus,
+          refundstatus: refundStatus,
         })
       );
       console.log("responseData", responseData);
@@ -64,6 +76,135 @@ const AddOrderStatusForm = (props) => {
     setOrderStatusName("");
     setIsCompletedStatus(false);
   };
+  const handleViewEditOrderStatus = (orderStatusData) => {
+    setIsEditing(true);
+    setActiveOrderId(orderStatusData._id);
+    console.log("##############################################");
+    console.log(orderStatusData);
+    console.log("##############################################");
+    setOrderStatusName(orderStatusData.orderstatus);
+    if (
+      orderStatusData.active === true &&
+      orderStatusData.forwardtorestaurant === false
+    ) {
+      setIsActiveStatus(true);
+      setIsCompletedStatus(false);
+      setIsCancelledStatus(false);
+      setForwardStatus(false);
+      setRefundStatus(false);
+    }
+    if (
+      orderStatusData.active === false &&
+      orderStatusData.cancelstatus === false &&
+      orderStatusData.forwardtorestaurant === false &&
+      orderStatusData.refundstatus === false
+    ) {
+      setIsActiveStatus(false);
+      setIsCompletedStatus(true);
+      setIsCancelledStatus(false);
+      setForwardStatus(false);
+      setRefundStatus(false);
+    }
+    if (orderStatusData.cancelstatus === true) {
+      setIsActiveStatus(false);
+      setIsCompletedStatus(false);
+      setIsCancelledStatus(true);
+      setForwardStatus(false);
+      setRefundStatus(false);
+    }
+    if (orderStatusData.forwardtorestaurant === true) {
+      setIsActiveStatus(true);
+      setIsCompletedStatus(false);
+      setIsCancelledStatus(false);
+      setForwardStatus(true);
+      setRefundStatus(false);
+    }
+    if (orderStatusData.refundstatus === true) {
+      setIsActiveStatus(false);
+      setIsCompletedStatus(false);
+      setIsCancelledStatus(false);
+      setForwardStatus(false);
+      setRefundStatus(true);
+    }
+  };
+  const handleEditOrderStatus = async (e) => {
+    e.preventDefault();
+    try {
+      const responseData = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/edit-order-status`,
+        "POST",
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        JSON.stringify({
+          userId: userId,
+          orderStatusId: activeOrderId,
+          orderStatus: orderStatusName,
+          active:
+            !isCompletedStatus && !isCancelledStatus && !refundStatus
+              ? true
+              : isActiveStatus,
+          cancelstatus: isCancelledStatus,
+          forwardtorestaurant: forwardStatus,
+          refundstatus: refundStatus,
+        })
+      );
+      console.log("responseData", responseData);
+      setData(responseData.orderStatuses);
+      setActiveOrderId("");
+      setOrderStatusName("");
+      setIsActiveStatus(false);
+      setIsCompletedStatus(false);
+      setIsCancelledStatus(false);
+      setForwardStatus(false);
+      setRefundStatus(false);
+      setIsEditing(false);
+    } catch (err) {}
+    // setIsCompletedStatus(false);
+  };
+
+  const handleCancelEdit = () => {
+    setActiveOrderId("");
+    setOrderStatusName("");
+    setIsActiveStatus(false);
+    setIsCompletedStatus(false);
+    setIsCancelledStatus(false);
+    setForwardStatus(false);
+    setRefundStatus(false);
+    setIsEditing(false);
+  };
+  // const handleViewEditOrderStatus = async (orderStatusData) => {
+  //   try {
+  //     const responseData = await sendRequest(
+  //       `${process.env.REACT_APP_BACKEND_URL}/edit-order-status`,
+  //       "POST",
+  //       {
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer " + token,
+  //       },
+  //       JSON.stringify({
+  //         userId,
+  //         ftpId: ftpDataId,
+  //         heading: heading,
+  //         para: para,
+  //         type: "f",
+  //         priority: priority,
+  //       })
+  //     );
+  //     console.log("responseData", responseData);
+  //     // setData(responseData.existingFtps);
+  //     setHeading("");
+  //     setPara("");
+  //     setFtpDataId("");
+  //     setHeading("");
+  //     setPriority("");
+  //     setEditing(false);
+  //     fetchFAQs();
+  //   } catch (err) {}
+  //   // setIsCompletedStatus(false);
+  // };
+
   const handleDeleteOrderStatusName = async (itemIndex) => {
     try {
       const responseData = await sendRequest(
@@ -103,13 +244,13 @@ const AddOrderStatusForm = (props) => {
     };
     if (token && userId) dashboard();
   }, [token, userId, sendRequest]);
-  const { handleChange, handleSubmit, values, errors } = useForm(
-    submit,
-    validate
-  );
-  function submit() {
-    console.log("success");
-  }
+  //   const { handleChange, handleSubmit, values, errors } = useForm(
+  //     submit,
+  //     validate
+  //   );
+  //   function submit() {
+  //     console.log("success");
+  //   }
   let content;
   if (!isLoading)
     content = (
@@ -124,22 +265,41 @@ const AddOrderStatusForm = (props) => {
                 <label for="exampleInputEmail1">Order Status Name</label>
                 <div className="d-flex align-items-center">
                   <input
-                    onChange={handleChange}
-                    value={values.orderStatusName}
-                    name="orderstatus"
+                    onChange={handleChangeOrderStatusName}
+                    value={orderStatusName}
                     type="text"
                     class="form-control mr-4"
                     placeholder="Enter Order Status Name"
                   />
-                  <button
-                    type="submit"
-                    className="addOrderStatusButton"
-                    onClick={handleAddOrderStatusName}
-                  >
-                    Add
-                  </button>
+                  {!isEditing && (
+                    <button
+                      type="submit"
+                      className="addOrderStatusButton"
+                      onClick={handleAddOrderStatusName}
+                    >
+                      Add
+                    </button>
+                  )}
+                  {isEditing && (
+                    <div className="d-flex">
+                      <button
+                        type="submit"
+                        className="addOrderStatusButton mr-2"
+                        onClick={handleEditOrderStatus}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        type="submit"
+                        className="addOrderStatusButton"
+                        onClick={handleCancelEdit}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  )}
                 </div>
-                {errors.orderStatusNameError ? (
+                {/* {errors.orderStatusNameError ? (
                   <div
                     style={{
                       color: "red",
@@ -148,7 +308,7 @@ const AddOrderStatusForm = (props) => {
                   >
                     {errors.orderStatusNameError}
                   </div>
-                ) : null}
+                ) : null} */}
                 <div class="form-check mt-4">
                   <input
                     type="checkbox"
@@ -190,7 +350,7 @@ const AddOrderStatusForm = (props) => {
                     type="checkbox"
                     class="form-check-input"
                     id="dispatchedOrderStatus"
-                    onChange={handleDispatchedMarkCheck}
+                    onChange={handleRefundMarkCheck}
                     checked={refundStatus}
                   />
                   <label class="form-check-label" for="dispatchedOrderStatus">
@@ -215,23 +375,29 @@ const AddOrderStatusForm = (props) => {
                   </thead>
                   <tbody>
                     {data.map((item, index) => {
-                      return item.active === false ? (
+                      return item.active === true &&
+                        item.forwardtorestaurant === false ? (
                         <tr>
-                          <td className="orderTableTD">{item.orderstatus}</td>
-                          <div className="d-flex align-items-center justify-content-center">
-                            <i
-                              style={{ cursor: "pointer" }}
-                              class="far fa-edit mr-3 editButtonIcon"
-                            ></i>
-                            <label
-                              className="noMargin deleteOrderStatusButton"
-                              onClick={() =>
-                                handleDeleteOrderStatusName(item._id)
-                              }
-                            >
-                              Delete
-                            </label>
-                          </div>
+                          <td className="orderTableTD orderStatusTdMaxWidth">
+                            {item.orderstatus}
+                          </td>
+                          <td className="orderTableTD orderStatusTdMaxWidth">
+                            <div className="d-flex align-items-center justify-content-center">
+                              <i
+                                style={{ cursor: "pointer" }}
+                                class="far fa-edit mr-3 editButtonIcon"
+                                onClick={() => handleViewEditOrderStatus(item)}
+                              ></i>
+                              <label
+                                className="noMargin deleteOrderStatusButton"
+                                onClick={() =>
+                                  handleDeleteOrderStatusName(item._id)
+                                }
+                              >
+                                Delete
+                              </label>
+                            </div>
+                          </td>
                         </tr>
                       ) : null;
                     })}
@@ -253,12 +419,21 @@ const AddOrderStatusForm = (props) => {
                   </thead>
                   <tbody>
                     {data.map((item, index) => {
-                      return item.active === true ? (
+                      return item.active === false &&
+                        item.cancelstatus === false &&
+                        item.forwardtorestaurant === false &&
+                        item.refundstatus === false ? (
                         <tr>
-                          <td className="orderTableTD">{item.orderstatus}</td>
-                          <td className="orderTableTD">
+                          <td className="orderTableTD orderStatusTdMaxWidth">
+                            {item.orderstatus}
+                          </td>
+                          <td className="orderTableTD orderStatusTdMaxWidth">
                             <div className="d-flex align-items-center justify-content-center">
-                              <i class="far fa-edit mr-3 editButtonIcon"></i>
+                              <i
+                                class="far fa-edit mr-3 editButtonIcon"
+                                style={{ cursor: "pointer" }}
+                                onClick={() => handleViewEditOrderStatus(item)}
+                              ></i>
                               <label
                                 className="noMargin deleteOrderStatusButton"
                                 onClick={() =>
@@ -290,14 +465,17 @@ const AddOrderStatusForm = (props) => {
                   </thead>
                   <tbody>
                     {data.map((item, index) => {
-                      return item.active === true ? (
+                      return item.cancelstatus === true ? (
                         <tr>
-                          <td className="orderTableTD">{item.orderstatus}</td>
-                          <td className="orderTableTD">
+                          <td className="orderTableTD orderStatusTdMaxWidth">
+                            {item.orderstatus}
+                          </td>
+                          <td className="orderTableTD orderStatusTdMaxWidth">
                             <div className="d-flex align-items-center justify-content-center">
                               <i
                                 style={{ cursor: "pointer" }}
                                 class="far fa-edit mr-3 editButtonIcon"
+                                onClick={() => handleViewEditOrderStatus(item)}
                               ></i>
                               <label
                                 className="noMargin deleteOrderStatusButton"
@@ -330,14 +508,17 @@ const AddOrderStatusForm = (props) => {
                   </thead>
                   <tbody>
                     {data.map((item, index) => {
-                      return item.active === true ? (
+                      return item.forwardtorestaurant === true ? (
                         <tr>
-                          <td className="orderTableTD">{item.orderstatus}</td>
-                          <td className="orderTableTD">
+                          <td className="orderTableTD orderStatusTdMaxWidth">
+                            {item.orderstatus}
+                          </td>
+                          <td className="orderTableTD orderStatusTdMaxWidth">
                             <div className="d-flex align-items-center justify-content-center">
                               <i
                                 style={{ cursor: "pointer" }}
                                 class="far fa-edit mr-3 editButtonIcon"
+                                onClick={() => handleViewEditOrderStatus(item)}
                               ></i>
                               <label
                                 className="noMargin deleteOrderStatusButton"
@@ -370,14 +551,17 @@ const AddOrderStatusForm = (props) => {
                   </thead>
                   <tbody>
                     {data.map((item, index) => {
-                      return item.active === true ? (
+                      return item.refundstatus === true ? (
                         <tr>
-                          <td className="orderTableTD">{item.orderstatus}</td>
-                          <td className="orderTableTD">
+                          <td className="orderTableTD orderStatusTdMaxWidth">
+                            {item.orderstatus}
+                          </td>
+                          <td className="orderTableTD orderStatusTdMaxWidth">
                             <div className="d-flex align-items-center justify-content-center">
                               <i
                                 style={{ cursor: "pointer" }}
                                 class="far fa-edit mr-3 editButtonIcon"
+                                onClick={() => handleViewEditOrderStatus(item)}
                               ></i>
                               <label
                                 className="noMargin deleteOrderStatusButton"

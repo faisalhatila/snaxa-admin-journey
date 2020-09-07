@@ -36,6 +36,7 @@ const AddRestaurantForm = (props) => {
   const [cuisines, setCuisines] = useState([]);
   const [alreadyCuisines, setALreadyCuisines] = useState();
   const [currentStep, setCurrentStep] = useState(1);
+  const [deliveryCharges, setDeliveryCharges] = useState("");
   const [editRestaurantActiveTab, setEditRestaurantActiveTab] = useState(
     "Info"
   );
@@ -403,6 +404,18 @@ const AddRestaurantForm = (props) => {
                   />
                 </div>
                 <div class="form-group">
+                  <label for="exampleInputEmail1">Delivery Charges</label>
+                  <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    class="form-control"
+                    placeholder="Delivery Charges"
+                    onChange={(e) => setDeliveryCharges(e.target.value)}
+                    value={deliveryCharges}
+                  />
+                </div>
+                <div class="form-group">
                   <label for="exampleInputEmail1">
                     Restaurant Commision in %
                   </label>
@@ -411,7 +424,7 @@ const AddRestaurantForm = (props) => {
                     min="0"
                     max="100"
                     class="form-control"
-                    placeholder="Enter Item Name"
+                    placeholder="Enter Commission"
                     onChange={setCommision}
                     value={commission}
                   />

@@ -217,7 +217,7 @@ const AddAddonCategoryForm = (props) => {
                   </label>
                   {editing && (
                     <label
-                      className="addOrderStatusButton"
+                      className="addOrderStatusButton ml-3"
                       onClick={cancelEditing}
                     >
                       Cancel
@@ -341,22 +341,23 @@ const AddAddonCategoryForm = (props) => {
                       return (
                         <tr>
                           <td className="orderTableTD">{item.addOnName}</td>
-
-                          <div className="d-flex align-items-center justify-content-center">
-                            <i
-                              style={{ cursor: "pointer" }}
-                              className="far fa-edit mr-3 editButtonIcon"
-                              onClick={() => handleEditViewCategory(item._id)}
-                            ></i>
-                            <label
-                              className="noMargin deleteOrderStatusButton"
-                              onClick={() =>
-                                handleDeleteAddonCategoryName(item._id)
-                              }
-                            >
-                              Delete
-                            </label>
-                          </div>
+                          <td className="orderTableTD">
+                            <div className="d-flex align-items-center justify-content-center">
+                              <i
+                                style={{ cursor: "pointer" }}
+                                className="far fa-edit mr-3 editButtonIcon"
+                                onClick={() => handleEditViewCategory(item._id)}
+                              ></i>
+                              <label
+                                className="noMargin deleteOrderStatusButton"
+                                onClick={() =>
+                                  handleDeleteAddonCategoryName(item._id)
+                                }
+                              >
+                                Delete
+                              </label>
+                            </div>
+                          </td>
                         </tr>
                       );
                     })}

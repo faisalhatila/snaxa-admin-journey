@@ -26,6 +26,7 @@ import _Feedback from "./feedback";
 import _Siteinfo from "./siteinfo";
 import _ViewSalesContainer from "./viewsalescontainer";
 import _SocialNetwork from "./socialnetwork";
+import _ViewAllOrders from "./viewallorders";
 
 export const OrderDetails = _OrderDetails;
 export const HomeContainer = _HomeContainer;
@@ -55,3 +56,4 @@ export const Feedback = _Feedback;
 export const Siteinfo = _Siteinfo;
 export const SocialNetwork = _SocialNetwork;
 export const ViewSalesContainer = _ViewSalesContainer;
+export const ViewAllOrders = _ViewAllOrders;

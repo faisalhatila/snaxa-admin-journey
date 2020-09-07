@@ -3,10 +3,13 @@ import { ReviewTableDetailRating, ReviewTableDetail } from "..";
 import Colors from "../../UI/constants/Colors";
 
 const ReviewsDetailed = (props) => {
+  console.log("################################");
+  console.log("detailedddd", props.currentReview);
+  console.log("################################");
   return (
     <div>
-      <ReviewTableDetailRating />
-      <ReviewTableDetail />
+      <ReviewTableDetailRating currentReview={props.currentReview} />
+      <ReviewTableDetail currentReview={props.currentReview} />
       <label
         style={{
           backgroundColor: Colors.tableHead,

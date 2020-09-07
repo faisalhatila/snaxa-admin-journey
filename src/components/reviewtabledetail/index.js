@@ -5,6 +5,9 @@ import Colors from "../../UI/constants/Colors";
 
 // let ReviewTableShort;
 const ReviewTableDetail = (props) => {
+  console.log("###################################");
+  console.log("dataReview", props.currentReview);
+  console.log("###################################");
   const [data, setData] = useState();
 
   const { userId, token } = useAuth();
@@ -14,123 +17,110 @@ const ReviewTableDetail = (props) => {
 
   // console.log(userId, token);
   // const auth = useContext(AuthContext);
-  useEffect(() => {
-    const dashboard = async () => {
-      console.log("new-restaurants");
-      try {
-        const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/new-restaurants`,
-          "POST",
-          {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-          JSON.stringify({
-            userId,
-          })
-        );
-        console.log("responseData", responseData);
-        setData(responseData.existingRestaurantsAdmin);
-      } catch (err) {
-        // console.log("err", err);
-      }
-    };
-    if (token && userId) dashboard();
-  }, [token, userId, sendRequest]);
+  // useEffect(() => {
+  //   const dashboard = async () => {
+  //     console.log("new-restaurants");
+  //     try {
+  //       const responseData = await sendRequest(
+  //         `${process.env.REACT_APP_BACKEND_URL}/new-restaurants`,
+  //         "POST",
+  //         {
+  //           "Content-Type": "application/json",
+  //           Authorization: "Bearer " + token,
+  //         },
+  //         JSON.stringify({
+  //           userId,
+  //         })
+  //       );
+  //       console.log("responseData", responseData);
+  //       setData(responseData.existingRestaurantsAdmin);
+  //     } catch (err) {
+  //       // console.log("err", err);
+  //     }
+  //   };
+  //   if (token && userId) dashboard();
+  // }, [token, userId, sendRequest]);
 
-  const emailRef = useRef();
-  useEffect(() => {
-    const timer = setTimeout(async () => {
-      //   if (searchByEmail === emailRef.current.value) {
-      try {
-        const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/get-restaurant-by-email`,
-          "POST",
-          {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-          JSON.stringify({
-            userId,
-            emailQuery: searchByEmail,
-            type: "New",
-          })
-        );
-        console.log("responseData", responseData);
-        setData(responseData.restaurants);
-      } catch (err) {}
-      //   }
-    }, 500);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchByEmail, sendRequest, userId]);
+  // const emailRef = useRef();
+  // useEffect(() => {
+  //   const timer = setTimeout(async () => {
+  //     //   if (searchByEmail === emailRef.current.value) {
+  //     try {
+  //       const responseData = await sendRequest(
+  //         `${process.env.REACT_APP_BACKEND_URL}/get-restaurant-by-email`,
+  //         "POST",
+  //         {
+  //           "Content-Type": "application/json",
+  //           Authorization: "Bearer " + token,
+  //         },
+  //         JSON.stringify({
+  //           userId,
+  //           emailQuery: searchByEmail,
+  //           type: "New",
+  //         })
+  //       );
+  //       console.log("responseData", responseData);
+  //       setData(responseData.restaurants);
+  //     } catch (err) {}
+  //     //   }
+  //   }, 500);
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, [searchByEmail, sendRequest, userId]);
 
-  const nameRef = useRef();
-  useEffect(() => {
-    const timer = setTimeout(async () => {
-      //   if (searchByName === nameRef.current.value) {
-      try {
-        const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/get-restaurant-by-name`,
-          "POST",
-          {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-          JSON.stringify({
-            userId,
-            emailQuery: searchByName,
-            type: "New",
-          })
-        );
-        console.log("responseData", responseData);
-        setData(responseData.restaurants);
-      } catch (err) {}
-      //   }
-    }, 500);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchByName, sendRequest, userId]);
+  // const nameRef = useRef();
+  // useEffect(() => {
+  //   const timer = setTimeout(async () => {
+  //     //   if (searchByName === nameRef.current.value) {
+  //     try {
+  //       const responseData = await sendRequest(
+  //         `${process.env.REACT_APP_BACKEND_URL}/get-restaurant-by-name`,
+  //         "POST",
+  //         {
+  //           "Content-Type": "application/json",
+  //           Authorization: "Bearer " + token,
+  //         },
+  //         JSON.stringify({
+  //           userId,
+  //           emailQuery: searchByName,
+  //           type: "New",
+  //         })
+  //       );
+  //       console.log("responseData", responseData);
+  //       setData(responseData.restaurants);
+  //     } catch (err) {}
+  //     //   }
+  //   }, 500);
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, [searchByName, sendRequest, userId]);
 
   let content;
-  // if (!isLoading && data)
-  // content = data.map((item) => {
+  const foodReview = props.currentReview.reviews;
+  if (!isLoading && foodReview)
+    content = foodReview.map((item) => {
+      return (
+        <tr>
+          <td className="orderTableTD">{item.foodItem}</td>
+          <td className="orderTableTD">{item.rating}</td>
+        </tr>
+      );
+    });
+  // content = [...Array(1)].map((item, i) => {
   //   return (
   //     <tr>
-  //       <td className="orderTableTD">{item.name}</td>
-  //       <td className="orderTableTD">{item.email}</td>
-  //       <td className="orderTableTD">{item.addres}</td>
-  //       <td className="orderTableTD">
-  //         {item.approved ? "Approved" : "Not Approved"}
-  //       </td>
-  //       <td className="orderTableTD">
-  //         <i
-  //           onClick={() => props.editRestaurant(item._id)}
-  //           style={{ cursor: "pointer" }}
-  //           class="far fa-edit"
-  //         ></i>
-  //       </td>
+  //       <td className="orderTableTD">Biryani</td>
+  //       <td className="orderTableTD">Alaska</td>
+  //       {/* <td className="orderTableTD">
+  //           <i style={{ cursor: "pointer" }} class="far fa-edit"></i>
+  //           <label className="reviewTableViewButton mr-2">View</label>
+  //           <label className="reviewTableDeleteButton">Delete</label>
+  //         </td> */}
   //     </tr>
   //   );
   // });
-  content = [...Array(1)].map((item, i) => {
-    return (
-      <tr>
-        <td className="orderTableTD">Faisal</td>
-        <td className="orderTableTD">Alaska</td>
-        <td className="orderTableTD">Food Item</td>
-        <td className="orderTableTD">5 *</td>
-        <td className="orderTableTD">Superb Restaurant</td>
-        {/* <td className="orderTableTD">
-            <i style={{ cursor: "pointer" }} class="far fa-edit"></i>
-            <label className="reviewTableViewButton mr-2">View</label>
-            <label className="reviewTableDeleteButton">Delete</label>
-          </td> */}
-      </tr>
-    );
-  });
   // else content = <p>Loading...</p>;
   return (
     <div className="restaurantmanagementtable mb-4">
@@ -140,22 +130,13 @@ const ReviewTableDetail = (props) => {
             data && data.length > 0 ? " maximumWidthRestaurant" : null
           }`}
         >
-          <h3>Customers Ratings</h3>
+          <h3>Food Item Ratings</h3>
         </div>
         <table class="table table-hover">
           <thead style={{ backgroundColor: Colors.tableHead, color: "#fff" }}>
             <tr className="restaurantTableHeadiingRow">
-              {/* <th className='orderTableTH'>ID</th> */}
-              {/* <th className="orderTableTH">Restaurant Name</th>
-              <th className="orderTableTH">Email</th>
-              <th className="orderTableTH">Address</th>
-              <th className="orderTableTH">Status</th>
-              <th className="orderTableTH">Action</th> */}
               <th className="orderTableTH">Name</th>
               <th className="orderTableTH">Name Restaurant</th>
-              <th className="orderTableTH">Food Item</th>
-              <th className="orderTableTH">Rating</th>
-              <th className="orderTableTH">Message</th>
               {/* <th className="orderTableTH">Action</th> */}
             </tr>
           </thead>

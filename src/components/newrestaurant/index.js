@@ -93,9 +93,55 @@ const NewRestaurant = (props) => {
       clearTimeout(timer);
     };
   }, [searchByName, sendRequest, userId]);
-
+  console.log("######################################################");
+  console.log(data);
+  console.log("######################################################");
   let content;
-  if (!isLoading && data)
+  if (isLoading)
+    content = (
+      <tr>
+        <td className="orderTableTH"></td>
+        <td className="orderTableTH">
+          <Loader />
+        </td>
+        <td className="orderTableTH"></td>
+        <td className="orderTableTH"></td>
+        <td className="orderTableTH"></td>
+      </tr>
+    );
+  // else if (!isLoading && data)
+  //   content = data.map((item) => {
+  //     return (
+  //       <tr>
+  //         <td className="orderTableTD">{item.name}</td>
+  //         <td className="orderTableTD">{item.email}</td>
+  //         <td className="orderTableTD">{item.addres}</td>
+  //         <td className="orderTableTD">
+  //           {item.approved ? "Approved" : "Not Approved"}
+  //         </td>
+  //         <td className="orderTableTD">
+  //           <i
+  //             onClick={() => props.editRestaurant(item._id)}
+  //             style={{ cursor: "pointer" }}
+  //             class="far fa-edit"
+  //           ></i>
+  //         </td>
+  //       </tr>
+  //     );
+  //   });
+  else if (!isLoading && (!data || data === undefined || data === []))
+    content = (
+      <tr>
+        <td className="orderTableTH"></td>
+        <td className="orderTableTH">
+          <p>Nothing</p>
+        </td>
+        <td className="orderTableTH"></td>
+        <td className="orderTableTH"></td>
+        <td className="orderTableTH"></td>
+      </tr>
+    );
+  else
     content = data.map((item) => {
       return (
         <tr>
@@ -115,7 +161,6 @@ const NewRestaurant = (props) => {
         </tr>
       );
     });
-  else content = <Loader />;
   return (
     <div className="restaurantmanagementtable mb-4">
       <div class="container">
@@ -162,7 +207,8 @@ const NewRestaurant = (props) => {
               <td></td>
               <td></td>
             </tr>
-            {data && data.length > 0 ? (
+            {content}
+            {/* {data && data.length > 0 ? (
               content
             ) : (
               <div className="noNewOrderHeadingDiv mt-3">
@@ -170,7 +216,7 @@ const NewRestaurant = (props) => {
                   <h4>No New Restaurant Added</h4>
                 </tr>
               </div>
-            )}
+            )} */}
           </tbody>
         </table>
       </div>

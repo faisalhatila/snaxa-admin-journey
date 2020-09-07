@@ -251,7 +251,7 @@ const AddAddonCategoryForm = (props) => {
                   </label>
                   {editing && (
                     <label
-                      className="addOrderStatusButton"
+                      className="addOrderStatusButton ml-3"
                       onClick={cancelEditing}
                     >
                       Cancel
@@ -297,21 +297,25 @@ const AddAddonCategoryForm = (props) => {
                           </td>
                           <td className="orderTableTD">{item.name}</td>
                           <td className="orderTableTD">{item.price}</td>
-                          <div className="d-flex align-items-center justify-content-center">
-                            <i
-                              style={{ cursor: "pointer" }}
-                              class="far fa-edit mr-3 editButtonIcon"
-                              onClick={() => handleEditViewAddonItem(item._id)}
-                            ></i>
-                            <label
-                              className="noMargin deleteOrderStatusButton"
-                              onClick={() =>
-                                handleDeleteAddonItemName(item._id)
-                              }
-                            >
-                              Delete
-                            </label>
-                          </div>
+                          <td className="orderTableTD">
+                            <div className="d-flex align-items-center justify-content-center">
+                              <i
+                                style={{ cursor: "pointer" }}
+                                class="far fa-edit mr-3 editButtonIcon"
+                                onClick={() =>
+                                  handleEditViewAddonItem(item._id)
+                                }
+                              ></i>
+                              <label
+                                className="noMargin deleteOrderStatusButton"
+                                onClick={() =>
+                                  handleDeleteAddonItemName(item._id)
+                                }
+                              >
+                                Delete
+                              </label>
+                            </div>
+                          </td>
                         </tr>
                       );
                     })}

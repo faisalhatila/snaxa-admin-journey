@@ -31,6 +31,7 @@ import {
   Siteinfo,
   SocialNetwork,
   ViewSalesContainer,
+  ViewAllOrders,
 } from "../containers";
 const Router = (props) => {
   const { userId, token } = useAuth();
@@ -53,6 +54,7 @@ const Router = (props) => {
           path="/order-management-table"
           component={OrderManagementTable}
         />
+        <Route exact path="/view-all-orders" component={ViewAllOrders} />
         <Route
           exact
           path="/restaurant-management-table"

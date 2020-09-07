@@ -241,7 +241,7 @@ const AddItemForm = (props) => {
         <div className="col-12 customerDetailFormMainDiv d-lg-flex d-md-flex">
           <form className="col-12 col-md-6 col-lg-6 updateVendorForm">
             <div className="row">
-              <div class="form-group col-12">
+              {/* <div class="form-group col-12">
                 <label for="exampleInputEmail1">Item Name</label>
                 <input
                   type="text"
@@ -250,10 +250,8 @@ const AddItemForm = (props) => {
                   onChange={handleChangecategoryName}
                   value={categoryName}
                 />
-              </div>
-            </div>
-            <div className="row">
-              <div class="form-group col-12 col-md-6 col-lg-6">
+              </div> */}
+              <div class="form-group col-12">
                 <label for="exampleFormControlSelect1">Select Category</label>
                 <select
                   class="form-control"
@@ -271,6 +269,37 @@ const AddItemForm = (props) => {
                     ))}
                 </select>
               </div>
+            </div>
+            <div className="row">
+              {/* <div class="form-group col-12 col-md-6 col-lg-6">
+                <label for="exampleFormControlSelect1">Select Category</label>
+                <select
+                  class="form-control"
+                  id="exampleFormControlSelect1"
+                  onChange={handleSelectCategory}
+                  value={category}
+                >
+                  <option disabled selected>
+                    Select a Category
+                  </option>
+                  {dataAddCat &&
+                    dataAddCat.categories &&
+                    dataAddCat.categories.map((i) => (
+                      <option value={i._id}>{i.categoryName}</option>
+                    ))}
+                </select>
+              </div> */}
+              <div class="form-group col-12 col-md-6 col-lg-6">
+                <label for="exampleInputEmail1">Item Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Item Name"
+                  onChange={handleChangecategoryName}
+                  value={categoryName}
+                />
+              </div>
+
               <div class="form-group col-12 col-md-6 col-lg-6">
                 <label for="exampleInputEmail1">Description</label>
                 <input
@@ -366,8 +395,9 @@ const AddItemForm = (props) => {
             {editing && (
               <button
                 type="submit"
-                class="btn btn-primary mt-3"
+                class="btn btn-primary mt-3  ml-3"
                 onClick={handleCancelEdit}
+                style={{ backgroundColor: "#b40008", border: "none" }}
               >
                 Cancel
               </button>
@@ -396,19 +426,21 @@ const AddItemForm = (props) => {
                         {item.status ? "Active" : "Not Active"}
                       </td>
                       <td className="orderTableTD">{item.priority}</td>
-                      <div className="d-flex align-items-center justify-content-center">
-                        <i
-                          onClick={() => handleEditView(item._id)}
-                          style={{ cursor: "pointer" }}
-                          class="far fa-edit mr-3 editButtonIcon"
-                        ></i>
-                        <label
-                          onClick={() => handleDeleteItem(item._id)}
-                          className="noMargin deleteOrderStatusButton"
-                        >
-                          Delete
-                        </label>
-                      </div>
+                      <td className="orderTableTD">
+                        <div className="d-flex align-items-center justify-content-center">
+                          <i
+                            onClick={() => handleEditView(item._id)}
+                            style={{ cursor: "pointer" }}
+                            class="far fa-edit mr-3 editButtonIcon"
+                          ></i>
+                          <label
+                            onClick={() => handleDeleteItem(item._id)}
+                            className="noMargin deleteOrderStatusButton"
+                          >
+                            Delete
+                          </label>
+                        </div>
+                      </td>
                     </tr>
                   );
                 })}
