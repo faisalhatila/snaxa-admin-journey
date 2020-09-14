@@ -586,11 +586,25 @@ thead > tr > th {
   padding: 2px 10px;
 }
 .reviewTableDeleteButton {
-  background-color: red;
+  background-color: #b40008;
   color: #fff;
   padding: 2px 10px;
   border-radius: 5px;
   cursor: pointer;
+}
+.reviewTableApproveButton {
+  background-color: #b40008;
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.reviewTableApprovedButton {
+  background-color: #ccc;
+  color: #000;
+  padding: 2px 10px;
+  border-radius: 5px;
+  cursor: no-drop;
 }
 /**************************************************Review Table Screen End**************************************************/
 /**************************************************Google Map Start**************************************************/

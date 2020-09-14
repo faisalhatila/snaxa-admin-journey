@@ -13,30 +13,39 @@ const Reviews = (props) => {
   const [data, setData] = useState([]);
   const [currentReview, setCurrentReview] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const [isUpdating, setIsUpdating] = useState(true);
   const { userId, token } = useAuth();
-  useEffect(() => {
-    const dashboard = async () => {
-      // console.log("new-restaurants");
-      try {
-        const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/view-reviews`
-          // "POST",
-          // {
-          //   "Content-Type": "application/json",
-          //   Authorization: "Bearer " + token,
-          // },
-          // JSON.stringify({
-          //   userId,
-          // })
-        );
-        console.log("responseData", responseData);
-        setData(responseData.reviews);
-      } catch (err) {
-        // console.log("err", err);
-      }
-    };
-    if (token && userId) dashboard();
-  }, [token, userId, sendRequest]);
+
+  const handleViewCurrentReview = (review) => {
+    setCurrentReview(review);
+  };
+
+  // const handleDeleteReview = async (review) => {
+  //   console.log("####################################");
+  //   console.log(review);
+  //   console.log("####################################");
+  //   // setIsUpdating(true);
+  //   try {
+  //     const responseData = await sendRequest(
+  //       `${process.env.REACT_APP_BACKEND_URL}/delete-review`,
+  //       "POST",
+  //       {
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer " + token,
+  //       },
+  //       JSON.stringify({
+  //         reviewId: review.reviewId,
+  //         userId,
+  //         // orderStatus: itemIndex,
+  //       })
+  //     );
+  //     console.log("###################################################");
+  //     console.log("responseData", responseData);
+  //     console.log("###################################################");
+  //     getReviews();
+  //     // setIsUpdating(false);
+  //   } catch (err) {}
+  // };
 
   return (
     <div className="container">
@@ -45,8 +54,12 @@ const Reviews = (props) => {
           {reviewTableStep === 1 ? (
             <ReviewTableShort
               dataReview={data.length > 0 && data}
-              getCurrReview={(reviewData) => setCurrentReview(reviewData)}
               next={() => setReviewTableStep(2)}
+              // handleApproveReview={handleApproveReview}
+              // handleDeleteReview={handleDeleteReview}
+              isUpdating={isUpdating}
+              isLoading={isLoading}
+              handleViewCurrentReview={handleViewCurrentReview}
             />
           ) : (
             <ReviewsDetailed

@@ -43,6 +43,7 @@ import _DetailedReviews from "./detailedreviews";
 import _Loader from "./loader";
 import _ViewSales from "./viewsales";
 import _AllOrders from "./allorders";
+import _ReviewTableShortDataRow from "./reviewtableshortdatarow";
 
 export const OrderDetailsForn = _OrderDetailsForn;
 export const Header = _Header;
@@ -89,3 +90,4 @@ export const DetailedReviews = _DetailedReviews;
 export const Loader = _Loader;
 export const ViewSales = _ViewSales;
 export const AllOrders = _AllOrders;
+export const ReviewTableShortDataRow = _ReviewTableShortDataRow;

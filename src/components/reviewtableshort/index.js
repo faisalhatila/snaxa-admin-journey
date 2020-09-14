@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../../shared/hooks/auth-hooks";
 import { useHttpClient } from "./../../shared/hooks/http-hook";
 import Colors from "../../UI/constants/Colors";
+import { ReviewTableShortDataRow } from "..";
 
 // let ReviewTableShort;
 const ReviewTableShort = (props) => {
@@ -11,6 +12,7 @@ const ReviewTableShort = (props) => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [searchByName, setSearchByName] = useState("");
   const [searchByEmail, setSearchByEmail] = useState("");
+  // const [reviewId, setReviewId] = useState("");
 
   // console.log(userId, token);
   // const auth = useContext(AuthContext);
@@ -18,36 +20,81 @@ const ReviewTableShort = (props) => {
     console.log("##########################################");
     console.log(review);
     console.log("##########################################");
-    props.getCurrReview(review);
+    props.handleViewCurrentReview(review);
     props.next();
+  };
+  const getReviews = async () => {
+    // console.log("new-restaurants");
+    try {
+      const responseData = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/view-reviews`,
+        "POST",
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        JSON.stringify({
+          userId,
+        })
+      );
+      console.log("responseData", responseData);
+      setData(responseData.reviews);
+    } catch (err) {
+      // console.log("err", err);
+    }
+  };
+
+  const handleApproveReview = async (review) => {
+    console.log("####################################");
+    console.log(review);
+    console.log("####################################");
+    try {
+      const responseData = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/approve-review`,
+        "POST",
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        JSON.stringify({
+          reviewId: review.reviewId,
+          userId,
+          // orderStatus: itemIndex,
+        })
+      );
+      console.log("###################################################");
+      console.log("responseData", responseData);
+      console.log("###################################################");
+      getReviews();
+      // setData(responseData.review);
+    } catch (err) {}
   };
 
   useEffect(() => {
-    setData(props.dataReview);
-  }, [props.dataReview]);
-  // useEffect(() => {
-  //   const dashboard = async () => {
-  //     // console.log("new-restaurants");
-  //     try {
-  //       const responseData = await sendRequest(
-  //         `${process.env.REACT_APP_BACKEND_URL}/view-reviews`
-  //         // "POST",
-  //         // {
-  //         //   "Content-Type": "application/json",
-  //         //   Authorization: "Bearer " + token,
-  //         // },
-  //         // JSON.stringify({
-  //         //   userId,
-  //         // })
-  //       );
-  //       console.log("responseData", responseData);
-  //       setData(responseData.reviews);
-  //     } catch (err) {
-  //       // console.log("err", err);
-  //     }
-  //   };
-  //   if (token && userId) dashboard();
-  // }, [token, userId, sendRequest]);
+    const dashboard = async () => {
+      // console.log("new-restaurants");
+      try {
+        const responseData = await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/view-reviews`,
+          "POST",
+          {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          JSON.stringify({
+            userId,
+          })
+        );
+        console.log("responseData", responseData);
+        setData(responseData.reviews);
+      } catch (err) {
+        // console.log("err", err);
+      }
+    };
+    if (token && userId) dashboard();
+  }, [token, userId, sendRequest]);
+
+  console.log(props.isLoading);
 
   let content;
   if (!isLoading && data)
@@ -68,22 +115,7 @@ const ReviewTableShort = (props) => {
         //     ></i>
         //   </td>
         // </tr>
-        <tr>
-          <td className="orderTableTD">{item.userName}</td>
-          <td className="orderTableTD">{item.restaurantName}</td>
-          <td className="orderTableTD">{item.comment}</td>
-          <td className="orderTableTD">
-            {/* <i style={{ cursor: "pointer" }} class="far fa-edit"></i> */}
-            <label
-              className="reviewTableViewButton mr-2"
-              style={{ background: Colors.tableHead }}
-              onClick={() => handleViewReviews(item)}
-            >
-              View
-            </label>
-            <label className="reviewTableDeleteButton">Delete</label>
-          </td>
-        </tr>
+        <ReviewTableShortDataRow item={item} getReviews={getReviews} />
       );
     });
   else content = <p>Loading...</p>;
